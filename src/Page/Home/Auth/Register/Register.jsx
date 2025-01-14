@@ -5,6 +5,8 @@ import logo from '../../../../assets/usersLogo.png'
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
+import { IoCheckmark, IoCheckmarkDone } from 'react-icons/io5';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const [imageInfo, setImageInfo] = useState({
@@ -12,30 +14,25 @@ const Register = () => {
         name: ''
     })
     const [imageNotFound, setImageNotPound] = useState(true)
-
+    // register validation
+    const [rulesOpen, setRulesOpen] = useState(false)
+    const [pLength, setPLength] = useState(false)
+    const [pLower, setPLower] = useState(false)
+    const [pUpper, setPUpper] = useState(false)
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const onSubmit = (data) => {
-        console.log('data');
-        console.log(imageInfo?.url);
+
+    const onSubmit = (d) => {
         if (imageInfo?.url === '') {
-            console.log('object');
             return setImageNotPound(imageNotFound === false)
         }
-        console.log('hello');
-        // if (p.length < 8) {
-        //     errors.push("Your password must be at least 8 characters");
-        // }
-        // if (p.search(/[a-z]/i) < 0) {
-        //     errors.push("Your password must contain at least one letter.");
-        // }
-        // if (p.search(/[0-9]/) < 0) {
-        //     errors.push("Your password must contain at least one digit.");
-        // }
-        console.log(data);
+        if (pLength === false || pLower === false || pUpper === false) {
+            return toast.error('full fill password validation!')
+        }
+        console.log(d);
     }
 
     return (
@@ -65,6 +62,7 @@ const Register = () => {
                         {errors.name?.type === 'required' && <p className='text-red-400'>User Name is required</p>}
                     </div>
 
+                    {/* image get */}
                     <label className="block text-gray-700 mb-2" htmlFor="">Set Your Photo</label>
                     <div className=' border border-gray-300 relative rounded p-1'>
                         <div className=" flex items-center justify-between gap-5">
@@ -109,6 +107,7 @@ const Register = () => {
                         {imageInfo?.name && <p className='text-blue-400 mb-2 '>{imageInfo.name}</p>}
                     </div>
 
+                    {/* email part */}
                     <div className="my-4 ">
                         <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
                         <div className="flex items-center border border-gray-300 rounded">
@@ -124,6 +123,8 @@ const Register = () => {
                         </div>
                         {errors.email?.type === 'required' && <p className='text-red-400'>User Name is required</p>}
                     </div>
+
+                    {/* password part */}
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="password">Password</label>
                         <div className="flex items-center border border-gray-300 rounded">
@@ -133,9 +134,22 @@ const Register = () => {
                                 id="password"
                                 name="password"
                                 {...register('password', { required: true })}
+                                onKeyUp={(e) => {
+                                    const value = e.target.value;
+                                    setPLength(value.length > 5)
+                                    setPLower(/[a-z]/.test(value))
+                                    setPUpper(/[A-Z]/.test(value))
+                                }}
+
+                                onInput={() => { setRulesOpen(true) }}
                                 className="flex-1 p-2 focus:outline-none"
                                 placeholder="Enter your password"
                             />
+                        </div>
+                        <div className={`${rulesOpen === false ? 'hidden' : 'flex flex-col'}`}>
+                            <p className={`${pLength === true && 'text-green-400'} flex items-center gap-2 pt-2`} > {pLength ? <IoCheckmarkDone /> : <IoCheckmark />} at least 6 characters</p>
+                            <p className={`${pLower === true && 'text-green-400'} flex items-center gap-2 pt-2`} > {pLower ? <IoCheckmarkDone /> : <IoCheckmark />} at least one lower letter</p>
+                            <p className={`${pUpper === true && 'text-green-400'} flex items-center gap-2 pt-2`} > {pUpper ? <IoCheckmarkDone /> : <IoCheckmark />} at least one upper letter</p>
                         </div>
                         {
                             errors.password?.type === 'required' && <p className='text-red-400'>Password is required</p>
@@ -148,7 +162,7 @@ const Register = () => {
                     <div className='divider w-5/6 mx-auto'></div>
                     <button type="submit" className="actionBtn w-full text-center flex items-center justify-center gap-3"><FaGoogle className='w-6 h-6' />Google</button>
                 </form>
-            </div>
+            </div >
         </div >
     );
 };
