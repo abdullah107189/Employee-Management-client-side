@@ -1,9 +1,17 @@
-import { FaUser, FaLock, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaUser, FaLock, FaGoogle, FaFan } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import employee1 from '../../../../assets/employee1.svg'
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../../hooks/useAuth';
+import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useState } from 'react';
 const Login = () => {
-
+    const {loginUser} = useAuth()
+    const [firebaseLoading, setfirebaseLoading] = useState(false)
+    const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false);
+    
     const {
         register,
         handleSubmit,
@@ -11,7 +19,18 @@ const Login = () => {
     } = useForm();
 
     const onSubmit = (d) => {
-        console.log(d);
+        setfirebaseLoading(true)
+        loginUser(d.email, d.password)
+        .then(() =>{
+            toast.success('Login success 🙂')
+            navigate('/')
+            setfirebaseLoading(false)
+        })
+        .catch(error =>{
+            toast.error(error.message)
+            setfirebaseLoading(false)
+
+        })
     };
 
 
@@ -42,23 +61,41 @@ const Login = () => {
                         </div>
                         {errors.email?.type === 'required' && <p className='text-red-400'>Email is required</p>}
                     </div>
+
                     <div className="mb-4">
                         <label className="block text-gray-700 mb-2" htmlFor="password">Password</label>
                         <div className="flex items-center border border-gray-300 rounded">
                             <FaLock className="ml-2 text-gray-500" />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 {...register('password', { required: true, minLength: 6 })}
                                 className="flex-1 p-2 focus:outline-none"
                                 placeholder="Enter your password"
                             />
+                               <button
+                                                            type="button"
+                                                            onClick={() => setShowPassword(!showPassword)} // Toggle the showPassword state
+                                                            className="mx-2 text-gray-500 focus:outline-none"
+                                                        >
+                                                            {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Icon changes based on state */}
+                                                        </button>
                         </div>
                         {errors.password?.type === 'required' && <p className='text-red-400'>Password is required</p>}
                         {errors.password?.type === 'minLength' && <p className='text-red-400'>At least 6 characters</p>}
                     </div>
-                    <button type="submit" className="actionBtn w-full text-center">Login</button>
+
+
+                    <button type="submit" className="actionBtn w-full text-center">
+                        {
+                            firebaseLoading ? 
+                            <span className='animate-spin inline-block'><FaFan></FaFan></span>
+                            :
+                            <span>Login</span>
+
+                        }
+                        </button>
                     <p className="text-center mt-4">
                         Don&apos;t have an account? <Link to={'/register'} className="pText font-semibold">Register</Link>
                     </p>

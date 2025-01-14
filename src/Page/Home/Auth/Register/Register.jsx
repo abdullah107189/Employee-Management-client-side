@@ -1,5 +1,5 @@
-import { FaUser, FaLock, FaEnvelope, FaGoogle, FaFile } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaUser, FaLock, FaEnvelope, FaGoogle, FaFile, FaFan } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import employee2 from '../../../../assets/employee2.svg'
 import logo from '../../../../assets/usersLogo.png'
 import { useForm } from 'react-hook-form';
@@ -7,12 +7,21 @@ import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { IoCheckmark, IoCheckmarkDone } from 'react-icons/io5';
 import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash, } from 'react-icons/fa';
+import axios from 'axios';
+import useAuth from '../../../../hooks/useAuth';
 
 const Register = () => {
+    const { createUser, updateImgAndName, setUser } = useAuth()
+    const [firebaseLoading, setfirebaseLoading] = useState(false)
+
     const [imageInfo, setImageInfo] = useState({
         url: '',
-        name: ''
+        name: '',
+        file: '',
     })
+    const navigate = useNavigate()
+    const imgApiKey = import.meta.env.VITE_IMG_API_KEY;
     const [imageNotFound, setImageNotPound] = useState(true)
     // register validation
     const [rulesOpen, setRulesOpen] = useState(false)
@@ -25,14 +34,59 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (d) => {
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const onSubmit = async (d) => {
         if (imageInfo?.url === '') {
             return setImageNotPound(imageNotFound === false)
         }
         if (pLength === false || pLower === false || pUpper === false) {
             return toast.error('full fill password validation!')
         }
-        console.log(d);
+        try {
+            setfirebaseLoading(true)
+            const formData = new FormData();
+            formData.append('image', imageInfo.file);
+
+            const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${imgApiKey}`, formData, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+            const liveUrl = data.data.url
+            if (liveUrl) {
+                createUser(d?.email, d?.password)
+                    .then(() => {
+                        updateImgAndName(d?.name, liveUrl)
+                            .then(() => {
+                                toast.success('Account Create Success Fully Done')
+                                setUser(prev => {
+                                    return { ...prev, photoURL: liveUrl }
+                                })
+                                navigate('/')
+                                setfirebaseLoading(false)
+                            })
+                            .catch(error => {
+                                toast.error(error.message)
+                                setfirebaseLoading(false)
+                            })
+                    })
+                    .catch(error => {
+                        toast.error(error);
+                        setfirebaseLoading(false)
+                    })
+            }
+            // const userInfo = {
+            //     name: d?.name,
+            //     email: d?.email,
+            //     photoUrl: liveUrl,
+
+            // }
+        } catch (error) {
+            console.log(error.message);
+        }
+
     }
 
     return (
@@ -74,15 +128,17 @@ const Register = () => {
                                         name="photoUrl"
                                         className="hidden"
                                         accept='image/*'
-                                        {...register('photoUrl',
-                                            onchange = (e) => {
+                                        {...register('photoUrl')}
+                                        onChange={(e) => {
+                                            if (e.target.value) {
                                                 setImageInfo({
                                                     url: URL.createObjectURL(e.target?.files[0]),
-                                                    name: e.target.files[0].name
+                                                    name: e.target.files[0].name,
+                                                    file: e.target.files[0]
                                                 });
                                                 setImageNotPound(true)
                                             }
-                                        )}
+                                        }}
                                     />
                                     <label
                                         htmlFor='photoInput'
@@ -130,7 +186,7 @@ const Register = () => {
                         <div className="flex items-center border border-gray-300 rounded">
                             <FaLock className="ml-2 text-gray-500" />
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 id="password"
                                 name="password"
                                 {...register('password', { required: true })}
@@ -145,6 +201,13 @@ const Register = () => {
                                 className="flex-1 p-2 focus:outline-none"
                                 placeholder="Enter your password"
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)} // Toggle the showPassword state
+                                className="mx-2 text-gray-500 focus:outline-none"
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Icon changes based on state */}
+                            </button>
                         </div>
                         <div className={`${rulesOpen === false ? 'hidden' : 'flex flex-col'}`}>
                             <p className={`${pLength === true && 'text-green-400'} flex items-center gap-2 pt-2`} > {pLength ? <IoCheckmarkDone /> : <IoCheckmark />} at least 6 characters</p>
@@ -155,7 +218,15 @@ const Register = () => {
                             errors.password?.type === 'required' && <p className='text-red-400'>Password is required</p>
                         }
                     </div>
-                    <button type="submit" className="actionBtn w-full m-0 text-center">Register</button>
+                    <button type="submit" className="actionBtn w-full m-0 text-center">
+                        {
+                            firebaseLoading ?
+                                <span className='animate-spin inline-block'><FaFan></FaFan></span>
+                                :
+                                <span>Register</span>
+
+                        }
+                    </button>
                     <p className="text-center mt-4">
                         Already have an account? <Link to={'/login'} className="pText font-semibold">Login</Link>
                     </p>

@@ -1,14 +1,15 @@
 import { NavLink } from "react-router-dom";
 import './navbar.css'
+import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
-    const user = '';
+    const { user,logoutUser } = useAuth()
     const li = <div className="space-x-3">
         <NavLink to="/" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Home</NavLink>
         {user && <NavLink to="/dashboard" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>DashBoard</NavLink>}
         <NavLink to="/contact-us" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Contact Us</NavLink>
     </div>
     const handleLogout = () => {
-        console.log('object');
+        logoutUser()
     }
     return (
         <div className="bg-[#142446] sticky top-0 z-50">
@@ -61,7 +62,7 @@ const Navbar = () => {
                         </div>
                             :
                             <div>
-                                <NavLink to="/login" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Login</NavLink>
+                                <NavLink to="/login" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"} mr-3`)}>Login</NavLink>
                                 <NavLink to="/register" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"} actionBtn`)}>Register</NavLink>
                             </div>
                     }
