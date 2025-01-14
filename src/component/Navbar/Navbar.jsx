@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import './navbar.css'
 const Navbar = () => {
-    const user = 'sd';
+    const user = '';
     const li = <div className="space-x-3">
         <NavLink to="/" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Home</NavLink>
         {user && <NavLink to="/dashboard" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>DashBoard</NavLink>}

@@ -19,16 +19,24 @@ body {
     .pText {
         color: #678ce4;
     }
+
     .pBg {
         background-color: #678ce4;
     }
-    .sBg{
+
+    .sBg {
         background-color: #f2f4fa;
     }
-    .actionBtn{
-        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 ml-2
+
+    .actionBtn {
+        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300
     }
-    .activeActionBtn{
-        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 ml-2 sBg font-semibold
+
+    .activeActionBtn {
+        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 sBg font-semibold
+    }
+
+    .minH {
+        min-height: calc(100vh - 100px);
     }
 }
