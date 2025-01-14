@@ -7,7 +7,7 @@
 }
 
 body {
-    @apply bg-[#f2f4fa]
+    @apply bg-[#f2f4fa] overflow-y-scroll
 }
 
 @layer utilities {
@@ -31,6 +31,7 @@ body {
     .actionBtn {
         @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300
     }
+
 
     .activeActionBtn {
         @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 sBg font-semibold

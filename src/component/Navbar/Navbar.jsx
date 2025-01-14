@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 import './navbar.css'
 import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
-    const { user,logoutUser } = useAuth()
+    const { user, logoutUser } = useAuth()
     const li = <div className="space-x-3">
-        <NavLink to="/" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Home</NavLink>
-        {user && <NavLink to="/dashboard" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>DashBoard</NavLink>}
-        <NavLink to="/contact-us" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"}`)}>Contact Us</NavLink>
+        <NavLink to="/" className={({ isActive }) => (`${isActive ? "activeActionBtn !bg-[#678ce4] !text-white" : "border !text-white/80 hover:bg-transparent !border-white/80 actionBtn"}`)}>Home</NavLink>
+        {user && <NavLink to="/dashboard" className={({ isActive }) => (`${isActive ? "activeActionBtn !bg-[#678ce4] !text-white" : "border   !text-white/80 hover:bg-transparent !border-white/80 actionBtn"}`)}>DashBoard</NavLink>}
+        <NavLink to="/contact-us" className={({ isActive }) => (`${isActive ? "activeActionBtn !bg-[#678ce4] !text-white" : "border   !text-white/80 hover:bg-transparent !border-white/80 actionBtn"}`)}>Contact Us</NavLink>
     </div>
     const handleLogout = () => {
         logoutUser()
@@ -36,7 +36,7 @@ const Navbar = () => {
                             {li}
                         </ul>
                     </div>
-                    <a className="text-2xl font-bold"><span className="pText">As</span>Tech</a>
+                    <a href="/" className="text-2xl font-bold"><span className="pText">As</span>Tech</a>
                 </div>
                 <div className="navbar-center  hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -62,8 +62,8 @@ const Navbar = () => {
                         </div>
                             :
                             <div>
-                                <NavLink to="/login" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"} mr-3`)}>Login</NavLink>
-                                <NavLink to="/register" className={({ isActive }) => (`${isActive ? "activeActionBtn" : "actionBtn"} actionBtn`)}>Register</NavLink>
+                                <NavLink to="/login" className={({ isActive }) => (`${isActive ? "activeActionBtn !bg-[#678ce4] !text-white" : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn"} mr-3`)}>Login</NavLink>
+                                <NavLink to="/register" className={({ isActive }) => (`${isActive ? "activeActionBtn !bg-[#678ce4] !text-white" : "border !text-white/80 hover:bg-transparent !border-white/80 actionBtn"} actionBtn`)}>Register</NavLink>
                             </div>
                     }
                 </div>
