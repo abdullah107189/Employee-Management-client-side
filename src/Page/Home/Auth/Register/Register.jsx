@@ -48,21 +48,6 @@ const Register = () => {
     if (pLength === false || pLower === false || pUpper === false) {
       return toast.error("full fill password validation!");
     }
-    const userInfo = {
-      userInfo: {
-        name: d?.name,
-        email: d?.email,
-        photoUrl: liveUrl,
-      },
-      bankAccountNo: d?.bankAccountNo,
-      designation: d?.designation,
-      salary: d?.salary,
-      isVerified: false,
-      role: d?.employee,
-    };
-    console.log(userInfo);
-    return;
-
     try {
       setfirebaseLoading(true);
       const formData = new FormData();
@@ -94,11 +79,11 @@ const Register = () => {
                     email: d?.email,
                     photoUrl: liveUrl,
                   },
-                  bankAccountNo: "",
-                  designation: "",
-                  salary: 0,
+                  bankAccountNo: d?.bankAccountNo,
+                  designation: d?.designation,
+                  salary: d?.salary,
                   isVerified: false,
-                  role: "employee",
+                  role: d?.role,
                 };
                 navigate("/");
                 const { data: serverError } = await axiosPublic.post(
@@ -142,6 +127,7 @@ const Register = () => {
             <h2 className="text-2xl font-bold text-center  pText">
               Create an Account
             </h2>
+            {/* user name  */}
             <div className="mb-2">
               <label className="block text-gray-700 mb-2" htmlFor="username">
                 User Name
@@ -271,7 +257,7 @@ const Register = () => {
                   <GrUserWorker className=" text-gray-500" />
                   <select
                     required
-                    {...register("gender")}
+                    {...register("role")}
                     className="w-full outline-none"
                     name="role"
                     id=""
