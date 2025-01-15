@@ -39,6 +39,7 @@ const WorkSheet = () => {
       hours: hours,
       date: startDate,
       email: user?.email,
+      name: user?.displayName,
     };
     const { data } = await axiosPubilc.post("/work-sheet", sheetData);
     if (data.insertedId) {
@@ -145,7 +146,7 @@ const WorkSheet = () => {
           <thead className="">
             <tr className="pBg text-white">
               <th className="rounded-tl-lg"></th>
-              <th className="">Task</th>
+              <th className="">Designation</th>
               <th className="">Hours Worked</th>
               <th className="">Date</th>
               <th className="">Delete</th>
@@ -161,22 +162,26 @@ const WorkSheet = () => {
                 <td className="border">{format(sheet?.date, "MMMM yyyy")}</td>
 
                 <td className="border ">
-                  <button onClick={() => handleDeletSheet(sheet?._id)}>
-                    <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                  </button>
+                  <div className="flex items-center justify-center ">
+                    <button onClick={() => handleDeletSheet(sheet?._id)}>
+                      <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                    </button>
+                  </div>
                 </td>
                 <td className="border ">
-                  <button
-                    className=""
-                    onClick={() =>
-                      setShowModal(
-                        { isOpen: true, sheet: sheet },
-                        setStartDate(sheet.date)
-                      )
-                    }
-                  >
-                    <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                  </button>
+                  <div className="flex items-center justify-center">
+                    <button
+                      className=""
+                      onClick={() =>
+                        setShowModal(
+                          { isOpen: true, sheet: sheet },
+                          setStartDate(sheet.date)
+                        )
+                      }
+                    >
+                      <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

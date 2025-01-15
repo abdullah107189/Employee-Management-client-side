@@ -59,6 +59,8 @@ const Dashboard = () => {
               >
                 Payment History
               </NavLink>
+
+              {/* HR  */}
               <NavLink
                 to="/dashboard/employee-list"
                 className={({ isActive }) =>
@@ -70,6 +72,19 @@ const Dashboard = () => {
                 }
               >
                 Employee List
+              </NavLink>
+              
+              <NavLink
+                to="/dashboard/progress"
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "activeActionBtn !bg-[#678ce4] !text-white"
+                      : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                  } w-full`
+                }
+              >
+                Employee Progress
               </NavLink>
             </div>
           </ul>
