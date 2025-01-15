@@ -100,11 +100,14 @@ const WorkSheet = () => {
   return (
     <div>
       <h1 className="text-3xl text-center">Employee Work Sheet</h1>
-      <form className="mt-2 flex" onSubmit={handleSubmitSheet}>
+      <form
+        className="mt-2 lg:flex grid grid-cols-2 gap-2 md:text-base text-xs"
+        onSubmit={handleSubmitSheet}
+      >
         {/* dropdown */}
         <select
           required
-          className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
           name="workPosition"
           id=""
         >
@@ -118,7 +121,7 @@ const WorkSheet = () => {
         {/* hours */}
         <input
           required
-          className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
           placeholder="enter hours number"
           type="number"
           name="hours"
@@ -128,12 +131,12 @@ const WorkSheet = () => {
         {/* date */}
         <DatePicker
           required
-          className="p-2 px-4 outline-none rounded-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full w-full cursor-pointer"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
 
-        <button className="actionBtn !p-2 !px-5">Submit Sheet</button>
+        <button className="actionBtn md:!p-2 md:!px-5">Submit Sheet</button>
       </form>
 
       {/* table data  */}

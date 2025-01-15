@@ -19,7 +19,7 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <NavLink
-          to="/dashboard"
+          to="/dashboard/work-sheet"
           className={({ isActive }) =>
             `${
               isActive
