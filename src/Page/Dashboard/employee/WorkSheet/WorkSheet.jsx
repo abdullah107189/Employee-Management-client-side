@@ -6,6 +6,9 @@ import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import { format } from "date-fns";
+import { MdDelete } from "react-icons/md";
+import { FaFilePen } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const WorkSheet = () => {
     const axiosPubilc = useAxiosPublic()
@@ -27,7 +30,6 @@ const WorkSheet = () => {
         if (workPosition === 'Your Position') {
             return toast.error('please select work position')
         }
-
         // send data to db
         const sheetData = {
             work: workPosition,
@@ -40,9 +42,31 @@ const WorkSheet = () => {
             toast.success('Work sheet Added 👍')
         }
         e.target.reset()
+        setStartDate(new Date())
         refetch()
     }
+    const handleDeletSheet = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const { data: sheetDeleteInfo } = await axiosPubilc.delete(`/work-sheet/${id}`)
+                if (sheetDeleteInfo.deletedCount) {
+                    toast.success('sheet delete successful ')
+                    refetch()
+                }
 
+            }
+        });
+
+
+    }
     return (
         <div>
             <h1 className="text-3xl text-center">Employee Work Sheet</h1>
@@ -78,13 +102,22 @@ const WorkSheet = () => {
                     </thead>
                     <tbody className="">
                         {
-                            workSheetData?.map((sheet, idx) => <tr key={sheet._id} className="hover:bg-blue-100">
+                            workSheetData?.map((sheet, idx) => <tr key={sheet._id} className="hover:bg-blue-100 ">
                                 <th className="border">{idx + 1}</th>
                                 <td className="border">{sheet?.work}</td>
                                 <td className="border">{sheet?.hours}</td>
                                 <td className="border">{format(sheet?.date, 'MMMM yyyy')}</td>
-                                <td className="border">Delete</td>
-                                <td className="border">Update</td>
+
+                                <td className="border ">
+                                    <button onClick={() => handleDeletSheet(sheet?._id)}>
+                                        <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                                    </button>
+                                </td>
+                                <td className="border ">
+                                    <button className="">
+                                        <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                                    </button>
+                                </td>
                             </tr>
                             )
                         }

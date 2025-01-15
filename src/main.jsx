@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={Router} />
         <Toaster
-          position="top-center"
+          position="bottom-left"
           reverseOrder={false}
         />
       </QueryClientProvider>
