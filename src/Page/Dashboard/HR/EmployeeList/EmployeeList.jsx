@@ -1,12 +1,17 @@
 import { VscUnverified } from "react-icons/vsc";
 import useGetUserData from "../../../../hooks/useGetUserData";
 import { MdVerified } from "react-icons/md";
+import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import { PiSpinnerThin } from "react-icons/pi";
 
 const EmployeeList = () => {
-  const { allUsers } = useGetUserData();
-  const handleChangeVerify = (id) =>{
-    console.log(id);
-  }
+  const { allUsers, isLoading, refetch } = useGetUserData();
+  const axiosPubilc = useAxiosPublic();
+  const handleChangeVerify = async (id) => {
+    // eslint-disable-next-line no-unused-vars
+    const { data } = await axiosPubilc.patch(`/verifyChange/${id}`);
+    refetch();
+  };
   return (
     <div>
       <div className="overflow-x-auto mt-5">
@@ -32,13 +37,19 @@ const EmployeeList = () => {
                 <td className="border">{employee?.userInfo?.email}</td>
                 <td className="border">
                   <div className="flex items-center justify-center">
-                    <button onClick={()=>handleChangeVerify(employee._id)}>
-                      {employee.isVerified === true ? (
-                        <MdVerified className="text-green-400 w-6 h-6" />
-                      ) : (
-                        <VscUnverified className="text-gray-900 w-6 h-6" />
-                      )}
-                    </button>
+                    {isLoading ? (
+                      <p>
+                        <PiSpinnerThin className="text-gray-900 w-6 h-6" />
+                      </p>
+                    ) : (
+                      <button onClick={() => handleChangeVerify(employee._id)}>
+                        {employee.isVerified === true ? (
+                          <MdVerified className="text-green-400 w-6 h-6" />
+                        ) : (
+                          <VscUnverified className="text-gray-900 w-6 h-6" />
+                        )}
+                      </button>
+                    )}
                   </div>
                 </td>
                 <td className="border">{employee.bankAccountNo}</td>
