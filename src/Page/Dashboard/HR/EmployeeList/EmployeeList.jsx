@@ -50,7 +50,7 @@ const EmployeeList = () => {
               <th className="">Name</th>
               <th className="">Emial</th>
               <th className="">Verified</th>
-              <th className="">Bank Acc.</th>
+              <th className="">Bank Account No.</th>
               <th className="">Salary</th>
               <th className="">Pay</th>
               <th className="rounded-tr-lg">Details</th>

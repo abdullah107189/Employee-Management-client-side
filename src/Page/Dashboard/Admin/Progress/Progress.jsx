@@ -1,35 +1,66 @@
 import { format } from "date-fns";
 import useGetWorkSheet from "../../../../hooks/useGetWorkSheet";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import { useState } from "react";
 
 const Progress = () => {
-  {
-    /* {
-    "_id": "678724a58a746fcdd4a11025",
-    "work": "Backend Developer",
-    "hours": "23",
-    "date": "2025-01-23T02:56:42.000Z",
-    "email": "w8abdullah0002@gmail.com"
-} */
-  }
+  const [filterName, setFilterName] = useState("");
+  const [filterDate, setFilterDate] = useState("");
+  const [isFilter, setIsFilter] = useState(false);
+  const axiosPublic = useAxiosPublic();
 
+  //   console.log(filterName, filterDate);
+
+  //   all word sheet data
   const { workSheetList } = useGetWorkSheet();
 
+  //   filter work sheet data
+  const { data: filterWorkSheet = [] } = useQuery({
+    queryKey: ["sheet", filterName, filterDate],
+    queryFn: async () => {
+      const { data } =
+        await axiosPublic.get(`/progress?filterName=${filterName}&filterDate=${filterDate}`);
+      return data;
+    },
+    enabled: Boolean(filterName || filterDate),
+  });
+  console.log("filter data", filterWorkSheet);
+  const handleFetchingChange = (e, filterType) => {
+    const value = e.target.value;
+    if (filterType === "employeeName") {
+      setFilterName(value);
+    }
+    if (filterType === "filterDate") {
+      setFilterDate(value);
+    }
+    setIsFilter(true);
+  };
+  const tableData = isFilter ? filterWorkSheet : workSheetList;
   return (
     <div>
       <div>
-        <select className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer">
-          {workSheetList?.map((sheet) => (
-            <option key={sheet?._id}>{sheet.name}</option>
-          ))}
-        </select>
+        <div className="flex items-center gap-3 justify-end mt-5">
+          <select
+            onChange={(e) => handleFetchingChange(e, "employeeName")}
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+          >
+            {workSheetList?.map((sheet) => (
+              <option key={sheet?._id}>{sheet.name}</option>
+            ))}
+          </select>
 
-        <select className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer">
-          {workSheetList?.map((sheet) => (
-            <option key={sheet?._id}>
-              {format(sheet?.date, "MMMM yyyy")}
-            </option>
-          ))}
-        </select>
+          <select
+            onChange={(e) => handleFetchingChange(e, "filterDate")}
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+          >
+            {workSheetList?.map((sheet) => (
+              <option key={sheet?._id} value={new Date(sheet?.date)}>
+                {format(sheet?.date, "MMMM yyyy")}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="overflow-x-auto mt-5">
           <table className="table">
@@ -43,7 +74,7 @@ const Progress = () => {
               </tr>
             </thead>
             <tbody className="">
-              {workSheetList?.map((employee, idx) => (
+              {tableData?.map((employee, idx) => (
                 <tr key={employee._id} className="hover:bg-blue-50 ">
                   <th className="border">{idx + 1}</th>
                   <td className="border">{employee?.name}</td>

@@ -159,7 +159,7 @@ const WorkSheet = () => {
                 <th className="border">{idx + 1}</th>
                 <td className="border">{sheet?.work}</td>
                 <td className="border">{sheet?.hours}</td>
-                <td className="border">{format(sheet?.date, "MMMM yyyy")}</td>
+                <td className="border">{format(sheet?.date, "dd MMMM yyyy")}</td>
 
                 <td className="border ">
                   <div className="flex items-center justify-center ">
