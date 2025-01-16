@@ -3,6 +3,7 @@ import useGetWorkSheet from "../../../../hooks/useGetWorkSheet";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useState } from "react";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const Progress = () => {
   const [filterName, setFilterName] = useState("all");
@@ -44,11 +45,12 @@ const Progress = () => {
   ];
   return (
     <div>
+      <SectionHeader title={"Employee Progress"}></SectionHeader>
       <div>
         <div className="flex items-center gap-3 justify-end mt-5">
           <select
             onChange={(e) => handleFetchingChange(e, "employeeName")}
-            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
           >
             <option value="all">All</option>
             {uniqeNameArray?.map((name, idx) => (
@@ -58,7 +60,7 @@ const Progress = () => {
 
           <select
             onChange={(e) => handleFetchingChange(e, "filterDate")}
-            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
           >
             <option value="all">All</option>
             {uniqeDateArray?.map((date, idx) => (
@@ -69,7 +71,7 @@ const Progress = () => {
           </select>
         </div>
 
-        <div className="overflow-x-auto mt-5">
+        <div className="overflow-x-auto mt-2">
           <table className="table">
             <thead className="">
               <tr className="pBg text-white">

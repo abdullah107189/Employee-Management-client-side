@@ -7,6 +7,7 @@ import { CiSquareInfo } from "react-icons/ci";
 import { useState } from "react";
 import { FaDollarSign } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const EmployeeList = () => {
   const { allUsers, isLoading, refetch } = useGetUserData();
@@ -15,12 +16,14 @@ const EmployeeList = () => {
     employeeInfo: "",
   });
   const axiosPubilc = useAxiosPublic();
+  
   const handleChangeVerify = async (id) => {
     // eslint-disable-next-line no-unused-vars
     const { data } = await axiosPubilc.patch(`/verifyChange/${id}`);
     refetch();
   };
-  //   modal
+
+  //   pay modal
   const handlePayButton = async (e, employeeInfo) => {
     e.preventDefault();
     const form = e.target;
@@ -47,6 +50,7 @@ const EmployeeList = () => {
   };
   return (
     <div>
+      <SectionHeader title={"Employee List"}></SectionHeader>
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">

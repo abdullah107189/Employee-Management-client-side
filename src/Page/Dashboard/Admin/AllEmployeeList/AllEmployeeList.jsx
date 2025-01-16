@@ -7,6 +7,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const AllEmployeeList = () => {
   const [showModal, setShowModal] = useState({
@@ -92,6 +93,7 @@ const AllEmployeeList = () => {
   };
   return (
     <div className="">
+      <SectionHeader title={"All Employee & List"}></SectionHeader>
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">
@@ -183,8 +185,12 @@ const AllEmployeeList = () => {
                         )}
                       </>
                     )}
+                    {/* <p className="text-[10px]">Now</p> */}
                     <p className="text-[10px]">
-                      {employee?.role === "hr" ? "HR" : "Employee"}
+                      Role is :{" "}
+                      <span className="font-bold px-1 border rounded-full bg-gray-100">
+                        {employee?.role === "hr" ? "HR" : "Employee"}
+                      </span>
                     </p>
                   </div>
                 </td>

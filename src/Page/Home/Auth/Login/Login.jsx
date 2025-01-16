@@ -25,7 +25,7 @@ const Login = () => {
     setfirebaseLoading(true);
 
     try {
-      await axiosPubilc.get(`/allUser?=${d?.email}`);
+      await axiosPubilc.get(`/allUser?isFiredEmail=${d?.email}`);
     } catch (error) {
       toast.error(error.response.data.message);
       setfirebaseLoading(false);
@@ -34,7 +34,7 @@ const Login = () => {
       }
     }
 
-    loginUser(d.email, d.password)
+    await loginUser(d.email, d.password)
       .then(() => {
         toast.success("Login success 🙂");
         navigate("/");

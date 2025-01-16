@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import useAuth from "../../../../hooks/useAuth";
 import { format } from "date-fns";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -16,6 +17,8 @@ const PaymentHistory = () => {
   //   {"_id":{"$oid":"6788bfa7a1b2f3539b972ef4"},"employeeName":"Md. Abdullah All Shamem","employeeEmail":"abdullah107189@gmail.com","salary":{"$numberInt":"9999"},"monthAndYear":"2025-08","isPaymentSuccess":false,"paymentDate":"Thu Jan 16 2025 14:13:35 GMT 0600 (Bangladesh Standard Time)","transactionId":"268d3cbd5d"}
   return (
     <div>
+      <SectionHeader title={"Payment History"}></SectionHeader>
+
       <div className="overflow-x-auto mt-5">
         <table className="table border">
           <thead className="">

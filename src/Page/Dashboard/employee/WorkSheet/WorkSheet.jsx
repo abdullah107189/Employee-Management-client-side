@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { MdDelete } from "react-icons/md";
 import { FaFilePen } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const WorkSheet = () => {
   const axiosPubilc = useAxiosPublic();
@@ -101,7 +102,7 @@ const WorkSheet = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center">Employee Work Sheet</h1>
+      <SectionHeader title={" Employee Work Sheet"}></SectionHeader>
       <form
         className="mt-2 lg:flex grid grid-cols-2 gap-2 md:text-base text-xs"
         onSubmit={handleSubmitSheet}
@@ -109,7 +110,7 @@ const WorkSheet = () => {
         {/* dropdown */}
         <select
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
           name="workPosition"
           id=""
         >
@@ -123,7 +124,7 @@ const WorkSheet = () => {
         {/* hours */}
         <input
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
           placeholder="enter hours number"
           type="number"
           name="hours"
@@ -133,12 +134,12 @@ const WorkSheet = () => {
         {/* date */}
         <DatePicker
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full w-full cursor-pointer"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full w-full cursor-pointer border"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
 
-        <button className="actionBtn md:!p-2 md:!px-5">Submit Sheet</button>
+        <button className="actionBtn md:!p-2 md:!px-5 bg-white">Submit Sheet</button>
       </form>
 
       {/* table data  */}
@@ -206,7 +207,7 @@ const WorkSheet = () => {
                 {/* dropdown */}
                 <select
                   required
-                  className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer border"
+                  className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer border border"
                   name="workPosition"
                   defaultValue={showModal.sheet.work}
                   id=""

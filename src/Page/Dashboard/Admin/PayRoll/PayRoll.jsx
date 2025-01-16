@@ -3,6 +3,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { format } from "date-fns";
 import { FaDollarSign } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const PayRoll = () => {
   const axiosPubilc = useAxiosPublic();
@@ -28,6 +29,7 @@ const PayRoll = () => {
   };
   return (
     <div>
+      <SectionHeader title={"Employee Payment Place"}></SectionHeader>
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">
