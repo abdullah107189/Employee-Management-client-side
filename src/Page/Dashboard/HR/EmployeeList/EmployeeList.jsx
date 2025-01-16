@@ -27,16 +27,21 @@ const EmployeeList = () => {
     const payRequest = {
       employeeName: employeeInfo?.userInfo?.name,
       employeeEmail: employeeInfo?.userInfo?.email,
-      salary: employeeInfo?.salary,
+      salary: parseInt(employeeInfo?.salary),
       monthAndYear: form.dateMonth.value,
     };
-    const { data: payRequestFeedback } = await axiosPubilc.post(
-      "/payRequest",
-      payRequest
-    );
-    console.log(payRequestFeedback);
-    if (payRequestFeedback.insertedId) {
-      toast.success("Request sent to the admin");
+    try {
+      const { data: payRequestFeedback } = await axiosPubilc.post(
+        "/payRequest",
+        payRequest
+      );
+      console.log(payRequestFeedback);
+      if (payRequestFeedback.insertedId) {
+        toast.success("Request sent to the admin");
+        setShowModal(false);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
       setShowModal(false);
     }
   };
@@ -93,9 +98,7 @@ const EmployeeList = () => {
                         Pay
                       </button>
                     ) : (
-                      <button
-                        className="actionBtn hover:!bg-gray-300 !bg-gray-300 !border-gray-300  cursor-not-allowed"
-                      >
+                      <button className="actionBtn hover:!bg-gray-300 !bg-gray-300 !border-gray-300  cursor-not-allowed">
                         Pay
                       </button>
                     )}

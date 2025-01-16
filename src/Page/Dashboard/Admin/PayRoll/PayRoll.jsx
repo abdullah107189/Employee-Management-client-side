@@ -11,6 +11,14 @@ const PayRoll = () => {
       return data;
     },
   });
+  const { data: payRequestData = [] } = useQuery({
+    queryKey: ["payRequestData"],
+    queryFn: async () => {
+      const { data } = await axiosPubilc.get(`/payRequest`);
+      return data;
+    },
+  });
+  console.log(payRequestData);
 
   return (
     <div>

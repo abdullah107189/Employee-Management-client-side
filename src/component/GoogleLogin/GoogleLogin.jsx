@@ -25,7 +25,7 @@ const GoogleLogin = () => {
           },
           bankAccountNo: 123456,
           designation: "Frontend Developer",
-          salary: 9999,
+          salary: 9999.00,
           isVerified: false,
           role: "employee",
         };
