@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const AllEmployeeList = () => {
   const [showModal, setShowModal] = useState({
@@ -42,6 +43,27 @@ const AllEmployeeList = () => {
       }
     }
   };
+
+  const handlefire = (email) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axiosPubilc.patch(`/fire/${email}`);
+        if (data.modifiedCount > 0) {
+          toast.success("Fired 😨");
+          setShowModal({ isOpen: false });
+          refetch();
+        }
+      }
+    });
+  };
   return (
     <div className="">
       <div className="overflow-x-auto mt-5">
@@ -70,6 +92,7 @@ const AllEmployeeList = () => {
                 <td className="border p-2">{employee.designation}</td>
                 <td className="border p-2">{employee.bankAccountNo}</td>
                 <td className="border p-2">{employee.salary}</td>
+                {/* update salary  */}
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
                     <button
@@ -81,13 +104,25 @@ const AllEmployeeList = () => {
                     </button>
                   </div>
                 </td>
+
+                {/* fire  */}
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
-                    <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                    </button>
+                    {employee?.isFired ? (
+                      <p className="badge p-3 pb-4 bg-red-100 text-red-400 font-bold">
+                        fired
+                      </p>
+                    ) : (
+                      <button
+                        onClick={() => handlefire(employee?.userInfo.email)}
+                      >
+                        <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                      </button>
+                    )}
                   </div>
                 </td>
+
+                {/* make hr  */}
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
                     <button onClick={() => handleIncreaseSalary(employee?._id)}>
@@ -95,6 +130,8 @@ const AllEmployeeList = () => {
                     </button>
                   </div>
                 </td>
+
+                {/* details  */}
                 <td className="border p-2">
                   <button onClick={() => employee?._id}>
                     <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
