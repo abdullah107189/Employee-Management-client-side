@@ -106,9 +106,11 @@ const EmployeeList = () => {
                 </td>
 
                 <td className="border p-2">
-                  <button onClick={() => employee?._id}>
-                    <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
-                  </button>
+                  <div className="flex items-center justify-center">
+                    <button className="" onClick={() => employee?._id}>
+                      <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

@@ -21,7 +21,6 @@ const PayRoll = () => {
     const { data } = await axiosPubilc.patch(
       `/payment-update/${id}?paymentDate=${new Date()}`
     );
-    console.log(data);
     if (data.modifiedCount > 0) {
       toast.success("Payment Successful ✅");
     }

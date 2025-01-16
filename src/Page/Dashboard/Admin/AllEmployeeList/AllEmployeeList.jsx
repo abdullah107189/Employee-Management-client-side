@@ -1,26 +1,49 @@
 import { FaSortAmountUpAlt } from "react-icons/fa";
-import useGetUserData from "../../../../hooks/useGetUserData";
+import { ImFire } from "react-icons/im";
+import { CgArrowsExchangeAltV } from "react-icons/cg";
+import { CiSquareInfo } from "react-icons/ci";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const AllEmployeeList = () => {
-  const { allUsers, refetch } = useGetUserData();
-  //   {
-  //     "_id": "67876b4652a3e79e31409d59",
-  //     "userInfo": {
-  //         "name": "w8abdullah",
-  //         "email": "w8abdullah0002@gmail.com",
-  //         "photoUrl": "https://i.ibb.co/DLMDDQX/e7f7eab4-f718-49ab-9084-b7e26b704e61.jpg"
-  //     },
-  //     "bankAccountNo": "234234",
-  //     "designation": "Fullstack Developer",
-  //     "salary": "2342",
-  //     "isVerified": true,
-  //     "role": "Employee"
-  // }
-  const handleIncreaseSalary = (id) => {
-    console.log(id);
+  const [showModal, setShowModal] = useState({
+    isOpen: false,
+    employeeInfo: "",
+  });
+
+  const axiosPubilc = useAxiosPublic();
+  const { data: verifiedEmployee = [], refetch } = useQuery({
+    queryKey: ["verifiedEmployee"],
+    queryFn: async () => {
+      const { data } = await axiosPubilc.get(`/allUser?isVerify=${true}`);
+      return data;
+    },
+  });
+
+  const handleUpdateSalary = async (e, employeeInfo) => {
+    e.preventDefault();
+    const salary = parseInt(employeeInfo.salary);
+    const value = parseInt(e.target.salary.value);
+
+    if (salary >= value) {
+      return toast.error("You can only increase");
+    }
+    if (salary < value) {
+      const { data } = await axiosPubilc.patch(
+        `/user/update/${employeeInfo._id}`,
+        { salary: value }
+      );
+      if (data.modifiedCount > 0) {
+        toast.success("Update Salary");
+        setShowModal({ isOpen: false });
+        refetch();
+      }
+    }
   };
   return (
-    <div>
+    <div className="">
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">
@@ -38,50 +61,93 @@ const AllEmployeeList = () => {
             </tr>
           </thead>
           <tbody className="">
-            {allUsers?.map((employee, idx) => (
+            {verifiedEmployee?.map((employee, idx) => (
               <tr key={idx} className="hover:bg-blue-50 ">
                 <th className="border p-2">{idx + 1}</th>
                 <td className="border p-2">{employee?.userInfo.name}</td>
                 <td className="border p-2">{employee?.userInfo.email}</td>
 
-                <td className="border p-2">
-                  {employee.designation}
-                </td>
+                <td className="border p-2">{employee.designation}</td>
                 <td className="border p-2">{employee.bankAccountNo}</td>
                 <td className="border p-2">{employee.salary}</td>
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
-                    <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                    <button
+                      onClick={() =>
+                        setShowModal({ isOpen: true, employeeInfo: employee })
+                      }
+                    >
+                      <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
                     </button>
                   </div>
                 </td>
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
                     <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                      <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                     </button>
                   </div>
                 </td>
                 <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
                     <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                      <CgArrowsExchangeAltV className="w-10 h-10 rounded-full transform duration-300 hover:bg-blue-200 p-2 bg-blue-100 text-blue-400" />
                     </button>
                   </div>
                 </td>
-                <td className="border p-2 ">
-                  <div className="flex items-center justify-center ">
-                    <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                    </button>
-                  </div>
+                <td className="border p-2">
+                  <button onClick={() => employee?._id}>
+                    <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {showModal.isOpen && (
+        <dialog id="my_modal_2" className="modal bg-black/40 " open>
+          <div className="modal-box text-center">
+            <a href="/" className="text-5xl font-bold">
+              <span className="pText">As</span>Tech
+            </a>
+            <div className="min-h-[50vh] flex items-center  justify-center">
+              <form
+                className="mt-2 p-5 grid grid-cols-1 w-full gap-5 "
+                onSubmit={(e) => handleUpdateSalary(e, showModal.employeeInfo)}
+              >
+                <div className="border border-gray-200 p-5 rounded-3xl shadow-lg">
+                  <p className="font-bold">Old Salary</p>
+                  <input
+                    required
+                    defaultValue={showModal?.employeeInfo?.salary}
+                    className="p-2 cursor-default mt-2 w-full border px-4 mr-2 outline-none rounded-full "
+                    readOnly
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="border border-gray-200 p-5 rounded-3xl shadow-lg">
+                  <p className="font-bold">Update Salary</p>
+                  <input
+                    required
+                    className="p-2 focus:shadow-lg w-full mt-2 border px-4 mr-2 outline-none rounded-full cursor-pointer"
+                    placeholder="Update Salary"
+                    type="number"
+                    name="salary"
+                    id=""
+                  />
+                </div>
+                <button className="actionBtn !p-2 !px-5">Update Salary</button>
+              </form>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setShowModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
     </div>
   );
 };

@@ -6,9 +6,9 @@
   scroll-behavior: smooth;
 }
 
-body {
+/* body {
   @apply bg-[#f2f4fa] overflow-y-scroll;
-}
+} */
 
 @layer utilities {
   .mxw {
