@@ -121,7 +121,7 @@ const Register = () => {
       </div>
 
       {/* Right Side Form */}
-      <div className="md:w-2/3 w-full flex items-center justify-center sBg px-4">
+      <div className="md:w-2/3 w-full flex items-center justify-center px-4">
         <div className="bg-white lg:p-8 p-2 rounded-lg shadow-lg lg:w-3/4 w-full overflow-hidden">
           <form onSubmit={handleSubmit(onSubmit)} className="">
             <h2 className="text-2xl font-bold text-center  pText">

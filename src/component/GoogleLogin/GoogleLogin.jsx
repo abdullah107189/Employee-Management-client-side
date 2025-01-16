@@ -6,13 +6,24 @@ import useAxiosPublic from "../../hooks/useAxiosPubilc";
 import { useNavigate } from "react-router-dom";
 
 const GoogleLogin = () => {
-  const { socialLogin, setUser } = useAuth();
+  const { socialLogin, setUser, logoutUser } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
-  const handlGoogleLogin = () => {
+  const axiosPubilc = useAxiosPublic();
+  const handlGoogleLogin = async () => {
     socialLogin()
       .then(async (res) => {
+        try {
+          await axiosPubilc.get(`/allUser?isFiredEmail=${res.user?.email}`);
+        } catch (error) {
+          toast.error(error.response.data.message);
+          setfirebaseLoading(false);
+          if (error.status === 409) {
+            await logoutUser();
+            return;
+          }
+        }
         toast.success("Account Create Success Fully Done");
         setUser((prev) => {
           return { ...prev, photoURL: res.user.photoURL };
@@ -25,7 +36,7 @@ const GoogleLogin = () => {
           },
           bankAccountNo: 123456,
           designation: "Frontend Developer",
-          salary: 9999.00,
+          salary: 9999.0,
           isVerified: false,
           role: "employee",
         };
