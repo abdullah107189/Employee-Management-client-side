@@ -11,6 +11,7 @@ import EmployeeList from "../Page/Dashboard/HR/EmployeeList/EmployeeList";
 import Progress from "../Page/Dashboard/Admin/Progress/Progress";
 import PrivetRoute from "../route/PrivetRoute";
 import PayRoll from "../Page/Dashboard/Admin/PayRoll/PayRoll";
+import AllEmployeeList from "../Page/Dashboard/Admin/AllEmployeeList/AllEmployeeList";
 
 const Router = createBrowserRouter([
   {
@@ -62,11 +63,15 @@ const Router = createBrowserRouter([
         element: <Progress></Progress>,
       },
 
-      // admin 
+      // admin
       {
-        path:'payroll',
-        element:<PayRoll></PayRoll>
-      }
+        path: "all-employee-list",
+        element: <AllEmployeeList></AllEmployeeList>,
+      },
+      {
+        path: "payroll",
+        element: <PayRoll></PayRoll>,
+      },
     ],
   },
 ]);

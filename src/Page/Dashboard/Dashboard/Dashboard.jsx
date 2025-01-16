@@ -88,6 +88,19 @@ const Dashboard = () => (
 
             {/* ............admin .............. */}
             <NavLink
+              to="/dashboard/all-employee-list"
+              className={({ isActive }) =>
+                `${
+                  isActive
+                    ? "activeActionBtn !bg-[#678ce4] !text-white"
+                    : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                } w-full`
+              }
+            >
+             All Employee List
+            </NavLink>
+
+            <NavLink
               to="/dashboard/payroll"
               className={({ isActive }) =>
                 `${

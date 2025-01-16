@@ -1,6 +1,6 @@
 import { VscUnverified } from "react-icons/vsc";
 import useGetUserData from "../../../../hooks/useGetUserData";
-import { MdDateRange, MdVerified } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { PiSpinnerThin } from "react-icons/pi";
 import { CiSquareInfo } from "react-icons/ci";
@@ -152,8 +152,10 @@ const EmployeeList = () => {
                     <label className="text-gray-700 mb-1" htmlFor="dateMonth">
                       Select Month and Year
                     </label>
-                    <div className="flex items-center border border-gray-300 rounded">
-                      <MdDateRange className=" text-gray-500" />
+                    <div
+                      htmlFor="dateMonth"
+                      className="flex items-center border border-gray-300 rounded"
+                    >
                       <input
                         type="month"
                         name="date"
