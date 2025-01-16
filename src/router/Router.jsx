@@ -10,6 +10,7 @@ import Contact from "../Page/Contact/Contact";
 import EmployeeList from "../Page/Dashboard/HR/EmployeeList/EmployeeList";
 import Progress from "../Page/Dashboard/Admin/Progress/Progress";
 import PrivetRoute from "../route/PrivetRoute";
+import PayRoll from "../Page/Dashboard/Admin/PayRoll/PayRoll";
 
 const Router = createBrowserRouter([
   {
@@ -60,6 +61,12 @@ const Router = createBrowserRouter([
         path: "progress",
         element: <Progress></Progress>,
       },
+
+      // admin 
+      {
+        path:'payroll',
+        element:<PayRoll></PayRoll>
+      }
     ],
   },
 ]);

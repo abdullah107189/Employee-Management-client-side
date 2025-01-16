@@ -5,8 +5,8 @@ import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useState } from "react";
 
 const Progress = () => {
-  const [filterName, setFilterName] = useState("");
-  const [filterDate, setFilterDate] = useState("");
+  const [filterName, setFilterName] = useState("all");
+  const [filterDate, setFilterDate] = useState("all");
   const [isFilter, setIsFilter] = useState(false);
   const axiosPublic = useAxiosPublic();
 
@@ -14,18 +14,18 @@ const Progress = () => {
 
   //   all word sheet data
   const { workSheetList } = useGetWorkSheet();
-
   //   filter work sheet data
   const { data: filterWorkSheet = [] } = useQuery({
     queryKey: ["sheet", filterName, filterDate],
     queryFn: async () => {
-      const { data } =
-        await axiosPublic.get(`/progress?filterName=${filterName}&filterDate=${filterDate}`);
+      const { data } = await axiosPublic.get(
+        `/progress?filterName=${filterName}&filterDate=${filterDate}`
+      );
       return data;
     },
     enabled: Boolean(filterName || filterDate),
   });
-  console.log("filter data", filterWorkSheet);
+  // console.log("filter data", filterWorkSheet);
   const handleFetchingChange = (e, filterType) => {
     const value = e.target.value;
     if (filterType === "employeeName") {
@@ -37,6 +37,11 @@ const Progress = () => {
     setIsFilter(true);
   };
   const tableData = isFilter ? filterWorkSheet : workSheetList;
+  // console.log("table data", filterWorkSheet);
+  const uniqeNameArray = [...new Set(workSheetList?.map((name) => name.name))];
+  const uniqeDateArray = [
+    ...new Set(workSheetList?.map((date) => date.monthAndYear)),
+  ];
   return (
     <div>
       <div>
@@ -45,8 +50,9 @@ const Progress = () => {
             onChange={(e) => handleFetchingChange(e, "employeeName")}
             className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
           >
-            {workSheetList?.map((sheet) => (
-              <option key={sheet?._id}>{sheet.name}</option>
+            <option value="all">All</option>
+            {uniqeNameArray?.map((name, idx) => (
+              <option key={idx}>{name}</option>
             ))}
           </select>
 
@@ -54,9 +60,10 @@ const Progress = () => {
             onChange={(e) => handleFetchingChange(e, "filterDate")}
             className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer"
           >
-            {workSheetList?.map((sheet) => (
-              <option key={sheet?._id} value={new Date(sheet?.date)}>
-                {format(sheet?.date, "MMMM yyyy")}
+            <option value="all">All</option>
+            {uniqeDateArray?.map((date, idx) => (
+              <option key={idx} value={date}>
+                {date}
               </option>
             ))}
           </select>
