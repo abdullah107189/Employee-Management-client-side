@@ -29,13 +29,13 @@ const EmployeeList = () => {
       employeeEmail: employeeInfo?.userInfo?.email,
       salary: parseInt(employeeInfo?.salary),
       monthAndYear: form.dateMonth.value,
+      isPaymentSuccess: false,
     };
     try {
       const { data: payRequestFeedback } = await axiosPubilc.post(
         "/payRequest",
         payRequest
       );
-      console.log(payRequestFeedback);
       if (payRequestFeedback.insertedId) {
         toast.success("Request sent to the admin");
         setShowModal(false);

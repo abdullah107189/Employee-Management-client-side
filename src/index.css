@@ -3,41 +3,39 @@
 @tailwind utilities;
 
 * {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    @apply bg-[#f2f4fa] overflow-y-scroll
+  @apply bg-[#f2f4fa] overflow-y-scroll;
 }
 
 @layer utilities {
-    .mxw {
-        max-width: 1280px;
-        margin: 0px auto;
-    }
+  .mxw {
+    @apply max-w-[1440px] mx-auto;
+  }
 
-    .pText {
-        color: #678ce4;
-    }
+  .pText {
+    color: #678ce4;
+  }
 
-    .pBg {
-        background-color: #678ce4;
-    }
+  .pBg {
+    background-color: #678ce4;
+  }
 
-    .sBg {
-        background-color: #f2f4fa;
-    }
+  .sBg {
+    background-color: #f2f4fa;
+  }
 
-    .actionBtn {
-        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300
-    }
+  .actionBtn {
+    @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300;
+  }
 
+  .activeActionBtn {
+    @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 sBg font-semibold;
+  }
 
-    .activeActionBtn {
-        @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300 sBg font-semibold
-    }
-
-    .minH {
-        min-height: calc(100vh - 100px);
-    }
+  .minH {
+    min-height: calc(100vh - 100px);
+  }
 }

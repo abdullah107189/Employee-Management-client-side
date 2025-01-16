@@ -3,7 +3,7 @@ import { LuSheet } from "react-icons/lu";
 import { RiMenuUnfold3Fill } from "react-icons/ri";
 
 const Dashboard = () => (
-  <div className="max-w-[1440px] mx-auto">
+  <div className="mxw">
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col ">
