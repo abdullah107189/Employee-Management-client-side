@@ -145,33 +145,33 @@ const WorkSheet = () => {
       <div className="overflow-x-auto mt-5">
         <table className="table border">
           <thead className="">
-            <tr className="pBg text-white">
-              <th className="rounded-tl-lg"></th>
-              <th className="">Designation</th>
-              <th className="">Hours Worked</th>
-              <th className="">Date</th>
-              <th className="">Delete</th>
-              <th className="rounded-tr-lg">Update</th>
+            <tr className="p-2 pBg text-white">
+              <th className="p-2 rounded-tl-lg"></th>
+              <th className="p-2 ">Designation</th>
+              <th className="p-2 ">Hours Worked</th>
+              <th className="p-2 ">Date</th>
+              <th className="p-2 ">Delete</th>
+              <th className="p-2 rounded-tr-lg">Update</th>
             </tr>
           </thead>
           <tbody className="">
             {workSheetData?.map((sheet, idx) => (
               <tr key={sheet._id} className="hover:bg-blue-100 ">
-                <th className="border">{idx + 1}</th>
-                <td className="border">{sheet?.work}</td>
-                <td className="border">{sheet?.hours}</td>
-                <td className="border">
+                <th className="border p-2">{idx + 1}</th>
+                <td className="border p-2">{sheet?.work}</td>
+                <td className="border p-2">{sheet?.hours}</td>
+                <td className="border p-2">
                   {format(sheet?.date, "dd MMMM yyyy")}
                 </td>
 
-                <td className="border ">
+                <td className="border p-2 ">
                   <div className="flex items-center justify-center ">
                     <button onClick={() => handleDeletSheet(sheet?._id)}>
                       <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                     </button>
                   </div>
                 </td>
-                <td className="border ">
+                <td className="border p-2 ">
                   <div className="flex items-center justify-center">
                     <button
                       className=""
