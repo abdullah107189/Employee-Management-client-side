@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const SectionHeader = ({ title }) => {
   return (
     <div className=" my-2 text-center relative">

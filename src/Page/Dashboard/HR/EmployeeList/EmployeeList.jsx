@@ -1,5 +1,4 @@
 import { VscUnverified } from "react-icons/vsc";
-import useGetUserData from "../../../../hooks/useGetUserData";
 import { MdVerified } from "react-icons/md";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { PiSpinnerThin } from "react-icons/pi";
@@ -8,15 +7,16 @@ import { useState } from "react";
 import { FaDollarSign } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+import useGetOnlyEmployee from "../../../../hooks/useGetOnlyEmployee";
 
 const EmployeeList = () => {
-  const { allUsers, isLoading, refetch } = useGetUserData();
+  const { allEmploye, refetch, isLoading } = useGetOnlyEmployee();
   const [showModal, setShowModal] = useState({
     isOpen: false,
     employeeInfo: "",
   });
   const axiosPubilc = useAxiosPublic();
-  
+
   const handleChangeVerify = async (id) => {
     // eslint-disable-next-line no-unused-vars
     const { data } = await axiosPubilc.patch(`/verifyChange/${id}`);
@@ -66,7 +66,7 @@ const EmployeeList = () => {
             </tr>
           </thead>
           <tbody className="">
-            {allUsers?.map((employee, idx) => (
+            {allEmploye?.map((employee, idx) => (
               <tr key={employee._id} className="hover:bg-blue-50 ">
                 <th className="border p-2">{idx + 1}</th>
                 <td className="border p-2">{employee?.userInfo?.name}</td>

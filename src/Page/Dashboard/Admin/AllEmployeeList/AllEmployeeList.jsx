@@ -93,7 +93,7 @@ const AllEmployeeList = () => {
   };
   return (
     <div className="">
-      <SectionHeader title={"All Employee & List"}></SectionHeader>
+      <SectionHeader title={"All Employee & HR List"}></SectionHeader>
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">

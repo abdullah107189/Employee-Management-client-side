@@ -132,7 +132,7 @@ const Dashboard = () => {
                       } w-full`
                     }
                   >
-                    All Employee List
+                    All Employee & HR List
                   </NavLink>
 
                   <NavLink
