@@ -52,13 +52,39 @@ const AllEmployeeList = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes,Fire 🔥",
     }).then(async (result) => {
       if (result.isConfirmed) {
         const { data } = await axiosPubilc.patch(`/fire/${email}`);
         if (data.modifiedCount > 0) {
           toast.success("Fired 😨");
           setShowModal({ isOpen: false });
+          refetch();
+        }
+      }
+    });
+  };
+
+  const handleMakeHR = (email, role) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `Can you Change the ${role === "hr" ? "HR" : "Employee"} to ${
+        role === "hr" ? "Employee" : "HR"
+      }  ?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: `${role == "hr" ? "red" : "green"}`,
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, ${
+        role !== "hr" ? "Promotion HR" : "Demotion Employee"
+      }`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { data } = await axiosPubilc.patch(`/change/role/${email}`, {
+          role: role,
+        });
+        if (data.modifiedCount > 0) {
+          toast.success("Changed ✅");
           refetch();
         }
       }
@@ -124,10 +150,42 @@ const AllEmployeeList = () => {
 
                 {/* make hr  */}
                 <td className="border p-2 ">
-                  <div className="flex items-center justify-center ">
-                    <button onClick={() => handleIncreaseSalary(employee?._id)}>
-                      <CgArrowsExchangeAltV className="w-10 h-10 rounded-full transform duration-300 hover:bg-blue-200 p-2 bg-blue-100 text-blue-400" />
-                    </button>
+                  <div className="flex items-center justify-center  flex-col">
+                    {employee?.isFired ? (
+                      <button>
+                        <CgArrowsExchangeAltV className="bg-gray-400 text-gray-200 hover:bg-gray-400 cursor-not-allowed disabled w-10 h-10 rounded-full transform duration-300 p-2 text-blue-40" />
+                      </button>
+                    ) : (
+                      <>
+                        {employee?.role === "employee" ? (
+                          <button
+                            onClick={() =>
+                              handleMakeHR(
+                                employee?.userInfo?.email,
+                                "employee"
+                              )
+                            }
+                          >
+                            <CgArrowsExchangeAltV
+                              className={`w-10 h-10 rounded-full transform duration-300 hover:bg-green-300 p-2 bg-green-200 text-green-500`}
+                            />
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() =>
+                              handleMakeHR(employee?.userInfo?.email, "hr")
+                            }
+                          >
+                            <CgArrowsExchangeAltV
+                              className={`w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400`}
+                            />
+                          </button>
+                        )}
+                      </>
+                    )}
+                    <p className="text-[10px]">
+                      {employee?.role === "hr" ? "HR" : "Employee"}
+                    </p>
                   </div>
                 </td>
 

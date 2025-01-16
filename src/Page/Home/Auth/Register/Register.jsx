@@ -263,8 +263,8 @@ const Register = () => {
                     id=""
                   >
                     <option defaultValue={"your_role"}>Select Your Role</option>
-                    <option value="Employee">Employee</option>
-                    <option value="HR">HR</option>
+                    <option value="employee">Employee</option>
+                    <option value="hr">HR</option>
                   </select>
                 </div>
               </div>
