@@ -84,7 +84,7 @@ const AllEmployeeList = () => {
           role: role,
         });
         if (data.modifiedCount > 0) {
-          toast.success("Changed ✅");
+          toast.success("Changed role");
           refetch();
         }
       }
