@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPubilc";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetOnlyEmployee = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     data: allEmployee = [],
     isLoading,
@@ -10,7 +10,7 @@ const useGetOnlyEmployee = () => {
   } = useQuery({
     queryKey: ["allEmploye"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/onlyEmployee");
+      const { data } = await axiosSecure.get("/onlyEmployee");
       return data;
     },
   });

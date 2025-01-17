@@ -1,6 +1,6 @@
 import { VscUnverified } from "react-icons/vsc";
 import { MdVerified } from "react-icons/md";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { PiSpinnerThin } from "react-icons/pi";
 import { CiSquareInfo } from "react-icons/ci";
 import { useState } from "react";
@@ -15,11 +15,11 @@ const EmployeeList = () => {
     isOpen: false,
     employeeInfo: "",
   });
-  const axiosPubilc = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleChangeVerify = async (id) => {
     // eslint-disable-next-line no-unused-vars
-    const { data } = await axiosPubilc.patch(`/verifyChange/${id}`);
+    const { data } = await axiosSecure.patch(`/verifyChange/${id}`);
     refetch();
   };
 
@@ -35,7 +35,7 @@ const EmployeeList = () => {
       isPaymentSuccess: false,
     };
     try {
-      const { data: payRequestFeedback } = await axiosPubilc.post(
+      const { data: payRequestFeedback } = await axiosSecure.post(
         "/payRequest",
         payRequest
       );

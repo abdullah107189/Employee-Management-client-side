@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPubilc";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetUserData = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     data: allUsers = [],
     isLoading,
@@ -10,7 +10,7 @@ const useGetUserData = () => {
   } = useQuery({
     queryKey: ["allUser"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/allUser");
+      const { data } = await axiosSecure.get("/allUser");
       return data;
     },
   });

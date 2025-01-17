@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPubilc";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetWorkSheet = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     data: workSheetList = [],
     isLoading,
@@ -10,7 +10,7 @@ const useGetWorkSheet = () => {
   } = useQuery({
     queryKey: ["worksheets"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/work-sheet");
+      const { data } = await axiosSecure.get("/work-sheet");
       return data;
     },
   });

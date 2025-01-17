@@ -1,25 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { format } from "date-fns";
 import { FaDollarSign } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const PayRoll = () => {
-  const axiosPubilc = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   // all payment request data
   const { data: payRequestData = [], refetch } = useQuery({
     queryKey: ["payRequestData"],
     queryFn: async () => {
-      const { data } = await axiosPubilc.get(`/payRequest`);
+      const { data } = await axiosSecure.get(`/payRequest`);
       return data;
     },
   });
 
   // payment
   const handlePayment = async (id) => {
-    const { data } = await axiosPubilc.patch(
+    const { data } = await axiosSecure.patch(
       `/payment-update/${id}?paymentDate=${new Date()}`
     );
     if (data.modifiedCount > 0) {

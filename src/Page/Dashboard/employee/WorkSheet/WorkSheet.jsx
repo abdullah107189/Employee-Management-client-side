@@ -22,11 +22,12 @@ const WorkSheet = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["workSheet"],
+    queryKey: ["workSheet", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/work-sheet/${user?.email}`);
       return data;
     },
+    enabled: !!user?.email,
   });
   console.log(matchWorkSheetData);
 

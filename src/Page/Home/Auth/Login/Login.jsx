@@ -8,12 +8,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import GoogleLogin from "../../../../component/GoogleLogin/GoogleLogin";
 import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+
 const Login = () => {
   const { loginUser } = useAuth();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const axiosPubilc = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -25,7 +26,7 @@ const Login = () => {
     setfirebaseLoading(true);
 
     try {
-      await axiosPubilc.get(`/allUser?isFiredEmail=${d?.email}`);
+      await axiosPublic.get(`/allUser?isFiredEmail=${d?.email}`);
     } catch (error) {
       toast.error(error.response.data.message);
       setfirebaseLoading(false);

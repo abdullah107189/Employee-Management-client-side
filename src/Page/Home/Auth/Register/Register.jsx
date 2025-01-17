@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import GoogleLogin from "../../../../component/GoogleLogin/GoogleLogin";
 import { FaDollarSign } from "react-icons/fa6";
 import { CiBank } from "react-icons/ci";
@@ -26,7 +26,7 @@ const Register = () => {
   const [pUpper, setPUpper] = useState(false);
   const [imageNotFound, setImageNotPound] = useState(true);
   const imgApiKey = import.meta.env.VITE_IMG_API_KEY;
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [imageInfo, setImageInfo] = useState({
     url: "",
@@ -86,11 +86,10 @@ const Register = () => {
                   role: d?.role,
                 };
                 navigate("/");
-                const { data: serverError } = await axiosPublic.post(
+                const { data: serverError } = await axiosSecure.post(
                   "/setUser",
                   userInfo
                 );
-                console.log(serverError);
                 setfirebaseLoading(false);
               })
               .catch((error) => {
@@ -104,7 +103,7 @@ const Register = () => {
           });
       }
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
     }
   };
 

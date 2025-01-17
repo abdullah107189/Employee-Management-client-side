@@ -3,7 +3,7 @@ import { ImFire } from "react-icons/im";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { CiSquareInfo } from "react-icons/ci";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
@@ -15,11 +15,11 @@ const AllEmployeeList = () => {
     employeeInfo: "",
   });
 
-  const axiosPubilc = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: verifiedEmployee = [], refetch } = useQuery({
     queryKey: ["verifiedEmployee"],
     queryFn: async () => {
-      const { data } = await axiosPubilc.get(`/allUser?isVerify=${true}`);
+      const { data } = await axiosSecure.get(`/allUser?isVerify=${true}`);
       return data;
     },
   });
@@ -33,7 +33,7 @@ const AllEmployeeList = () => {
       return toast.error("You can only increase");
     }
     if (salary < value) {
-      const { data } = await axiosPubilc.patch(
+      const { data } = await axiosSecure.patch(
         `/user/update/${employeeInfo._id}`,
         { salary: value }
       );
@@ -56,7 +56,7 @@ const AllEmployeeList = () => {
       confirmButtonText: "Yes,Fire 🔥",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axiosPubilc.patch(`/fire/${email}`);
+        const { data } = await axiosSecure.patch(`/fire/${email}`);
         if (data.modifiedCount > 0) {
           toast.success("Fired 😨");
           setShowModal({ isOpen: false });
@@ -81,7 +81,7 @@ const AllEmployeeList = () => {
       }`,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axiosPubilc.patch(`/change/role/${email}`, {
+        const { data } = await axiosSecure.patch(`/change/role/${email}`, {
           role: role,
         });
         if (data.modifiedCount > 0) {

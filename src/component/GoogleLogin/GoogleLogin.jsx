@@ -1,21 +1,20 @@
 import toast from "react-hot-toast";
-import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import { FaFan, FaGoogle } from "react-icons/fa";
-import useAxiosPublic from "../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const GoogleLogin = () => {
   const { socialLogin, setUser, logoutUser } = useAuth();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
-  const axiosPubilc = useAxiosPublic();
   const handlGoogleLogin = async () => {
     socialLogin()
       .then(async (res) => {
         try {
-          await axiosPubilc.get(`/allUser?isFiredEmail=${res.user?.email}`);
+          await axiosSecure.get(`/allUser?isFiredEmail=${res.user?.email}`);
         } catch (error) {
           toast.error(error.response.data.message);
           setfirebaseLoading(false);
@@ -42,7 +41,7 @@ const GoogleLogin = () => {
         };
 
         navigate("/");
-        await axiosPublic.post("/setUser", userInfo);
+        await axiosSecure.post("/setUser", userInfo);
         setfirebaseLoading(false);
       })
       .catch((error) => {

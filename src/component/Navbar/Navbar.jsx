@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
-import useAuth from "../../hooks/useAuth";
 import useCheckRole from "../../hooks/useCheckRole";
+import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
@@ -21,7 +21,6 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <NavLink
-          // to={`/dashboard/${checkRole === "employee" && "work-sheet"} ${checkRole === "hr" && "employee-list"} ${checkRole === "admin" && "all-employee-list"} `}
           to={
             checkRole === "employee"
               ? "/dashboard/work-sheet"

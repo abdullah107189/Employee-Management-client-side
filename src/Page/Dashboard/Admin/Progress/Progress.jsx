@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import useGetWorkSheet from "../../../../hooks/useGetWorkSheet";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
@@ -9,14 +9,14 @@ const Progress = () => {
   const [filterName, setFilterName] = useState("all");
   const [filterDate, setFilterDate] = useState("all");
   const [isFilter, setIsFilter] = useState(false);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   //   all word sheet data
   const { workSheetList } = useGetWorkSheet();
   //   filter work sheet data
   const { data: filterWorkSheet = [] } = useQuery({
     queryKey: ["sheet", filterName, filterDate],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(
+      const { data } = await axiosSecure.get(
         `/progress?filterName=${filterName}&filterDate=${filterDate}`
       );
       return data;
