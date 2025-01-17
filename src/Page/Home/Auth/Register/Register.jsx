@@ -82,7 +82,7 @@ const Register = () => {
                   bankAccountNo: d?.bankAccountNo,
                   designation: d?.designation,
                   salary: d?.salary,
-                  isVerified: false,
+                  isVerified: d?.role === "hr" ? true : false,
                   role: d?.role,
                 };
                 navigate("/");
@@ -287,13 +287,19 @@ const Register = () => {
                     type="number"
                     id="bank_account"
                     name="bank_account"
-                    {...register("bankAccountNo", { required: true })}
+                    {...register("bankAccountNo", {
+                      required: true,
+                      min: 1,
+                    })}
                     className="flex-1 p-2 focus:outline-none"
                     placeholder="Enter your username"
                   />
                 </div>
                 {errors.bankAccountNo?.type === "required" && (
                   <p className="text-red-400">Bank Account No. is required</p>
+                )}
+                {errors.bankAccountNo?.type === "min" && (
+                  <p className="text-red-400">Need valid number</p>
                 )}
               </div>
 
@@ -308,13 +314,16 @@ const Register = () => {
                     type="number"
                     id="salary"
                     name="salary"
-                    {...register("salary", { required: true })}
+                    {...register("salary", { required: true, min: 1 })}
                     className="flex-1 p-2 focus:outline-none"
                     placeholder="Enter your username"
                   />
                 </div>
                 {errors.salary?.type === "required" && (
                   <p className="text-red-400">User Name is required</p>
+                )}
+                {errors.salary?.type === "min" && (
+                  <p className="text-red-400">Need valid number</p>
                 )}
               </div>
             </div>

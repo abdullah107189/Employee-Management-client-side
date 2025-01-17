@@ -22,7 +22,7 @@ const WorkSheet = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["workSheet", user?.email],
+    queryKey: ["workSheet"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/work-sheet/${user?.email}`);
       return data;

@@ -32,7 +32,7 @@ const Router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/contact",
+        path: "/contact-us",
         element: <Contact></Contact>,
       },
     ],
