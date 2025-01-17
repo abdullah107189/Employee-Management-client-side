@@ -16,7 +16,11 @@ const WorkSheet = () => {
   const [showModal, setShowModal] = useState({ isOpen: false, sheet: "" });
   const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
-  const { data: workSheetData = [], refetch } = useQuery({
+  const {
+    data: workSheetData = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["work-sheet", user?.email],
     queryFn: async () => {
       const { data: getWorkSheet } = await axiosPubilc.get(
@@ -139,9 +143,10 @@ const WorkSheet = () => {
           onChange={(date) => setStartDate(date)}
         />
 
-        <button className="actionBtn md:!p-2 md:!px-5 bg-white">Submit Sheet</button>
+        <button className="actionBtn md:!p-2 md:!px-5 bg-white">
+          Submit Sheet
+        </button>
       </form>
-
       {/* table data  */}
       <div className="overflow-x-auto mt-5">
         <table className="table border">
@@ -155,44 +160,74 @@ const WorkSheet = () => {
               <th className="p-2 rounded-tr-lg">Update</th>
             </tr>
           </thead>
-          <tbody className="">
-            {workSheetData?.map((sheet, idx) => (
-              <tr key={sheet._id} className="hover:bg-blue-100 ">
-                <th className="border p-2">{idx + 1}</th>
-                <td className="border p-2">{sheet?.work}</td>
-                <td className="border p-2">{sheet?.hours}</td>
-                <td className="border p-2">
-                  {format(sheet?.date, "dd MMMM yyyy")}
-                </td>
+          {!isLoading ? (
+            <tbody>
+              {Array(5)
+                .fill()
+                .map((s, idx) => {
+                  <tr key={idx}>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                    <td className="border p-2">
+                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    </td>
+                  </tr>;
+                })}
+            </tbody>
+          ) : (
+            <tbody className="">
+              {workSheetData?.map((sheet, idx) => (
+                <tr key={sheet._id} className="hover:bg-blue-100 ">
+                  <th className="border p-2">{idx + 1}</th>
+                  <td className="border p-2">{sheet?.work}</td>
+                  <td className="border p-2">{sheet?.hours}</td>
+                  <td className="border p-2">
+                    {format(sheet?.date, "dd MMMM yyyy")}
+                  </td>
 
-                <td className="border p-2 ">
-                  <div className="flex items-center justify-center ">
-                    <button onClick={() => handleDeletSheet(sheet?._id)}>
-                      <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                    </button>
-                  </div>
-                </td>
-                <td className="border p-2 ">
-                  <div className="flex items-center justify-center">
-                    <button
-                      className=""
-                      onClick={() =>
-                        setShowModal(
-                          { isOpen: true, sheet: sheet },
-                          setStartDate(sheet.date)
-                        )
-                      }
-                    >
-                      <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  <td className="border p-2 ">
+                    <div className="flex items-center justify-center ">
+                      <button onClick={() => handleDeletSheet(sheet?._id)}>
+                        <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                      </button>
+                    </div>
+                  </td>
+                  <td className="border p-2 ">
+                    <div className="flex items-center justify-center">
+                      <button
+                        className=""
+                        onClick={() =>
+                          setShowModal(
+                            { isOpen: true, sheet: sheet },
+                            setStartDate(sheet.date)
+                          )
+                        }
+                      >
+                        <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
 
+      {/* show modal when update button click */}
       {showModal.isOpen && (
         <dialog id="my_modal_2" className="modal bg-black/40 " open>
           <div className="modal-box text-center">

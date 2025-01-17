@@ -4,7 +4,7 @@ import useAxiosPublic from "./useAxiosPubilc";
 const useGetOnlyEmployee = () => {
   const axiosPublic = useAxiosPublic();
   const {
-    data: allEmploye = [],
+    data: allEmployee = [],
     isLoading,
     refetch,
   } = useQuery({
@@ -14,7 +14,7 @@ const useGetOnlyEmployee = () => {
       return data;
     },
   });
-  return { allEmploye, isLoading, refetch };
+  return { allEmployee, isLoading, refetch };
 };
 
 export default useGetOnlyEmployee;

@@ -1,23 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { LuSheet } from "react-icons/lu";
 import { RiMenuUnfold3Fill } from "react-icons/ri";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPubilc";
+import useCheckRole from "../../../hooks/useCheckRole";
 import useAuth from "../../../hooks/useAuth";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const axiosPublic = useAxiosPublic();
-  const { data: checkRole = "" } = useQuery({
-    queryKey: ["checkRole", user?.email],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get(`/checkRole/${user?.email}`);
-      return data;
-    },
-  });
-
-  // const checkRole = "admin";
-
+  const { checkRole } = useCheckRole();
   return (
     <div className="mxw">
       <div className="drawer lg:drawer-open">

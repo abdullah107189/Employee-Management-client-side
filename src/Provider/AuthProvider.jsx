@@ -9,13 +9,14 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import useAxiosPublic from "../hooks/useAxiosPubilc";
 
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
-
+  const axiosPubilc = useAxiosPublic();
   const provider = new GoogleAuthProvider();
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -36,12 +37,20 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   };
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
+        const userInfo = {
+          email: currentUser?.email,
+        };
+        await axiosPubilc.post("/jwt-sign", userInfo, {
+          withCredentials: true,
+        });
+
         // console.log('current User =========> ', currentUser);
         setAuthLoading(false);
       } else {
+        await axiosPubilc.post("/jwt-logout");
         setUser(null);
         setAuthLoading(false);
       }

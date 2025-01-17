@@ -10,7 +10,7 @@ import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 import useGetOnlyEmployee from "../../../../hooks/useGetOnlyEmployee";
 
 const EmployeeList = () => {
-  const { allEmploye, refetch, isLoading } = useGetOnlyEmployee();
+  const { allEmployee, refetch, isLoading } = useGetOnlyEmployee();
   const [showModal, setShowModal] = useState({
     isOpen: false,
     employeeInfo: "",
@@ -66,7 +66,7 @@ const EmployeeList = () => {
             </tr>
           </thead>
           <tbody className="">
-            {allEmploye?.map((employee, idx) => (
+            {allEmployee?.map((employee, idx) => (
               <tr key={employee._id} className="hover:bg-blue-50 ">
                 <th className="border p-2">{idx + 1}</th>
                 <td className="border p-2">{employee?.userInfo?.name}</td>

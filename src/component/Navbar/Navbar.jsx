@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 import useAuth from "../../hooks/useAuth";
+import useCheckRole from "../../hooks/useCheckRole";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
+  const { checkRole } = useCheckRole();
   const li = (
     <div className="space-x-3">
       <NavLink
@@ -19,7 +21,14 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <NavLink
-          to="/dashboard/work-sheet"
+          // to={`/dashboard/${checkRole === "employee" && "work-sheet"} ${checkRole === "hr" && "employee-list"} ${checkRole === "admin" && "all-employee-list"} `}
+          to={
+            checkRole === "employee"
+              ? "/dashboard/work-sheet"
+              : checkRole === "hr"
+              ? "/dashboard/employee-list"
+              : "/dashboard/all-employee-list"
+          }
           className={({ isActive }) =>
             `${
               isActive
