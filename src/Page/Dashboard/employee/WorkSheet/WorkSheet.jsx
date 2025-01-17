@@ -2,7 +2,6 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import { format } from "date-fns";
@@ -10,25 +9,26 @@ import { MdDelete } from "react-icons/md";
 import { FaFilePen } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const WorkSheet = () => {
-  const axiosPubilc = useAxiosPublic();
   const [showModal, setShowModal] = useState({ isOpen: false, sheet: "" });
   const { user } = useAuth();
   const [startDate, setStartDate] = useState(new Date());
+
+  const axiosSecure = useAxiosSecure();
   const {
-    data: workSheetData = [],
+    data: matchWorkSheetData = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["work-sheet", user?.email],
+    queryKey: ["workSheet"],
     queryFn: async () => {
-      const { data: getWorkSheet } = await axiosPubilc.get(
-        `/work-sheet/${user?.email}`
-      );
-      return getWorkSheet;
+      const { data } = await axiosSecure.get(`/work-sheet/${user?.email}`);
+      return data;
     },
   });
+  console.log(matchWorkSheetData);
 
   const handleSubmitSheet = async (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const WorkSheet = () => {
       email: user?.email,
       name: user?.displayName,
     };
-    const { data } = await axiosPubilc.post("/work-sheet", sheetData);
+    const { data } = await axiosSecure.post("/work-sheet", sheetData);
     if (data.insertedId) {
       toast.success("Work sheet Added 👍");
     }
@@ -68,7 +68,7 @@ const WorkSheet = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data: sheetDeleteInfo } = await axiosPubilc.delete(
+        const { data: sheetDeleteInfo } = await axiosSecure.delete(
           `/work-sheet/${id}`
         );
         if (sheetDeleteInfo.deletedCount) {
@@ -94,7 +94,7 @@ const WorkSheet = () => {
       hours: hours,
       date: startDate,
     };
-    const { data } = await axiosPubilc.patch(`/work-sheet/update/${id}`, {
+    const { data } = await axiosSecure.patch(`/work-sheet/update/${id}`, {
       updateSheet: sheetData,
     });
     if (data.matchedCount) {
@@ -160,7 +160,7 @@ const WorkSheet = () => {
               <th className="p-2 rounded-tr-lg">Update</th>
             </tr>
           </thead>
-          {!isLoading ? (
+          {isLoading ? (
             <tbody>
               {Array(5)
                 .fill()
@@ -189,7 +189,7 @@ const WorkSheet = () => {
             </tbody>
           ) : (
             <tbody className="">
-              {workSheetData?.map((sheet, idx) => (
+              {matchWorkSheetData?.map((sheet, idx) => (
                 <tr key={sheet._id} className="hover:bg-blue-100 ">
                   <th className="border p-2">{idx + 1}</th>
                   <td className="border p-2">{sheet?.work}</td>

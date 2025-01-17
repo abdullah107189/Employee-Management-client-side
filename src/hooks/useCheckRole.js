@@ -16,7 +16,6 @@ const useCheckRole = () => {
       return data;
     },
   });
-  console.log(checkRole);
   return { checkRole, isLoading, refetch };
 };
 

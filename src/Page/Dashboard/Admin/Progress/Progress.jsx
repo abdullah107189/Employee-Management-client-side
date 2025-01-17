@@ -10,9 +10,6 @@ const Progress = () => {
   const [filterDate, setFilterDate] = useState("all");
   const [isFilter, setIsFilter] = useState(false);
   const axiosPublic = useAxiosPublic();
-
-  //   console.log(filterName, filterDate);
-
   //   all word sheet data
   const { workSheetList } = useGetWorkSheet();
   //   filter work sheet data
