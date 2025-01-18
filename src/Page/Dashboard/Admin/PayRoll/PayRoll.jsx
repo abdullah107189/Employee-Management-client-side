@@ -17,6 +17,7 @@ const PayRoll = () => {
     },
   });
 
+  console.log(payRequestData);
   // payment
   const handlePayment = async (id) => {
     const { data } = await axiosSecure.patch(

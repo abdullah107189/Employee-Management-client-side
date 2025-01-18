@@ -13,6 +13,9 @@ import PrivetRoute from "../route/PrivetRoute";
 import PayRoll from "../Page/Dashboard/Admin/PayRoll/PayRoll";
 import AllEmployeeList from "../Page/Dashboard/Admin/AllEmployeeList/AllEmployeeList";
 import EmployeeRoute from "../route/EmployeeRoute";
+import DetailsPage from "../Page/DetailsPage/DetailsPage";
+import HRRoute from "../route/HRRoute";
+import AdminRoute from "../route/AdminRoute";
 
 const Router = createBrowserRouter([
   {
@@ -55,27 +58,55 @@ const Router = createBrowserRouter([
       },
       {
         path: "payment-history",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <EmployeeRoute>
+            <PaymentHistory></PaymentHistory>
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "employeeDetails/:id",
+        element: (
+          <PrivetRoute>
+            <DetailsPage></DetailsPage>
+          </PrivetRoute>
+        ),
       },
 
       // HR dahsboard
       {
         path: "employee-list",
-        element: <EmployeeList></EmployeeList>,
+        element: (
+          <HRRoute>
+            <EmployeeList></EmployeeList>
+          </HRRoute>
+        ),
       },
       {
         path: "progress",
-        element: <Progress></Progress>,
+        element: (
+          <HRRoute>
+            <Progress></Progress>
+          </HRRoute>
+        ),
       },
 
       // admin
       {
         path: "all-employee-list",
-        element: <AllEmployeeList></AllEmployeeList>,
+        element: (
+          <AdminRoute>
+            <AllEmployeeList></AllEmployeeList>
+          </AdminRoute>
+        ),
       },
       {
         path: "payroll",
-        element: <PayRoll></PayRoll>,
+        element: (
+          <AdminRoute>
+            <PayRoll></PayRoll>
+          </AdminRoute>
+        ),
       },
     ],
   },

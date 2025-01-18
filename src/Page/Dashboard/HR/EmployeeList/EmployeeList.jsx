@@ -8,6 +8,7 @@ import { FaDollarSign } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 import useGetOnlyEmployee from "../../../../hooks/useGetOnlyEmployee";
+import { Link } from "react-router-dom";
 
 const EmployeeList = () => {
   const { allEmployee, refetch, isLoading } = useGetOnlyEmployee();
@@ -111,9 +112,9 @@ const EmployeeList = () => {
 
                 <td className="border p-2">
                   <div className="flex items-center justify-center">
-                    <button className="" onClick={() => employee?._id}>
+                    <Link to={`/dashboard/employeeDetails/${employee?._id}`}>
                       <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
-                    </button>
+                    </Link>
                   </div>
                 </td>
               </tr>

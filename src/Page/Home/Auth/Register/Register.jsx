@@ -86,10 +86,7 @@ const Register = () => {
                   role: d?.role,
                 };
                 navigate("/");
-                const { data: serverError } = await axiosSecure.post(
-                  "/setUser",
-                  userInfo
-                );
+                  await axiosSecure.post("/setUser", userInfo);
                 setfirebaseLoading(false);
               })
               .catch((error) => {

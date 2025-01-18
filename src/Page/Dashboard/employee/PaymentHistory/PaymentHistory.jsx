@@ -27,7 +27,8 @@ const PaymentHistory = () => {
               <th className="p-2 ">Month,Year</th>
               <th className="p-2 ">Salary</th>
               <th className="p-2 ">Transaction Id</th>
-              <th className="p-2 rounded-tr-lg">Date</th>
+              <th className="p-2">Date</th>
+              <th className="p-2 rounded-tr-lg">Status</th>
             </tr>
           </thead>
           <tbody className="">
@@ -38,9 +39,30 @@ const PaymentHistory = () => {
                   {format(history?.monthAndYear, "MMM yyyy")}
                 </td>
                 <td className="border p-2">$ {history?.salary}</td>
-                <td className="border p-2">$ {history?.transactionId}</td>
                 <td className="border p-2">
-                  {format(history?.paymentDate, "dd MMMM yyyy")}
+                  {history?.transactionId ? (
+                    <span>$ {history?.transactionId}</span>
+                  ) : (
+                    <span>--</span>
+                  )}
+                </td>
+                <td className="border p-2">
+                  {history?.paymentDate ? (
+                    <span>{format(history?.paymentDate, "dd MMMM yyyy")}</span>
+                  ) : (
+                    <span>--</span>
+                  )}
+                </td>
+                <td className="border p-2 ">
+                  {!history?.isPaymentSuccess ? (
+                    <span className="badge pText sBg font-bold">
+                      Processing
+                    </span>
+                  ) : (
+                    <span className="badge bg-green-200 text-green-400 font-bold">
+                      Success
+                    </span>
+                  )}
                 </td>
               </tr>
             ))}
