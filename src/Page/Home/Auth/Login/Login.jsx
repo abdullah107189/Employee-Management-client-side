@@ -13,7 +13,7 @@ const Login = () => {
   const { loginUser } = useAuth();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
   const location = useLocation();
-  const form = location?.state?.location?.pathname || '/';
+  const form = location?.state?.location?.pathname || "/";
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const axiosPublic = useAxiosPublic();

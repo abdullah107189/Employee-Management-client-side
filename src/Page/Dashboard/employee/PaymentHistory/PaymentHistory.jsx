@@ -45,9 +45,7 @@ const PaymentHistory = () => {
                 <th className="p-2 rounded-tl-lg"></th>
                 <th className="p-2 ">Month,Year</th>
                 <th className="p-2 ">Salary</th>
-                <th className="p-2 ">Transaction Id</th>
-                <th className="p-2">Payment Date</th>
-                <th className="p-2 rounded-tr-lg">Status</th>
+                <th className="p-2 rounded-tr-lg">Transaction Id</th>
               </tr>
             </thead>
             <tbody className="">
@@ -72,29 +70,6 @@ const PaymentHistory = () => {
                       <span>--</span>
                     )}
                   </td>
-                  <td className="border p-2">
-                    {payHistory?.result[0]?.firstPayment?.paymentDate ? (
-                      <span>
-                        {format(
-                          payHistory?.result[0]?.firstPayment?.paymentDate,
-                          "dd MMMM yyyy"
-                        )}
-                      </span>
-                    ) : (
-                      <span>--</span>
-                    )}
-                  </td>
-                  <td className="border p-2 ">
-                    {!payHistory?.result[0]?.firstPayment?.isPaymentSuccess ? (
-                      <span className="badge pText sBg font-bold">
-                        Processing
-                      </span>
-                    ) : (
-                      <span className="badge bg-green-200 text-green-400 font-bold">
-                        Success
-                      </span>
-                    )}
-                  </td>
                 </tr>
               )}
               {payHistory?.result[0]?.allPayment
@@ -111,26 +86,6 @@ const PaymentHistory = () => {
                         <span>$ {history?.transactionId}</span>
                       ) : (
                         <span>--</span>
-                      )}
-                    </td>
-                    <td className="border p-2">
-                      {history?.paymentDate ? (
-                        <span>
-                          {format(history?.paymentDate, "dd MMMM yyyy")}
-                        </span>
-                      ) : (
-                        <span>--</span>
-                      )}
-                    </td>
-                    <td className="border p-2 ">
-                      {!history?.isPaymentSuccess ? (
-                        <span className="badge pText sBg font-bold">
-                          Processing
-                        </span>
-                      ) : (
-                        <span className="badge bg-green-200 text-green-400 font-bold">
-                          Success
-                        </span>
                       )}
                     </td>
                   </tr>
