@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
@@ -8,6 +8,7 @@ const axiosSecure = axios.create({
 });
 const useAxiosSecure = () => {
   const { logoutUser } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   axiosSecure.interceptors.response.use(
@@ -16,8 +17,8 @@ const useAxiosSecure = () => {
     },
     (error) => {
       if (error.response.status === 403 || error.response.status === 401) {
+        navigate("/login", { state: { location }, replace: true });
         logoutUser();
-        navigate("/login");
       }
       return Promise.reject(error);
     }

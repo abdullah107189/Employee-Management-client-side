@@ -13,7 +13,7 @@ const EmployeeRoute = ({ children }) => {
   if (user && checkRole === "employee") {
     return children;
   }
-  return <Navigate to={"/login"} state={location} replace={true}></Navigate>;
+  return <Navigate to={"/login"} state={{location}} replace={true}></Navigate>;
 };
 
 export default EmployeeRoute;

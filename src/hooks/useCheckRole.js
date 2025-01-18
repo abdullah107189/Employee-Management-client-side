@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
+import useAxiosPublic from "./useAxiosPubilc";
 
 const useCheckRole = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosPublic();
   const {
     data: checkRole = "",
     isLoading,

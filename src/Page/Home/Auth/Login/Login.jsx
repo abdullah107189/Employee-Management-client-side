@@ -1,5 +1,5 @@
 import { FaUser, FaLock, FaFan } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import employee1 from "../../../../assets/employee1.svg";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
@@ -12,6 +12,8 @@ import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 const Login = () => {
   const { loginUser } = useAuth();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
+  const location = useLocation();
+  const form = location?.state?.location?.pathname || '/';
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const axiosPublic = useAxiosPublic();
@@ -38,7 +40,7 @@ const Login = () => {
     await loginUser(d.email, d.password)
       .then(() => {
         toast.success("Login success 🙂");
-        navigate("/");
+        navigate(form);
         setfirebaseLoading(false);
       })
       .catch((error) => {

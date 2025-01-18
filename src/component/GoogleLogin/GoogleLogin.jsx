@@ -1,13 +1,15 @@
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { FaFan, FaGoogle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPubilc";
 
 const GoogleLogin = () => {
   const { socialLogin, setUser, logoutUser } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
+  const form = location?.state?.location?.pathname || "/";
   const navigate = useNavigate();
   const [firebaseLoading, setfirebaseLoading] = useState(false);
   const handlGoogleLogin = async () => {
@@ -23,7 +25,7 @@ const GoogleLogin = () => {
             return;
           }
         }
-        toast.success("Account Create Success Fully Done");
+        toast.success("Login Success Fully Done");
         setUser((prev) => {
           return { ...prev, photoURL: res.user.photoURL };
         });
@@ -40,7 +42,7 @@ const GoogleLogin = () => {
           role: "employee",
         };
 
-        navigate("/");
+        navigate(form);
         await axiosPublic.post("/setUser", userInfo);
         setfirebaseLoading(false);
       })

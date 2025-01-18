@@ -13,7 +13,7 @@ const HRRoute = ({ children }) => {
   if (user && checkRole === "hr") {
     return children;
   }
-  return <Navigate to={"/login"} state={location} replace={true}></Navigate>;
+  return <Navigate to={"/login"} state={{location}} replace={true}></Navigate>;
 };
 
 export default HRRoute;
