@@ -29,7 +29,6 @@ const WorkSheet = () => {
     },
     enabled: !!user?.email,
   });
-  console.log(matchWorkSheetData);
 
   const handleSubmitSheet = async (e) => {
     e.preventDefault();

@@ -11,9 +11,10 @@ const PaymentHistory = () => {
     queryKey: ["payHistory"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/payment/history/${user?.email}`);
-      return data;
+      return data[0];
     },
   });
+  console.log(payHistory.firstPayment);
   //   {"_id":{"$oid":"6788bfa7a1b2f3539b972ef4"},"employeeName":"Md. Abdullah All Shamem","employeeEmail":"abdullah107189@gmail.com","salary":{"$numberInt":"9999"},"monthAndYear":"2025-08","isPaymentSuccess":false,"paymentDate":"Thu Jan 16 2025 14:13:35 GMT 0600 (Bangladesh Standard Time)","transactionId":"268d3cbd5d"}
   return (
     <div>
@@ -32,9 +33,50 @@ const PaymentHistory = () => {
             </tr>
           </thead>
           <tbody className="">
-            {payHistory?.map((history, idx) => (
+            {payHistory?.firstPayment && (
+              <tr className="hover:bg-green-100 ">
+                <th className="border p-2">1</th>
+                <td className="border p-2">
+                  {format(payHistory?.firstPayment?.monthAndYear, "MMM yyyy")}
+                </td>
+                <td className="border p-2">
+                  $ {payHistory?.firstPayment?.salary}
+                </td>
+                <td className="border p-2">
+                  {payHistory?.firstPayment?.transactionId ? (
+                    <span>$ {payHistory?.firstPayment?.transactionId}</span>
+                  ) : (
+                    <span>--</span>
+                  )}
+                </td>
+                <td className="border p-2">
+                  {payHistory?.firstPayment?.paymentDate ? (
+                    <span>
+                      {format(
+                        payHistory?.firstPayment?.paymentDate,
+                        "dd MMMM yyyy"
+                      )}
+                    </span>
+                  ) : (
+                    <span>--</span>
+                  )}
+                </td>
+                <td className="border p-2 ">
+                  {!payHistory?.firstPayment?.isPaymentSuccess ? (
+                    <span className="badge pText sBg font-bold">
+                      Processing
+                    </span>
+                  ) : (
+                    <span className="badge bg-green-200 text-green-400 font-bold">
+                      Success
+                    </span>
+                  )}
+                </td>
+              </tr>
+            )}
+            {payHistory?.allPayment?.map((history, idx) => (
               <tr key={idx} className="hover:bg-blue-100 ">
-                <th className="border p-2">{idx + 1}</th>
+                <th className="border p-2">{idx + 1 + 1}</th>
                 <td className="border p-2">
                   {format(history?.monthAndYear, "MMM yyyy")}
                 </td>
