@@ -5,10 +5,13 @@ import useCheckRole from "../../../hooks/useCheckRole";
 import useAuth from "../../../hooks/useAuth";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
+  const hanldeLogOut = () => {
+    logoutUser();
+  };
   return (
-    <div className="">
+    <div className="max-w-[1600px] mx-auto">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -45,6 +48,18 @@ const Dashboard = () => {
             >
               <span className="pText">As</span>Tech
             </a>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `${
+                  isActive
+                    ? "activeActionBtn !bg-[#678ce4] !text-white"
+                    : "border    !text-white/80 mb-2  !border-white/30 hover:bg-white/10 actionBtn "
+                } w-full flex items-center gap-2`
+              }
+            >
+              <LuSheet /> Home
+            </NavLink>
 
             <div className="w-full flex flex-col gap-2">
               {checkRole === "employee" && (
@@ -55,7 +70,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full flex items-center gap-2`
                     }
                   >
@@ -68,7 +83,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full`
                     }
                   >
@@ -86,7 +101,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full`
                     }
                   >
@@ -99,7 +114,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full`
                     }
                   >
@@ -117,7 +132,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full`
                     }
                   >
@@ -130,7 +145,7 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80 hover:bg-transparent !border-white/80 actionBtn "
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
                       } w-full`
                     }
                   >
@@ -139,6 +154,12 @@ const Dashboard = () => {
                 </>
               )}
             </div>
+            <button
+              onClick={hanldeLogOut}
+              className="border !text-white/80 !border-white/30 hover:bg-white/10 actionBtn mt-auto mb-4"
+            >
+              Logout
+            </button>
           </ul>
         </div>
       </div>

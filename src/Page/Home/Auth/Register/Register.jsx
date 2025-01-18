@@ -10,11 +10,11 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import useAuth from "../../../../hooks/useAuth";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import GoogleLogin from "../../../../component/GoogleLogin/GoogleLogin";
 import { FaDollarSign } from "react-icons/fa6";
 import { CiBank } from "react-icons/ci";
 import { GrUserWorker } from "react-icons/gr";
+import useAxiosPublic from "../../../../hooks/useAxiosPubilc";
 
 const Register = () => {
   const { createUser, updateImgAndName, setUser } = useAuth();
@@ -26,7 +26,7 @@ const Register = () => {
   const [pUpper, setPUpper] = useState(false);
   const [imageNotFound, setImageNotPound] = useState(true);
   const imgApiKey = import.meta.env.VITE_IMG_API_KEY;
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const [imageInfo, setImageInfo] = useState({
     url: "",
@@ -86,7 +86,7 @@ const Register = () => {
                   role: d?.role,
                 };
                 navigate("/");
-                  await axiosSecure.post("/setUser", userInfo);
+                await axiosPublic.post("/setUser", userInfo);
                 setfirebaseLoading(false);
               })
               .catch((error) => {
