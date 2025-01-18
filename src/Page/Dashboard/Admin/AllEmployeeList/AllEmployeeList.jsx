@@ -8,6 +8,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+import { Link } from "react-router-dom";
 
 const AllEmployeeList = () => {
   const [showModal, setShowModal] = useState({
@@ -197,9 +198,9 @@ const AllEmployeeList = () => {
 
                 {/* details  */}
                 <td className="border p-2">
-                  <button onClick={() => employee?._id}>
+                  <Link to={`/dashboard/hrAndEmployeeDetails/${employee?._id}`}>
                     <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}

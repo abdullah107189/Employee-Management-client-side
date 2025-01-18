@@ -16,6 +16,7 @@ import EmployeeRoute from "../route/EmployeeRoute";
 import DetailsPage from "../Page/DetailsPage/DetailsPage";
 import HRRoute from "../route/HRRoute";
 import AdminRoute from "../route/AdminRoute";
+import HRAndEmployeeDetailsPage from "../Page/HRAndEmployeeDetailsPage/HRAndEmployeeDetailsPage";
 
 const Router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ const Router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllEmployeeList></AllEmployeeList>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "hrAndEmployeeDetails/:id",
+        element: (
+          <AdminRoute>
+            <HRAndEmployeeDetailsPage></HRAndEmployeeDetailsPage>
           </AdminRoute>
         ),
       },

@@ -49,7 +49,7 @@ const DetailsPage = () => {
       </div>
       <div className="sBg mt-5 rounded-xl ">
         <h1 className="pt-5 text-4xl font-bold text-center">Analysis</h1>
-        {data.length > 0 ? (
+        {data?.length > 0 ? (
           <div className="w-full md:h-[500px] h-[250px]  p-10">
             <ResponsiveContainer>
               <BarChart data={data}>
