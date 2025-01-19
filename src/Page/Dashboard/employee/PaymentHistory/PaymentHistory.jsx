@@ -73,7 +73,7 @@ const PaymentHistory = () => {
                 </tr>
               )}
               {payHistory?.result[0]?.allPayment
-                ?.slice(0, -1)
+                ?.slice()
                 .map((history, idx) => (
                   <tr key={idx} className="hover:bg-blue-100 ">
                     <th className="border p-2">{idx + 1 + 1}</th>
