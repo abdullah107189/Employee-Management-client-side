@@ -1,13 +1,18 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { format } from "date-fns";
 import { FaDollarSign } from "react-icons/fa6";
-import toast from "react-hot-toast";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PayRoll = () => {
   const axiosSecure = useAxiosSecure();
-
+  const [showModal, setShowModal] = useState({ isOpen: false, employee: "" });
   // all payment request data
   const { data: payRequestData = [], refetch } = useQuery({
     queryKey: ["payRequestData"],
@@ -17,17 +22,6 @@ const PayRoll = () => {
     },
   });
 
-  console.log(payRequestData);
-  // payment
-  const handlePayment = async (id) => {
-    const { data } = await axiosSecure.patch(
-      `/payment-update/${id}?paymentDate=${new Date()}`
-    );
-    if (data.modifiedCount > 0) {
-      toast.success("Payment Successful ✅");
-    }
-    refetch();
-  };
   return (
     <div>
       <SectionHeader title={"Employee Payment Place"}></SectionHeader>
@@ -76,7 +70,11 @@ const PayRoll = () => {
                         paid
                       </p>
                     ) : (
-                      <button onClick={() => handlePayment(employee._id)}>
+                      <button
+                        onClick={() =>
+                          setShowModal({ isOpen: true, employee: employee })
+                        }
+                      >
                         <FaDollarSign className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
                       </button>
                     )}
@@ -94,6 +92,31 @@ const PayRoll = () => {
           </tbody>
         </table>
       </div>
+      {/* show modal when update button click */}
+      {showModal.isOpen && (
+        <dialog id="my_modal_2" className="modal bg-black/40 " open>
+          <div className="modal-box text-center">
+            <a href="/" className="text-5xl font-bold">
+              <span className="pText">As</span>Tech
+            </a>
+            <div className="min-h-[50vh] flex flex-col items-center  justify-center">
+              <h1 className="flex items-center justify-center gap-2 p-2 border rounded-xl shadow-md mb-5 font-bold text-3xl ">
+                <FaDollarSign></FaDollarSign> {showModal?.employee?.salary}
+              </h1>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm
+                  employee={showModal?.employee}
+                  refetch={refetch}
+                  setShowModal={setShowModal}
+                ></CheckoutForm>
+              </Elements>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button onClick={() => setShowModal(false)}>close</button>
+          </form>
+        </dialog>
+      )}
     </div>
   );
 };

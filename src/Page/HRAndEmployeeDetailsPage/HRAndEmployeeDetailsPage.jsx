@@ -56,7 +56,7 @@ const HRAndEmployeeDetailsPage = () => {
           <h2 className="text-2xl font-semibold text-gray-800">
             Profile Details
           </h2>
-          <div className="mt-4  flex items-center gap-5">
+          <div className="mt-4 flex items-center gap-5">
             <div className="flex justify-center items-center gap-2 badge  shadow-md text-xl p-3">
               <CiBank />
               {hrAndEmployeeDetails?.bankAccountNo}
