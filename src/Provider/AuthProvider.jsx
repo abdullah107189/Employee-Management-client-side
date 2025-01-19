@@ -42,17 +42,19 @@ const AuthProvider = ({ children }) => {
       setAuthLoading(true);
       if (currentUser) {
         setUser(currentUser);
+        setAuthLoading(false);
         const userInfo = {
           email: currentUser?.email,
         };
-        await axiosPublic.post("/jwt-sign", userInfo);
-
+        const { data } = await axiosPublic.post("/jwt-sign", userInfo);
+        console.log(data);
+        localStorage.setItem("access-token", data?.token);
         // console.log('current User =========> ', currentUser);
-        setAuthLoading(false);
       } else {
-        await axiosPublic.post("/jwt-logout");
-        setUser(null);
         setAuthLoading(false);
+        // await axiosPublic.post("/jwt-logout");
+        localStorage.removeItem("access-token");
+        setUser(null);
       }
     });
     return () => {

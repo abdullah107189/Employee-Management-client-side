@@ -6,7 +6,7 @@ const AuthLoading = () => {
       <span className="animate-spin ">
         <FaSpinner className="w-20 h-20"></FaSpinner>
       </span>
-        <p className="text-4xl">Loading...</p>
+      <p className="text-4xl">Loading...</p>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import AuthLoading from "../component/AuthLoading/AuthLoading";
 const HRRoute = ({ children }) => {
   const { authLoading, user } = useAuth();
   const { checkRole, isLoading } = useCheckRole();
+  console.log('skdfsdjf',checkRole);
   const location = useLocation();
   if (authLoading || isLoading) {
     return <AuthLoading></AuthLoading>

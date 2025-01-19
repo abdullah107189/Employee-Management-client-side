@@ -3,13 +3,25 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
+  // baseURL: "https://employee-management-server-side-wheat.vercel.app",
   baseURL: "http://localhost:4545",
-  withCredentials: true,
+  // withCredentials: true,
 });
 const useAxiosSecure = () => {
   const { logoutUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  axiosSecure.interceptors.request.use(
+    function (config) {
+      const token = localStorage.getItem("access-token");
+      config.headers.authorization = `Bearer ${token}`;
+      return config;
+    },
+    function (error) {
+      return Promise.reject(error);
+    }
+  );
 
   axiosSecure.interceptors.response.use(
     (res) => {

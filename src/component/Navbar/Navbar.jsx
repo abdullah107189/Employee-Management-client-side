@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
+  console.log(checkRole);
   const li = (
     <div className="md:space-x-3 gap-3 flex md:flex-row flex-col">
       <NavLink
