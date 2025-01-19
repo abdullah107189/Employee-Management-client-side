@@ -60,7 +60,6 @@ const CheckoutForm = ({ employee, refetch, setShowModal }) => {
       setPaymentError(error.message);
     } else {
       setPayLoading({ isShow: true });
-      //   console.log("paymentMethod", paymentMethod);
       setPaymentError("");
     }
     setPayLoading({ isShow: true });

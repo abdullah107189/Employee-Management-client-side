@@ -372,11 +372,11 @@ const Register = () => {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)} // Toggle the showPassword state
+                  onClick={() => setShowPassword(!showPassword)} 
                   className="mx-2 text-gray-500 focus:outline-none"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
-                  {/* Icon changes based on state */}
+                 
                 </button>
               </div>
               <div

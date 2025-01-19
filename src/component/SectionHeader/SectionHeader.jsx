@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const SectionHeader = ({ title }) => {
   return (
-    <div className=" my-2 text-center relative">
+    <div className=" my-2 text-center relative z-10">
       <p className="md:text-4xl text-2xl text-center  font-bold text-blue-400">
         {title}
       </p>

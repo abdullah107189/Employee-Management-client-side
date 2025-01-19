@@ -23,7 +23,6 @@ const Progress = () => {
     },
     enabled: Boolean(filterName || filterDate),
   });
-  // console.log("filter data", filterWorkSheet);
   const handleFetchingChange = (e, filterType) => {
     const value = e.target.value;
     if (filterType === "employeeName") {
@@ -35,7 +34,6 @@ const Progress = () => {
     setIsFilter(true);
   };
   const tableData = isFilter ? filterWorkSheet : workSheetList;
-  // console.log("table data", filterWorkSheet);
   const uniqeNameArray = [...new Set(workSheetList?.map((name) => name.name))];
   const uniqeDateArray = [
     ...new Set(workSheetList?.map((date) => date.monthAndYear)),
