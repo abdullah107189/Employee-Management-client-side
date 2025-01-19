@@ -246,7 +246,10 @@ const AllEmployeeList = () => {
         <div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:grid-cols-3 xl:grid-cols-4 ">
             {verifiedEmployee?.map((employee) => (
-              <div key={employee?._id} className="border sBg md:p-2 p-2 rounded-xl">
+              <div
+                key={employee?._id}
+                className="border flex flex-col bg-white md:p-2 p-2 rounded-xl"
+              >
                 <img
                   src={employee?.userInfo?.photoUrl}
                   alt={employee?.userInfo?.name}
@@ -259,31 +262,31 @@ const AllEmployeeList = () => {
                   <CgMail></CgMail> {employee?.userInfo?.name}
                 </h1>
 
-                <div className="flex flex-wrap gap-2 md:text-base text-[11px]">
+                <div className="flex flex-wrap gap-2 md:text-base text-[11px] flex-grow">
                   {/* role  */}
-                  <h1 className="flex items-center gap-1 bg-white p-1 rounded font-semibold ">
-                    <FaClipboardUser />{" "}
+                  <h1 className="flex items-center gap-1 rounded font-semibold ">
+                    <FaClipboardUser />
                     <span className="bg-green-500/30 bg-green-500 px-2 rounded-xl uppercase text-xs">
                       {employee?.role}
                     </span>
                   </h1>
                   {/* designation  */}
-                  <h1 className="flex items-center gap-1 rounded font-semibold bg-white p-1">
-                    <MdWork />{" "}
+                  <h1 className="flex items-center gap-1 rounded font-semibold">
+                    <MdWork />
                     <span className="sBg rounded-xl uppercase text-xs px-1">
                       {employee?.designation}
                     </span>
                   </h1>
                   {/* bank number  */}
-                  <h1 className="flex items-center gap-1 rounded font-semibold bg-white p-1">
-                    <CiBank />{" "}
+                  <h1 className="flex items-center gap-1 rounded font-semibold">
+                    <CiBank />
                     <span className="sBg rounded-xl uppercase text-xs px-1">
                       {employee?.role}
                     </span>
                   </h1>
                   {/* salary  */}
-                  <h1 className="flex items-center gap-1 rounded font-semibold bg-white p-1">
-                    <FaDollarSign />{" "}
+                  <h1 className="flex items-center gap-1 rounded font-semibold">
+                    <FaDollarSign />
                     <span className="sBg rounded-xl uppercase text-xs px-1">
                       {employee?.salary}
                     </span>
@@ -295,7 +298,9 @@ const AllEmployeeList = () => {
                 <div className="flex justify-between items-center mt-2  ">
                   {/* fire  */}
                   <div className="flex flex-col justify-center items-center gap-1">
-                    <p className="font-semibold md:text-base text-[11px]">Fire</p>
+                    <p className="font-semibold md:text-base text-[11px]">
+                      Fire
+                    </p>
                     <div className=" ">
                       {employee?.isFired ? (
                         <p className="badge p-3 pb-4 bg-red-100 text-red-400 font-bold">
@@ -312,7 +317,9 @@ const AllEmployeeList = () => {
                   </div>
                   {/* role change  */}
                   <div className="flex flex-col justify-center items-center gap-1">
-                    <p className="font-semibold md:text-base text-[11px]">Change Role</p>
+                    <p className="font-semibold md:text-base text-[11px]">
+                      Change Role
+                    </p>
                     <div className="">
                       {employee?.isFired ? (
                         <button>
@@ -351,7 +358,9 @@ const AllEmployeeList = () => {
 
                   {/* details button  */}
                   <div className="flex flex-col justify-center items-center gap-1">
-                    <p className="font-semibold md:text-base text-[11px]">Details</p>
+                    <p className="font-semibold md:text-base text-[11px]">
+                      Details
+                    </p>
                     <Link
                       to={`/dashboard/hrAndEmployeeDetails/${employee?._id}`}
                     >

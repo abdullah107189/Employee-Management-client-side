@@ -19,7 +19,7 @@ const Banner = () => {
           modern workplaces.
         </p>
         <div className="flex justify-center gap-2 mb-5 z-10">
-          <a href="#get-started" className="activeActionBtn">
+          <a href="#get-started" className="activeActionBtn !bg-blue-400/60 !text-white">
             Get Started
           </a>
 

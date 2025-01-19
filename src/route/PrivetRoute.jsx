@@ -2,12 +2,13 @@
 
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import AuthLoading from "../component/AuthLoading/AuthLoading";
 
 const PrivetRoute = ({ children }) => {
   const { authLoading, user } = useAuth();
   const location = useLocation();
   if (authLoading) {
-    return "loading....";
+    return <AuthLoading></AuthLoading>;
   }
   if (user) {
     return children;

@@ -3,6 +3,11 @@ import { LuSheet } from "react-icons/lu";
 import { RiMenuUnfold3Fill } from "react-icons/ri";
 import useCheckRole from "../../../hooks/useCheckRole";
 import useAuth from "../../../hooks/useAuth";
+import { IoHomeOutline } from "react-icons/io5";
+import { FiUsers } from "react-icons/fi";
+import { MdOutlinePayment } from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
+import { CiBoxList } from "react-icons/ci";
 
 const Dashboard = () => {
   const { user, logoutUser } = useAuth();
@@ -11,7 +16,7 @@ const Dashboard = () => {
     logoutUser();
   };
   return (
-    <div className="max-w-[1600px] mx-auto">
+    <div className="max-w-[1600px] mx-auto z-50 min-h-screen">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -21,7 +26,7 @@ const Dashboard = () => {
               <RiMenuUnfold3Fill />
             </label>
           </div>
-          <div className="m-2">
+          <div className="m-2 z-0">
             <Outlet></Outlet>
           </div>
         </div>
@@ -58,7 +63,7 @@ const Dashboard = () => {
                 } w-full flex items-center gap-2`
               }
             >
-              <LuSheet /> Home
+              <IoHomeOutline /> Home
             </NavLink>
 
             <div className="w-full flex flex-col gap-2">
@@ -84,10 +89,10 @@ const Dashboard = () => {
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
                           : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
-                      } w-full`
+                      } w-full flex items-center gap-2`
                     }
                   >
-                    Payment History
+                    <MdOutlinePayment /> Payment History
                   </NavLink>
                 </>
               )}
@@ -102,10 +107,10 @@ const Dashboard = () => {
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
                           : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
-                      } w-full`
+                      } w-full flex items-center gap-2`
                     }
                   >
-                    Employee List
+                    <GrUserWorker /> Employee List
                   </NavLink>
 
                   <NavLink
@@ -115,10 +120,10 @@ const Dashboard = () => {
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
                           : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
-                      } w-full`
+                      } w-full flex items-center gap-2`
                     }
                   >
-                    Employee Progress
+                    <CiBoxList /> Employee Progress
                   </NavLink>
                 </>
               )}
@@ -132,11 +137,11 @@ const Dashboard = () => {
                       `${
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
-                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
-                      } w-full`
+                          : "border  !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
+                      } w-full flex items-center  gap-2`
                     }
                   >
-                    All Employee & HR List
+                    <FiUsers className="w-3 h-3" /> All Employee & HR List
                   </NavLink>
 
                   <NavLink
@@ -146,10 +151,10 @@ const Dashboard = () => {
                         isActive
                           ? "activeActionBtn !bg-[#678ce4] !text-white"
                           : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
-                      } w-full`
+                      } w-full flex items-center gap-2`
                     }
                   >
-                    Employee Payment Request
+                    <MdOutlinePayment /> Employee Payment Request
                   </NavLink>
                 </>
               )}

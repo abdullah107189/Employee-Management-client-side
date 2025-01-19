@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
   const li = (
-    <div className="space-x-3">
+    <div className="md:space-x-3 gap-3 flex md:flex-row flex-col">
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-[#142446] backdrop-blur-md"
             >
               {li}
             </ul>
@@ -88,7 +88,7 @@ const Navbar = () => {
             <span className="pText">As</span>Tech
           </a>
         </div>
-        <div className="navbar-center  hidden lg:flex">
+        <div className="navbar-center  hidden lg:flex ">
           <ul className="menu menu-horizontal px-1">{li}</ul>
         </div>
         <div className="navbar-end">
@@ -101,6 +101,7 @@ const Navbar = () => {
               >
                 <div className="w-10   rounded-full">
                   <img
+                    referrerPolicy="no-referrer"
                     className="hover:border-2 border-[#678ce4] transform duration-100 rounded-full"
                     alt={user?.displayName}
                     src={user?.photoURL}
