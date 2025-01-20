@@ -19,7 +19,6 @@ const HRAndEmployeeDetailsPage = () => {
   if (isLoading) {
     return "loading 😀";
   }
-  console.log(hrAndEmployeeDetails);
 
   return (
     <div>
