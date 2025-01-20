@@ -13,7 +13,7 @@ const Progress = () => {
   //   all word sheet data
   const { workSheetList } = useGetWorkSheet();
   //   filter work sheet data
-  const { data: filterWorkSheet = [] } = useQuery({
+  const { data: filterWorkSheet = [], isLoading } = useQuery({
     queryKey: ["sheet", filterName, filterDate],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -77,19 +77,45 @@ const Progress = () => {
                 <th className="rounded-tr-lg">Date</th>
               </tr>
             </thead>
-            <tbody className="">
-              {tableData?.map((employee, idx) => (
-                <tr key={employee._id} className="hover:bg-blue-50 ">
-                  <th className="border">{idx + 1}</th>
-                  <td className="border">{employee?.name}</td>
-                  <td className="border">{employee?.work}</td>
-                  <td className="border">{employee.hours}</td>
-                  <td className="border">
-                    {format(employee.date, "MMMM yyyy")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {isLoading ? (
+              <tbody className="">
+                {Array.from({ length: 5 }).map((_, idx) => {
+                  return (
+                    <tr key={idx} className="hover:bg-blue-50 ">
+                      <td className="border p-2">
+                        <div className="skeleton w-10 h-5"></div>
+                      </td>
+                      <td className="border p-2">
+                        <div className="skeleton w-40 h-6"></div>
+                      </td>
+                      <td className="border p-2">
+                        <div className="skeleton w-40 h-6"></div>
+                      </td>
+                      <td className="border p-2">
+                        <div className="skeleton w-10 h-6"></div>
+                      </td>
+                      <td className="border p-2">
+                        <div className="skeleton w-40 h-6"></div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            ) : (
+              <tbody className="">
+                {tableData?.map((employee, idx) => (
+                  <tr key={employee._id} className="hover:bg-blue-50 ">
+                    <th className="border">{idx + 1}</th>
+                    <td className="border">{employee?.name}</td>
+                    <td className="border">{employee?.work}</td>
+                    <td className="border">{employee.hours}</td>
+                    <td className="border">
+                      {format(employee.date, "MMMM yyyy")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            )}
           </table>
         </div>
       </div>

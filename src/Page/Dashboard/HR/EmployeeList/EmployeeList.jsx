@@ -66,60 +66,109 @@ const EmployeeList = () => {
               <th className="p-2 rounded-tr-lg">Details</th>
             </tr>
           </thead>
-          <tbody className="">
-            {allEmployee?.map((employee, idx) => (
-              <tr key={employee._id} className="hover:bg-blue-50 ">
-                <th className="border p-2">{idx + 1}</th>
-                <td className="border p-2">{employee?.userInfo?.name}</td>
-                <td className="border p-2">{employee?.userInfo?.email}</td>
-                <td className="border p-2">
-                  <div className="flex items-center justify-center">
-                    {isLoading ? (
-                      <p>
-                        <PiSpinnerThin className="text-gray-900 w-6 h-6" />
-                      </p>
-                    ) : (
-                      <button onClick={() => handleChangeVerify(employee._id)}>
-                        {employee.isVerified === true ? (
-                          <MdVerified className="text-green-400 w-6 h-6" />
-                        ) : (
-                          <VscUnverified className="text-gray-900 w-6 h-6" />
-                        )}
-                      </button>
-                    )}
-                  </div>
-                </td>
-                <td className="border p-2">{employee.bankAccountNo}</td>
-                <td className="border p-2">{employee.salary}</td>
-                <td className="border p-2">
-                  <div className="flex items-center justify-center">
-                    {employee.isVerified === true ? (
-                      <button
-                        onClick={() =>
-                          setShowModal({ isOpen: true, employeeInfo: employee })
-                        }
-                        className="actionBtn"
-                      >
-                        Pay
-                      </button>
-                    ) : (
-                      <button className="actionBtn hover:!bg-gray-300 !bg-gray-300 !border-gray-300  cursor-not-allowed">
-                        Pay
-                      </button>
-                    )}
-                  </div>
-                </td>
+          {isLoading ? (
+            <tbody className="animate-pulse">
+              {Array.from({ length: 5 }).map((_, idx) => {
+                return (
+                  <tr key={idx} className="hover:bg-blue-50 ">
+                    <th className="border p-2">
+                      <div className="skeleton w-10 h-5"></div>
+                    </th>
+                    <td className="border p-2">
+                      <div className="skeleton w-20 h-5"></div>
+                    </td>
+                    <td className="border p-2">
+                      <div className="skeleton w-52 h-5"></div>
+                    </td>
+                    <td className="border p-2">
+                      <div className="flex items-center justify-center">
+                        <MdVerified className="text-gray-300 w-6 h-6" />
+                      </div>
+                    </td>
+                    <td className="border p-2">
+                      <div className="skeleton w-20 h-5"></div>
+                    </td>
+                    <td className="border p-2">
+                      <div className="skeleton w-20 h-5"></div>
+                    </td>
+                    <td className="border p-2">
+                      <div className="flex items-center justify-center">
+                        <p className="actionBtn hover:!bg-gray-300 !bg-gray-300 !border-gray-300  cursor-not-allowed">
+                          Pay
+                        </p>
+                      </div>
+                    </td>
 
-                <td className="border p-2">
-                  <div className="flex items-center justify-center">
-                    <Link to={`/dashboard/employeeDetails/${employee?._id}`}>
-                      <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                    <td className="border p-2">
+                      <div className="flex items-center justify-center">
+                        <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          ) : (
+            <tbody className="">
+              {allEmployee?.map((employee, idx) => (
+                <tr key={employee._id} className="hover:bg-blue-50 ">
+                  <th className="border p-2">{idx + 1}</th>
+                  <td className="border p-2">{employee?.userInfo?.name}</td>
+                  <td className="border p-2">{employee?.userInfo?.email}</td>
+                  <td className="border p-2">
+                    <div className="flex items-center justify-center">
+                      {isLoading ? (
+                        <p>
+                          <PiSpinnerThin className="text-gray-900 w-6 h-6" />
+                        </p>
+                      ) : (
+                        <button
+                          onClick={() => handleChangeVerify(employee._id)}
+                        >
+                          {employee.isVerified === true ? (
+                            <MdVerified className="text-green-400 w-6 h-6" />
+                          ) : (
+                            <VscUnverified className="text-gray-900 w-6 h-6" />
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                  <td className="border p-2">{employee.bankAccountNo}</td>
+                  <td className="border p-2">{employee.salary}</td>
+                  <td className="border p-2">
+                    <div className="flex items-center justify-center">
+                      {employee.isVerified === true ? (
+                        <button
+                          onClick={() =>
+                            setShowModal({
+                              isOpen: true,
+                              employeeInfo: employee,
+                            })
+                          }
+                          className="actionBtn"
+                        >
+                          Pay
+                        </button>
+                      ) : (
+                        <button className="actionBtn hover:!bg-gray-300 !bg-gray-300 !border-gray-300  cursor-not-allowed">
+                          Pay
+                        </button>
+                      )}
+                    </div>
+                  </td>
+
+                  <td className="border p-2">
+                    <div className="flex items-center justify-center">
+                      <Link to={`/dashboard/employeeDetails/${employee?._id}`}>
+                        <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
       {showModal.isOpen && (

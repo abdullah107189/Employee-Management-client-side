@@ -9,12 +9,14 @@ const EmployeeRoute = ({ children }) => {
   const { checkRole, isLoading } = useCheckRole();
   const location = useLocation();
   if (authLoading || isLoading) {
-    return <AuthLoading></AuthLoading>
+    return <AuthLoading></AuthLoading>;
   }
-  if (user && checkRole === "employee") {
+  if (user && checkRole == "employee") {
     return children;
   }
-  return <Navigate to={"/login"} state={{location}} replace={true}></Navigate>;
+  return (
+    <Navigate to={"/login"} state={{ location }} replace={true}></Navigate>
+  );
 };
 
 export default EmployeeRoute;
