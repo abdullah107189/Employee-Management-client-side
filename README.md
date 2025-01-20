@@ -4,7 +4,7 @@ Welcome to the **Employee Management System** project! This repository contains 
 
 ## Admin Credentials
 
-- **Username**: abdullah107189@gmail.com
+- **Email**: abdullah1234@gmail.com
 - **Password**: asdfAa
 
 ## Live Site URL
