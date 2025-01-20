@@ -17,6 +17,7 @@ import DetailsPage from "../Page/DetailsPage/DetailsPage";
 import HRRoute from "../route/HRRoute";
 import AdminRoute from "../route/AdminRoute";
 import HRAndEmployeeDetailsPage from "../Page/HRAndEmployeeDetailsPage/HRAndEmployeeDetailsPage";
+import ReceiveMassage from "../Page/Dashboard/Admin/ReceiveMassage/ReceiveMassage";
 
 const Router = createBrowserRouter([
   {
@@ -114,6 +115,14 @@ const Router = createBrowserRouter([
         element: (
           <AdminRoute>
             <PayRoll></PayRoll>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "receiveMassage",
+        element: (
+          <AdminRoute>
+            <ReceiveMassage></ReceiveMassage>
           </AdminRoute>
         ),
       },

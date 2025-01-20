@@ -5,7 +5,7 @@ import useCheckRole from "../../../hooks/useCheckRole";
 import useAuth from "../../../hooks/useAuth";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiUsers } from "react-icons/fi";
-import { MdOutlinePayment } from "react-icons/md";
+import { MdOutlinePayment, MdOutlineTextsms } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { CiBoxList } from "react-icons/ci";
 
@@ -155,6 +155,19 @@ const Dashboard = () => {
                     }
                   >
                     <MdOutlinePayment /> Employee Payment Request
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/receiveMassage"
+                    className={({ isActive }) =>
+                      `${
+                        isActive
+                          ? "activeActionBtn !bg-[#678ce4] !text-white"
+                          : "border    !text-white/80  !border-white/30 hover:bg-white/10 actionBtn "
+                      } w-full flex items-center gap-2`
+                    }
+                  >
+                    <MdOutlineTextsms />
+                    Contact Us Massages
                   </NavLink>
                 </>
               )}

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import contactUs from "../../assets/contactUs.svg";
 import SectionHeader from "../../component/SectionHeader/SectionHeader";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -8,14 +10,19 @@ const ContactUs = () => {
     email: "",
     message: "",
   });
+  const axiosSecure = useAxiosSecure();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    const { data } = await axiosSecure.post("/contact-us", formData);
+    console.log(data);
+    if (data.insertedId) {
+      toast.success("message sent to the admin 😀");
+      setFormData({ name: "", email: "", message: "" });
+    }
   };
 
   return (
