@@ -38,10 +38,12 @@ const Login = () => {
     }
 
     await loginUser(d.email, d.password)
-      .then(() => {
-        toast.success("Login success 🙂");
-        navigate(form);
-        setfirebaseLoading(false);
+      .then((res) => {
+        if (res.user) {
+          toast.success("Login success 🙂");
+          navigate(form);
+          setfirebaseLoading(false);
+        }
       })
       .catch((error) => {
         toast.error(error.message);
