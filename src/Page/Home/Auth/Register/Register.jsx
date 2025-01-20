@@ -289,7 +289,7 @@ const Register = () => {
                       min: 1,
                     })}
                     className="flex-1 p-2 focus:outline-none"
-                    placeholder="Enter your username"
+                    placeholder="Enter your Bank Account"
                   />
                 </div>
                 {errors.bankAccountNo?.type === "required" && (
@@ -313,7 +313,7 @@ const Register = () => {
                     name="salary"
                     {...register("salary", { required: true, min: 1 })}
                     className="flex-1 p-2 focus:outline-none"
-                    placeholder="Enter your username"
+                    placeholder="Enter your Salary"
                   />
                 </div>
                 {errors.salary?.type === "required" && (
