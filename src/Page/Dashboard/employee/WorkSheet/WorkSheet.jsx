@@ -162,33 +162,36 @@ const WorkSheet = () => {
           </thead>
           {isLoading ? (
             <tbody>
-              {Array(5)
-                .fill()
-                .map((s, idx) => {
-                  <tr key={idx}>
+              {Array.from({ length: 5 }).map((_, idx) => {
+                return (
+                  <tr key={idx} className="hover:bg-blue-100">
+                    <th className="border p-2">
+                      <p className="h-3 w-10 skeleton"></p>
+                    </th>
                     <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                      <p className="h-3 w-20 skeleton"></p>
                     </td>
                     <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                      <p className="h-3 w-20 skeleton"></p>
                     </td>
                     <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                      <p className="h-3 w-20 skeleton"></p>
                     </td>
-                    <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+
+                    <td className="border p-2 animate-pulse">
+                      <div className="flex items-center justify-center ">
+                        <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
+                      </div>
                     </td>
-                    <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
+                    <td className="border p-2 animate-pulse">
+                      <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
                     </td>
-                    <td className="border p-2">
-                      <p className="skeleton bg-slate-300 w-full h-5 rounded-full"></p>
-                    </td>
-                  </tr>;
-                })}
+                  </tr>
+                );
+              })}
             </tbody>
           ) : (
-            <tbody className="">
+            <tbody>
               {matchWorkSheetData?.map((sheet, idx) => (
                 <tr key={sheet._id} className="hover:bg-blue-100 ">
                   <th className="border p-2">{idx + 1}</th>
