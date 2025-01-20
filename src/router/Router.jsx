@@ -18,6 +18,7 @@ import HRRoute from "../route/HRRoute";
 import AdminRoute from "../route/AdminRoute";
 import HRAndEmployeeDetailsPage from "../Page/HRAndEmployeeDetailsPage/HRAndEmployeeDetailsPage";
 import ReceiveMassage from "../Page/Dashboard/Admin/ReceiveMassage/ReceiveMassage";
+import ErrorPage from "../component/ErrorPage/ErrorPage";
 
 const Router = createBrowserRouter([
   {
@@ -128,5 +129,9 @@ const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"*",
+    element:<ErrorPage></ErrorPage>
+  }
 ]);
 export default Router;
