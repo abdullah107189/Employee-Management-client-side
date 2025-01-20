@@ -18,7 +18,6 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await axiosSecure.post("/contact-us", formData);
-    console.log(data);
     if (data.insertedId) {
       toast.success("message sent to the admin 😀");
       setFormData({ name: "", email: "", message: "" });

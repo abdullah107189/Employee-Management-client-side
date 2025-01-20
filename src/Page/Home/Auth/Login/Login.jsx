@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex mt-3 items-center justify-between minH">
+    <div className="flex mt-3 items-center justify-between minH mxw">
       {/* Left Side Image */}
       <div
         className="md:w-1/2 hidden md:flex bg-cover bg-center"
@@ -104,11 +104,10 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)} 
+                  onClick={() => setShowPassword(!showPassword)}
                   className="mx-2 text-gray-500 focus:outline-none"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
-                
                 </button>
               </div>
               {errors.password?.type === "required" && (

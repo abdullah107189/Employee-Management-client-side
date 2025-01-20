@@ -9,7 +9,6 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-// import useAxiosSecure from "../hook/useAxiosSecure";
 import useAxiosPublic from "../hooks/useAxiosPubilc";
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
@@ -51,7 +50,6 @@ const AuthProvider = ({ children }) => {
         // console.log('current User =========> ', currentUser);
       } else {
         setAuthLoading(false);
-        // await axiosPublic.post("/jwt-logout");
         localStorage.removeItem("access-token");
         setUser(null);
       }

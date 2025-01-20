@@ -76,7 +76,6 @@ const CheckoutForm = ({ employee, refetch, setShowModal }) => {
     if (confirmError) {
       setPayLoading({ isShow: false });
     } else {
-      //   console.log("payment intent : ", paymentIntent);
       setPayLoading({ isShow: true });
       if (paymentIntent?.status === "succeeded") {
         setPayLoading({ isShow: true });

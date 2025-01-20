@@ -281,7 +281,6 @@ const AllEmployeeList = () => {
                               )}
                             </>
                           )}
-                          {/* <p className="text-[10px]">Now</p> */}
                           <p className="text-[10px]">
                             Role is :{" "}
                             <span className="font-bold px-1 border rounded-full bg-gray-100">

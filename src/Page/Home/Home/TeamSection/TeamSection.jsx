@@ -1,6 +1,4 @@
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
-// import useGetUserData from "../../../../hooks/useGetUserData";
-
 const TeamSection = () => {
   const teamMembers = [
     {
@@ -29,8 +27,6 @@ const TeamSection = () => {
       imageUrl: "https://picsum.photos/200",
     },
   ];
-  //   const { allUsers } = useGetUserData();
-  //   console.log(allUsers);
 
   return (
     <div className="container mx-auto p-6">
