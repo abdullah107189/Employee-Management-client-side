@@ -25,7 +25,11 @@ const AllEmployeeList = () => {
   const [isGridView, setIsGridView] = useState("table");
 
   const axiosSecure = useAxiosSecure();
-  const { data: verifiedEmployee = [], refetch } = useQuery({
+  const {
+    data: verifiedEmployee = [],
+    refetch,
+    isLoading: tableLoading,
+  } = useQuery({
     queryKey: ["verifiedEmployee"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/allUser?isVerify=${true}`);
@@ -143,100 +147,160 @@ const AllEmployeeList = () => {
               </tr>
             </thead>
             <tbody className="">
-              {verifiedEmployee?.map((employee, idx) => (
-                <tr key={idx} className="hover:bg-blue-50 ">
-                  <th className="border p-2">{idx + 1}</th>
-                  <td className="border p-2">{employee?.userInfo.name}</td>
-                  <td className="border p-2">{employee?.userInfo.email}</td>
+              {tableLoading
+                ? Array.from({ length: 5 }).map((_, idx) => (
+                    <tr key={idx} className="animate-pulse">
+                      <th className="border p-2">
+                        <p className="w-5 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </th>
+                      <td className="border p-2">
+                        <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </td>
+                      <td className="border p-2">
+                        <p className="w-40 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </td>
+                      <td className="border p-2">
+                        <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </td>
+                      <td className="border p-2">
+                        <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </td>
+                      <td className="border p-2">
+                        <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
+                      </td>
+                      {/* update salary  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center ">
+                          <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
+                        </div>
+                      </td>
 
-                  <td className="border p-2">{employee.designation}</td>
-                  <td className="border p-2">{employee.bankAccountNo}</td>
-                  <td className="border p-2">{employee.salary}</td>
-                  {/* update salary  */}
-                  <td className="border p-2 ">
-                    <div className="flex items-center justify-center ">
-                      <button
-                        onClick={() =>
-                          setShowModal({ isOpen: true, employeeInfo: employee })
-                        }
-                      >
-                        <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
-                      </button>
-                    </div>
-                  </td>
-
-                  {/* fire  */}
-                  <td className="border p-2 ">
-                    <div className="flex items-center justify-center ">
-                      {employee?.isFired ? (
-                        <p className="badge p-3 pb-4 bg-red-100 text-red-400 font-bold">
-                          fired
-                        </p>
-                      ) : (
-                        <button
-                          onClick={() => handlefire(employee?.userInfo.email)}
-                        >
+                      {/* fire  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center ">
                           <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
-                        </button>
-                      )}
-                    </div>
-                  </td>
+                        </div>
+                      </td>
 
-                  {/* make hr  */}
-                  <td className="border p-2 ">
-                    <div className="flex items-center justify-center  flex-col">
-                      {employee?.isFired ? (
-                        <button>
-                          <CgArrowsExchangeAltV className="bg-gray-400 text-gray-200 hover:bg-gray-400 cursor-not-allowed disabled w-10 h-10 rounded-full transform duration-300 p-2 text-blue-40" />
-                        </button>
-                      ) : (
-                        <>
-                          {employee?.role === "employee" ? (
-                            <button
-                              onClick={() =>
-                                handleMakeHR(
-                                  employee?.userInfo?.email,
-                                  "employee"
-                                )
-                              }
-                            >
-                              <CgArrowsExchangeAltV
-                                className={`w-10 h-10 rounded-full transform duration-300 hover:bg-green-300 p-2 bg-green-200 text-green-500`}
-                              />
-                            </button>
+                      {/* make hr  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center  flex-col">
+                          <CgArrowsExchangeAltV
+                            className={`w-10 h-10 rounded-full transform duration-300 hover:bg-green-300 p-2 bg-green-200 text-green-500`}
+                          />
+                          <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
+                          <span className="font-bold px-1 border rounded-full bg-gray-100"></span>
+                        </div>
+                      </td>
+
+                      {/* details  */}
+                      <td className="border p-2">
+                        <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                      </td>
+                    </tr>
+                  ))
+                : verifiedEmployee?.map((employee, idx) => (
+                    <tr key={idx} className="hover:bg-blue-50 ">
+                      <th className="border p-2">{idx + 1}</th>
+                      <td className="border p-2">{employee?.userInfo.name}</td>
+                      <td className="border p-2">{employee?.userInfo.email}</td>
+
+                      <td className="border p-2">{employee.designation}</td>
+                      <td className="border p-2">{employee.bankAccountNo}</td>
+                      <td className="border p-2">{employee.salary}</td>
+                      {/* update salary  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center ">
+                          <button
+                            onClick={() =>
+                              setShowModal({
+                                isOpen: true,
+                                employeeInfo: employee,
+                              })
+                            }
+                          >
+                            <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
+                          </button>
+                        </div>
+                      </td>
+
+                      {/* fire  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center ">
+                          {employee?.isFired ? (
+                            <p className="badge p-3 pb-4 bg-red-100 text-red-400 font-bold">
+                              fired
+                            </p>
                           ) : (
                             <button
                               onClick={() =>
-                                handleMakeHR(employee?.userInfo?.email, "hr")
+                                handlefire(employee?.userInfo.email)
                               }
                             >
-                              <CgArrowsExchangeAltV
-                                className={`w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400`}
-                              />
+                              <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                             </button>
                           )}
-                        </>
-                      )}
-                      {/* <p className="text-[10px]">Now</p> */}
-                      <p className="text-[10px]">
-                        Role is :{" "}
-                        <span className="font-bold px-1 border rounded-full bg-gray-100">
-                          {employee?.role === "hr" ? "HR" : "Employee"}
-                        </span>
-                      </p>
-                    </div>
-                  </td>
+                        </div>
+                      </td>
 
-                  {/* details  */}
-                  <td className="border p-2">
-                    <Link
-                      to={`/dashboard/hrAndEmployeeDetails/${employee?._id}`}
-                    >
-                      <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+                      {/* make hr  */}
+                      <td className="border p-2 ">
+                        <div className="flex items-center justify-center  flex-col">
+                          {employee?.isFired ? (
+                            <button>
+                              <CgArrowsExchangeAltV className="bg-gray-400 text-gray-200 hover:bg-gray-400 cursor-not-allowed disabled w-10 h-10 rounded-full transform duration-300 p-2 text-blue-40" />
+                            </button>
+                          ) : (
+                            <>
+                              {employee?.role === "employee" ? (
+                                <button
+                                  onClick={() =>
+                                    handleMakeHR(
+                                      employee?.userInfo?.email,
+                                      "employee"
+                                    )
+                                  }
+                                >
+                                  <CgArrowsExchangeAltV
+                                    className={`w-10 h-10 rounded-full transform duration-300 hover:bg-green-300 p-2 bg-green-200 text-green-500`}
+                                  />
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={() =>
+                                    handleMakeHR(
+                                      employee?.userInfo?.email,
+                                      "hr"
+                                    )
+                                  }
+                                >
+                                  <CgArrowsExchangeAltV
+                                    className={`w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400`}
+                                  />
+                                </button>
+                              )}
+                            </>
+                          )}
+                          {/* <p className="text-[10px]">Now</p> */}
+                          <p className="text-[10px]">
+                            Role is :{" "}
+                            <span className="font-bold px-1 border rounded-full bg-gray-100">
+                              {employee?.role === "hr" ? "HR" : "Employee"}
+                            </span>
+                          </p>
+                        </div>
+                      </td>
+
+                      {/* details  */}
+                      <td className="border p-2">
+                        <Link
+                          to={`/dashboard/hrAndEmployeeDetails/${employee?._id}`}
+                        >
+                          <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         </div>

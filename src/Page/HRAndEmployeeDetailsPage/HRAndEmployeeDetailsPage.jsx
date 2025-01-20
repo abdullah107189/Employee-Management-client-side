@@ -9,15 +9,52 @@ const HRAndEmployeeDetailsPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { data: hrAndEmployeeDetails = {}, isLoading } = useQuery({
+  const {
+    data: hrAndEmployeeDetails = {},
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["hrAndEmployeeDetails"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/hrAndEmployeeDetails/${id}`);
       return data;
     },
   });
-  if (isLoading) {
-    return "loading 😀";
+  if (isLoading || isFetching) {
+    return (
+      <>
+        <button onClick={() => navigate(-1)} className="actionBtn mb-2">
+          Back
+        </button>
+
+        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+          <div className="flex items-center space-x-4">
+            <div className="w-32 h-32 rounded-full border-4 object-cover skeleton bg-gray-300 border-blue-500 shadow-md" />
+            <div>
+              <h1 className="text-4xl font-bold text-gray-800 skeleton bg-gray-300 h-8 w-52"></h1>
+              <p className="text-gray-600 text-lg skeleton bg-gray-300 h-5 w-60 my-1"></p>
+              <p className="text-gray-600 text-lg skeleton bg-gray-300 h-5 w-44 my-1"></p>
+              <p className="text-green-500 bg-green-500/20 rounded-full font-semibold skeleton h-5 my-1 uppercase text-center w-3/4"></p>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <p className="text-gray-600 text-lg skeleton bg-gray-300 h-8 w-44 my-1"></p>
+            <div className="mt-4 flex items-center gap-5">
+              <p className="text-gray-600 text-lg skeleton bg-gray-300 h-5 w-32  my-1"></p>
+              <p className="text-gray-600 text-lg skeleton bg-gray-300 h-5 w-32  my-1"></p>
+              <p className="text-gray-600 text-lg skeleton bg-gray-300 h-5 w-14  my-1"></p>
+              <p className="text-gray-600 text-lg skeleton bg-red-200 h-5 w-14  my-1"></p>
+            </div>
+          </div>
+
+          <div className="mt-8 p-4 bg-blue-50 border-l-4 ">
+            <h3 className="text-lg font-semibold bg-gray-300 skeleton w-44 h-7"></h3>
+            <h3 className="text-lg font-semibold bg-gray-300 skeleton w-full h-5 mt-2"></h3>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
@@ -25,7 +62,6 @@ const HRAndEmployeeDetailsPage = () => {
       <button onClick={() => navigate(-1)} className="actionBtn mb-2">
         Back
       </button>
-
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <div className="flex items-center space-x-4">
           <img

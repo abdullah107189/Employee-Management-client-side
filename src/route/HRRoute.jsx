@@ -9,12 +9,14 @@ const HRRoute = ({ children }) => {
   const { checkRole, isLoading } = useCheckRole();
   const location = useLocation();
   if (authLoading || isLoading) {
-    return <AuthLoading></AuthLoading>
+    return <AuthLoading></AuthLoading>;
   }
   if (user && checkRole === "hr") {
     return children;
   }
-  return <Navigate to={"/login"} state={{location}} replace={true}></Navigate>;
+  return (
+    <Navigate to={"/login"} state={{ location }} replace={true}></Navigate>
+  );
 };
 
 export default HRRoute;
