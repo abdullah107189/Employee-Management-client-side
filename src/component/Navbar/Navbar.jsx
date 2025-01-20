@@ -26,7 +26,9 @@ const Navbar = () => {
               ? "/dashboard/work-sheet"
               : checkRole === "hr"
               ? "/dashboard/employee-list"
-              : "/dashboard/all-employee-list"
+              : checkRole === "admin"
+              ? "/dashboard/all-employee-list"
+              : ""
           }
           className={({ isActive }) =>
             `${

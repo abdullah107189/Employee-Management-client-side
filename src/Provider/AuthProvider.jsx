@@ -40,13 +40,13 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setAuthLoading(true);
       if (currentUser) {
-        setUser(currentUser);
-        setAuthLoading(false);
         const userInfo = {
           email: currentUser?.email,
         };
         const { data } = await axiosPublic.post("/jwt-sign", userInfo);
         localStorage.setItem("access-token", data?.token);
+        setUser(currentUser);
+        setAuthLoading(false);
         // console.log('current User =========> ', currentUser);
       } else {
         setAuthLoading(false);
