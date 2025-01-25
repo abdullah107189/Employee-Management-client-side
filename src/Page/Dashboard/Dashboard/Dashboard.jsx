@@ -8,12 +8,24 @@ import { FiUsers } from "react-icons/fi";
 import { MdOutlinePayment, MdOutlineTextsms } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { CiBoxList } from "react-icons/ci";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
-  const hanldeLogOut = () => {
-    logoutUser();
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logoutUser();
+      }
+    });
   };
   return (
     <div className="max-w-[1600px] mx-auto z-50 min-h-screen">
@@ -46,6 +58,7 @@ const Dashboard = () => {
               referrerPolicy="no-referrer"
               className="absolute w-10 h-10 top-3 left-2 rounded-full "
             />
+
             {/* Sidebar content here */}
             <a
               href="/"
@@ -173,7 +186,7 @@ const Dashboard = () => {
               )}
             </div>
             <button
-              onClick={hanldeLogOut}
+              onClick={handleLogOut}
               className="border !text-white/80 !border-white/30 hover:bg-white/10 actionBtn mt-auto mb-4"
             >
               Logout
