@@ -53,6 +53,7 @@ const Dashboard = () => {
             <p className="absolute top-2 left-10 z-10 text-green-500 bg-green-500/20 px-1 rounded-full font-semibold uppercase text-[10px]">
               {checkRole}
             </p>
+            {console.log(user)}
             <img
               src={user?.photoURL}
               referrerPolicy="no-referrer"
