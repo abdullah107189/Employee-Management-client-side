@@ -10,7 +10,7 @@ const MainLayout = () => {
       {authLoading ? (
         <AuthLoading></AuthLoading>
       ) : (
-        <div>
+        <div className="dark:bg-gray-900">
           <Navbar></Navbar>
           <div className="dark:bg-gray-900">
             <Outlet></Outlet>

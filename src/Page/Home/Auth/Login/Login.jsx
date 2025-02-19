@@ -52,7 +52,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex mt-3 items-center justify-between minH mxw">
+    <div className="flex mt-3 items-center justify-between minH mxw dark:bg-gray-900">
       {/* Left Side Image */}
       <div
         className="md:w-1/2 hidden md:flex bg-cover bg-center"
@@ -65,23 +65,26 @@ const Login = () => {
 
       {/* Right Side Form */}
       <div className="md:w-1/2 w-full px-4 flex items-center justify-center ">
-        <div className="bg-white md:p-8 p-2 rounded-lg shadow-lg md:w-3/4 w-full">
+        <div className="bg-white dark:bg-gray-800 md:p-8 p-2 rounded-lg shadow-lg md:w-3/4 w-full">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h2 className="text-2xl font-bold text-center mb-6 pText">
               Login to Your Account
             </h2>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="username">
+              <label
+                className="block text-gray-700 dark:text-gray-200 mb-2"
+                htmlFor="username"
+              >
                 Username
               </label>
-              <div className="flex items-center border border-gray-300 rounded">
+              <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded">
                 <FaUser className="ml-2 text-gray-500" />
                 <input
                   type="text"
                   id="username"
                   name="username"
                   {...register("email", { required: true })}
-                  className="flex-1 p-2 focus:outline-none"
+                  className="flex-1 bg-transparent p-2 focus:outline-none"
                   placeholder="Enter your username"
                 />
               </div>
@@ -91,17 +94,20 @@ const Login = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="password">
+              <label
+                className="block text-gray-700 dark:text-gray-200 mb-2"
+                htmlFor="password"
+              >
                 Password
               </label>
-              <div className="flex items-center border border-gray-300 rounded">
+              <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded">
                 <FaLock className="ml-2 text-gray-500" />
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   {...register("password", { required: true, minLength: 6 })}
-                  className="flex-1 p-2 focus:outline-none"
+                  className="flex-1 p-2 bg-transparent focus:outline-none"
                   placeholder="Enter your password"
                 />
                 <button
@@ -119,7 +125,7 @@ const Login = () => {
                 <p className="text-red-400">At least 6 characters</p>
               )}
             </div>
-            <button type="submit" className="actionBtn w-full text-center">
+            <button type="submit" className="actionBtn  w-full text-center">
               {firebaseLoading ? (
                 <span className="animate-spin inline-block">
                   <FaFan></FaFan>

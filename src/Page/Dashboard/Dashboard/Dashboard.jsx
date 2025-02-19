@@ -9,6 +9,7 @@ import { MdOutlinePayment, MdOutlineTextsms } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
 import { CiBoxList } from "react-icons/ci";
 import Swal from "sweetalert2";
+import Toggle from "../../../component/Navbar/Toggle";
 
 const Dashboard = () => {
   const { user, logoutUser } = useAuth();
@@ -60,6 +61,9 @@ const Dashboard = () => {
                 className="absolute w-10 h-10 top-3 left-2 rounded-full "
               />
             </Link>
+            <div className="absolute left-20 top-2">
+              <Toggle></Toggle>
+            </div>
 
             {/* Sidebar content here */}
             <a

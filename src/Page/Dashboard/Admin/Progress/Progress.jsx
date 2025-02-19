@@ -45,7 +45,7 @@ const Progress = () => {
         <div className="flex items-center gap-3 justify-end mt-5">
           <select
             onChange={(e) => handleFetchingChange(e, "employeeName")}
-            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer dark:border-gray-700 border"
           >
             <option value="all">All</option>
             {uniqeNameArray?.map((name, idx) => (
@@ -55,7 +55,7 @@ const Progress = () => {
 
           <select
             onChange={(e) => handleFetchingChange(e, "filterDate")}
-            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
+            className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer dark:border-gray-700 border"
           >
             <option value="all">All</option>
             {uniqeDateArray?.map((date, idx) => (
@@ -81,20 +81,20 @@ const Progress = () => {
               <tbody className="">
                 {Array.from({ length: 5 }).map((_, idx) => {
                   return (
-                    <tr key={idx} className="hover:bg-blue-50 ">
-                      <td className="border p-2">
+                    <tr key={idx} className="dark:hover:bg-gray-800 bg-blue-90  ">
+                      <td className="dark:border-gray-700 border p-2">
                         <div className="skeleton w-10 h-5"></div>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <div className="skeleton w-40 h-6"></div>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <div className="skeleton w-40 h-6"></div>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <div className="skeleton w-10 h-6"></div>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <div className="skeleton w-40 h-6"></div>
                       </td>
                     </tr>
@@ -104,12 +104,12 @@ const Progress = () => {
             ) : (
               <tbody className="">
                 {tableData?.map((employee, idx) => (
-                  <tr key={employee._id} className="hover:bg-blue-50 ">
-                    <th className="border">{idx + 1}</th>
-                    <td className="border">{employee?.name}</td>
-                    <td className="border">{employee?.work}</td>
-                    <td className="border">{employee.hours}</td>
-                    <td className="border">
+                  <tr key={employee._id} className="dark:hover:bg-gray-800 bg-blue-90  ">
+                    <th className="dark:border-gray-700 border">{idx + 1}</th>
+                    <td className="dark:border-gray-700 border">{employee?.name}</td>
+                    <td className="dark:border-gray-700 border">{employee?.work}</td>
+                    <td className="dark:border-gray-700 border">{employee.hours}</td>
+                    <td className="dark:border-gray-700 border">
                       {format(employee.date, "MMMM yyyy")}
                     </td>
                   </tr>

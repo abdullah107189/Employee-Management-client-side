@@ -28,7 +28,7 @@ body {
   }
 
   .actionBtn {
-    @apply px-5 py-1 border rounded-full pText border-[#678ce4] hover:sBg transform duration-300;
+    @apply px-5 py-1 border rounded-full pText border-[#678ce4] dark:hover:bg-gray-700 hover:sBg transform duration-300;
   }
 
   .activeActionBtn {

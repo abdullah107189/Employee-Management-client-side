@@ -118,24 +118,27 @@ const Register = () => {
 
       {/* Right Side Form */}
       <div className="md:w-2/3 w-full flex items-center justify-center px-4">
-        <div className="bg-white my-5 lg:p-8 p-2 rounded-lg shadow-lg lg:w-3/4 w-full overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 my-5 lg:p-8 p-2 rounded-lg shadow-lg lg:w-3/4 w-full overflow-hidden">
           <form onSubmit={handleSubmit(onSubmit)} className="">
             <h2 className="text-2xl font-bold text-center  pText">
               Create an Account
             </h2>
             {/* user name  */}
             <div className="mb-2">
-              <label className="block text-gray-700 mb-2" htmlFor="username">
+              <label
+                className="block text-gray-700 dark:text-gray-200 mb-2"
+                htmlFor="username"
+              >
                 User Name
               </label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaUser className="ml-2 text-gray-500" />
+              <div className="flex items-center dark:border-gray-700 border border-gray-300 rounded">
+                <FaUser className="ml-2 text-gray-500 dark:text-gray-200" />
                 <input
                   type="text"
                   id="username"
                   name="name"
                   {...register("name", { required: true })}
-                  className="flex-1 p-2 focus:outline-none"
+                  className="flex-1 p-2 focus:outline-none bg-transparent"
                   placeholder="Enter your username"
                 />
               </div>
@@ -145,10 +148,13 @@ const Register = () => {
             </div>
 
             {/* image get */}
-            <label className="block text-gray-700 mb-2" htmlFor="">
+            <label
+              className="block text-gray-700 dark:text-gray-200 mb-2"
+              htmlFor=""
+            >
               Set Your Photo
             </label>
-            <div className=" border border-gray-300 relative rounded p-1">
+            <div className=" dark:border-gray-700 border border-gray-300 relative rounded p-1">
               <div className=" flex items-center justify-between gap-5">
                 <div className="w-full">
                   <div className=" flex items-center w-full rounded">
@@ -175,7 +181,8 @@ const Register = () => {
                       type="button"
                       className="actionBtn w-full flex-1 text-center flex items-center justify-center gap-3"
                     >
-                      <FaFile className="ml-2 text-gray-500" /> Upload Photo
+                      <FaFile className="ml-2 text-gray-500 dark:text-gray-200" />{" "}
+                      Upload Photo
                     </label>
                   </div>
                 </div>
@@ -215,16 +222,16 @@ const Register = () => {
               {/* designation  */}
               <div>
                 <label
-                  className="block text-gray-700 mb-1"
+                  className="block text-gray-700 dark:text-gray-200 mb-1"
                   htmlFor="designation"
                 >
                   Select Your Designation
                 </label>
-                <div className="flex items-center gap-2 md:px-4 md:mr-2 outline-none cursor-pointer border border-gray-300 relative rounded p-1">
-                  <MdAddHomeWork className=" text-gray-500" />
+                <div className="flex  items-center gap-2 md:px-4 md:mr-2 outline-none cursor-pointer dark:border-gray-700 border border-gray-300 relative rounded p-1">
+                  <MdAddHomeWork className=" text-gray-500 dark:text-gray-200" />
                   <select
                     required
-                    className="w-full outline-none"
+                    className="w-full bg-transparent outline-none"
                     name="designation"
                     {...register("designation")}
                     id=""
@@ -246,15 +253,18 @@ const Register = () => {
 
               {/* role */}
               <div>
-                <label className="block text-gray-700 mb-1" htmlFor="role">
+                <label
+                  className="block text-gray-700 dark:text-gray-200 mb-1"
+                  htmlFor="role"
+                >
                   Set Your Role
                 </label>
-                <div className="flex items-center md:px-4 md:mr-2 outline-none cursor-pointer border border-gray-300 relative rounded p-1">
-                  <GrUserWorker className=" text-gray-500" />
+                <div className="flex items-center md:px-4 md:mr-2 outline-none cursor-pointer dark:border-gray-700 border border-gray-300 relative rounded p-1">
+                  <GrUserWorker className=" text-gray-500 dark:text-gray-200" />
                   <select
                     required
                     {...register("role")}
-                    className="w-full outline-none"
+                    className="w-full bg-transparent outline-none"
                     name="role"
                     id=""
                   >
@@ -273,13 +283,13 @@ const Register = () => {
               {/* bank acc. */}
               <div>
                 <label
-                  className="block text-gray-700 mb-1"
+                  className="block text-gray-700 dark:text-gray-200 mb-1"
                   htmlFor="bank_account"
                 >
                   Your Bank Account
                 </label>
-                <div className="flex items-center border border-gray-300 rounded">
-                  <CiBank className="ml-2 text-gray-500" />
+                <div className="flex items-center dark:border-gray-700 border border-gray-300 rounded">
+                  <CiBank className="ml-2 text-gray-500 dark:text-gray-200" />
                   <input
                     type="number"
                     id="bank_account"
@@ -288,7 +298,7 @@ const Register = () => {
                       required: true,
                       min: 1,
                     })}
-                    className="flex-1 p-2 focus:outline-none"
+                    className="flex-1 p-2 focus:outline-none bg-transparent"
                     placeholder="Enter your Bank Account"
                   />
                 </div>
@@ -302,17 +312,20 @@ const Register = () => {
 
               {/* salary  */}
               <div>
-                <label className="block text-gray-700 mb-1" htmlFor="salary">
+                <label
+                  className="block text-gray-700 dark:text-gray-200 mb-1"
+                  htmlFor="salary"
+                >
                   Your Salary
                 </label>
-                <div className="flex items-center border border-gray-300 rounded">
-                  <FaDollarSign className="ml-2 text-gray-500" />
+                <div className="flex items-center dark:border-gray-700 border border-gray-300 rounded">
+                  <FaDollarSign className="ml-2 text-gray-500 dark:text-gray-200" />
                   <input
                     type="number"
                     id="salary"
                     name="salary"
                     {...register("salary", { required: true, min: 1 })}
-                    className="flex-1 p-2 focus:outline-none"
+                    className="flex-1 p-2 focus:outline-none bg-transparent"
                     placeholder="Enter your Salary"
                   />
                 </div>
@@ -327,17 +340,20 @@ const Register = () => {
 
             {/* email part */}
             <div className="my-2 ">
-              <label className="block text-gray-700 mb-2" htmlFor="email">
+              <label
+                className="block text-gray-700 dark:text-gray-200 mb-2"
+                htmlFor="email"
+              >
                 Email
               </label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaEnvelope className="ml-2 text-gray-500" />
+              <div className="flex items-center dark:border-gray-700 border border-gray-300 rounded">
+                <FaEnvelope className="ml-2 text-gray-500 dark:text-gray-200" />
                 <input
                   type="email"
                   id="email"
                   name="email"
                   {...register("email", { required: true })}
-                  className="flex-1 p-2 focus:outline-none"
+                  className="flex-1 p-2 focus:outline-none bg-transparent"
                   placeholder="Enter your email"
                 />
               </div>
@@ -348,11 +364,14 @@ const Register = () => {
 
             {/* password part */}
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="password">
+              <label
+                className="block text-gray-700 dark:text-gray-200 mb-2"
+                htmlFor="password"
+              >
                 Password
               </label>
-              <div className="flex items-center border border-gray-300 rounded">
-                <FaLock className="ml-2 text-gray-500" />
+              <div className="flex items-center dark:border-gray-700 border border-gray-300 rounded">
+                <FaLock className="ml-2 text-gray-500 dark:text-gray-200" />
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
@@ -367,16 +386,15 @@ const Register = () => {
                   onInput={() => {
                     setRulesOpen(true);
                   }}
-                  className="flex-1 p-2 focus:outline-none"
+                  className="flex-1 p-2 focus:outline-none bg-transparent"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)} 
-                  className="mx-2 text-gray-500 focus:outline-none"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="mx-2 text-gray-500 dark:text-gray-200 focus:outline-none bg-transparent"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
-                 
                 </button>
               </div>
               <div

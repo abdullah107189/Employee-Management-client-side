@@ -70,7 +70,10 @@ const EmployeeList = () => {
             <tbody className="animate-pulse">
               {Array.from({ length: 5 }).map((_, idx) => {
                 return (
-                  <tr key={idx} className="hover:bg-blue-50 ">
+                  <tr
+                    key={idx}
+                    className="hover:bg-blue-50 dark:hover:bg-gray-900"
+                  >
                     <th className="border p-2">
                       <div className="skeleton w-10 h-5"></div>
                     </th>
@@ -111,15 +114,22 @@ const EmployeeList = () => {
           ) : (
             <tbody className="">
               {allEmployee?.map((employee, idx) => (
-                <tr key={employee._id} className="hover:bg-blue-50 ">
-                  <th className="border p-2">{idx + 1}</th>
-                  <td className="border p-2">{employee?.userInfo?.name}</td>
-                  <td className="border p-2">{employee?.userInfo?.email}</td>
-                  <td className="border p-2">
+                <tr
+                  key={employee._id}
+                  className="hover:bg-blue-50 text-black dark:text-gray-200 dark:hover:bg-gray-800 "
+                >
+                  <th className="border dark:border-gray-700 p-2">{idx + 1}</th>
+                  <td className="border dark:border-gray-700 p-2">
+                    {employee?.userInfo?.name}
+                  </td>
+                  <td className="border dark:border-gray-700 p-2">
+                    {employee?.userInfo?.email}
+                  </td>
+                  <td className="border dark:border-gray-700 p-2">
                     <div className="flex items-center justify-center">
                       {isLoading ? (
                         <p>
-                          <PiSpinnerThin className="text-gray-900 w-6 h-6" />
+                          <PiSpinnerThin className="dark:text-gray-200 text-gray-900 w-6 h-6" />
                         </p>
                       ) : (
                         <button
@@ -128,15 +138,19 @@ const EmployeeList = () => {
                           {employee.isVerified === true ? (
                             <MdVerified className="text-green-400 w-6 h-6" />
                           ) : (
-                            <VscUnverified className="text-gray-900 w-6 h-6" />
+                            <VscUnverified className="dark:text-gray-200 text-gray-900 w-6 h-6" />
                           )}
                         </button>
                       )}
                     </div>
                   </td>
-                  <td className="border p-2">{employee.bankAccountNo}</td>
-                  <td className="border p-2">{employee.salary}</td>
-                  <td className="border p-2">
+                  <td className="border dark:border-gray-700 p-2">
+                    {employee.bankAccountNo}
+                  </td>
+                  <td className="border dark:border-gray-700 p-2">
+                    {employee.salary}
+                  </td>
+                  <td className="border dark:border-gray-700 p-2">
                     <div className="flex items-center justify-center">
                       {employee.isVerified === true ? (
                         <button
@@ -158,10 +172,10 @@ const EmployeeList = () => {
                     </div>
                   </td>
 
-                  <td className="border p-2">
+                  <td className="border dark:border-gray-700 p-2">
                     <div className="flex items-center justify-center">
                       <Link to={`/dashboard/employeeDetails/${employee?._id}`}>
-                        <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
+                        <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 dark:bg-orange-100/20 bg-orange-100 text-orange-400" />
                       </Link>
                     </div>
                   </td>
