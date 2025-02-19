@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
   const li = (
-    <div className="md:space-x-3 gap-3 flex md:flex-row flex-col">
+    <div className="lg:space-x-3 gap-3 flex lg:flex-row flex-col">
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -61,6 +61,7 @@ const Navbar = () => {
   return (
     <div className="bg-[#142446] sticky top-0 z-50">
       <div className="navbar py-0 text-white mxw">
+        {/* small devices route  */}
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -81,18 +82,23 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-[#142446] backdrop-blur-md"
+              className="menu  menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-[#142446] backdrop-blur-md"
             >
               {li}
             </ul>
           </div>
+
+          {/* logo  */}
           <a href="/" className="text-2xl font-bold">
             <span className="pText">As</span>Tech
           </a>
         </div>
+
+        {/* big screen */}
         <div className="navbar-center  hidden lg:flex ">
           <ul className="menu menu-horizontal px-1">{li}</ul>
         </div>
+
         <div className="navbar-end">
           {user ? (
             <div className="dropdown dropdown-end text-black">
