@@ -50,7 +50,7 @@ const JobPostings = () => {
   });
 
   return (
-    <div className="mxw mx-auto p-6">
+    <div className="mxw mx-auto px-4">
       <div className="my-10">
         <SectionHeader title={"Job Postings"}></SectionHeader>
       </div>

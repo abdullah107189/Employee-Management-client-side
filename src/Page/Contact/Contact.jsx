@@ -29,7 +29,7 @@ const ContactUs = () => {
       <div className="md:pb-10 py-5">
         <SectionHeader title={"Contact Us"}></SectionHeader>
       </div>
-      <div className="flex flex-col md:flex-row max-w-6xl mx-auto px-6">
+      <div className="flex flex-col md:flex-row max-w-6xl mx-auto px-4">
         <div className="flex flex-col items-center justify-center md:w-1/2 w-full p-4 bg-white mb-5 rounded-xl">
           <p className="mb-4 text-gray-600">
             We would love to hear from you! Please fill out the form below, and

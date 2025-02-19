@@ -37,7 +37,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="mxw mx-auto p-6">
+    <div className="mxw mx-auto px-4">
       <div className="md:my-10 my-5">
         <SectionHeader title={"FAQ "}></SectionHeader>
       </div>
