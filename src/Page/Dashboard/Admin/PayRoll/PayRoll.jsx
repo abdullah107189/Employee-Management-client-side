@@ -32,7 +32,7 @@ const PayRoll = () => {
       <div className="overflow-x-auto mt-5">
         <table className="table">
           <thead className="">
-            <tr className="pBg text-white">
+            <tr className="pBg text-white ">
               <th className="p-2 rounded-tl-lg"></th>
               <th className="p-2 ">Name</th>
               <th className="p-2 ">Email</th>
@@ -49,60 +49,60 @@ const PayRoll = () => {
             {payReqLoading
               ? Array.from({ length: 5 }).map((_, idx) => (
                   <tr key={idx} className="animate-pulse">
-                    <th className="border p-2">
+                    <th className="dark:border-gray-700 border p-2">
                       <p className="w-5 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </th>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-40 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-40 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-14 h-3 mt-1 rounded-full bg-blue-300"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                     </td>
                   </tr>
                 ))
               : payRequestData?.map((employee, idx) => (
-                  <tr key={idx} className="hover:bg-blue-50 ">
-                    <th className="border p-2">{idx + 1}</th>
-                    <td className="border p-2">{employee?.employeeName}</td>
-                    <td className="border p-2">{employee?.employeeEmail}</td>
+                  <tr key={idx} className="hover:bg-blue-50 dark:hover:bg-gray-800">
+                    <th className="dark:border-gray-700 border p-2">{idx + 1}</th>
+                    <td className="dark:border-gray-700 border p-2">{employee?.employeeName}</td>
+                    <td className="dark:border-gray-700 border p-2">{employee?.employeeEmail}</td>
 
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       {employee.employeeInfo.designation}
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       {format(employee?.monthAndYear, "MMMM yyyy")}
                     </td>
-                    <td className="border p-2">{employee.salary}</td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">{employee.salary}</td>
+                    <td className="dark:border-gray-700 border p-2">
                       {employee?.transactionId ? (
                         <p>{employee?.transactionId}</p>
                       ) : (
                         <p>---</p>
                       )}
                     </td>
-                    <td className="border p-2">{employee?.salary}</td>
-                    <td className="border p-2 ">
+                    <td className="dark:border-gray-700 border p-2">{employee?.salary}</td>
+                    <td className="dark:border-gray-700 border p-2 ">
                       <div className="flex items-center justify-center">
                         {employee?.isPaymentSuccess ? (
                           <p className="badge p-3 pb-4 bg-blue-100 text-blue-400 font-bold">
@@ -119,7 +119,7 @@ const PayRoll = () => {
                         )}
                       </div>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       {employee?.paymentDate ? (
                         <p>{format(employee?.paymentDate, "dd MMMM yyyy")}</p>
                       ) : (
@@ -139,7 +139,7 @@ const PayRoll = () => {
               <span className="pText">As</span>Tech
             </a>
             <div className="min-h-[50vh] flex flex-col items-center  justify-center">
-              <h1 className="flex items-center justify-center gap-2 p-2 border rounded-xl shadow-md mb-5 font-bold text-3xl ">
+              <h1 className="flex items-center justify-center gap-2 p-2 dark:border-gray-700 border rounded-xl shadow-md mb-5 font-bold text-3xl ">
                 <FaDollarSign></FaDollarSign> {showModal?.employee?.salary}
               </h1>
               <Elements stripe={stripePromise}>

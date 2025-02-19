@@ -22,7 +22,7 @@ const ReceiveMassage = () => {
           {Array.from({ length: 5 }).map((_, idx) => (
             <div
               key={`loading-${idx}`}
-              className="bg-white shadow-md rounded-lg md:p-3 p-1 border border-gray-200 transition-transform transform hover:scale-[1.03]"
+              className="bg-white dark:bg-gray-700 shadow-md rounded-lg md:p-3 p-1 border border-gray-200 dark:border-gray-700 transition-transform transform hover:scale-[1.03]"
             >
               <p className="font-bold flex w-48 mb-2 h-8 skeleton items-center gap-2 md:text-2xl text-xl text-gray-700"></p>
               <p className="w-full h-5 skeleton mb-2 font-semibold flex items-center gap-2 md:text-xl text-lg text-gray-700"></p>
@@ -39,15 +39,15 @@ const ReceiveMassage = () => {
               {receiveMassage.map((msg) => (
                 <div
                   key={msg.id}
-                  className="bg-white shadow-md rounded-lg md:p-3 p-1 border border-gray-200 transition-transform transform hover:scale-[1.03]"
+                  className="bg-white dark:bg-gray-800 dark:border-gray-700 shadow-md rounded-lg md:p-3 p-1 border border-gray-200 transition-transform transform hover:scale-[1.03]"
                 >
-                  <p className="font-bold flex items-center gap-2 md:text-2xl text-xl text-gray-700">
+                  <p className="font-bold flex items-center gap-2 md:text-2xl text-xl dark:text-gray-200 text-gray-700">
                     <FaUser /> {msg.name}
                   </p>
-                  <p className="font-semibold flex items-center gap-2 md:text-xl text-lg text-gray-700">
+                  <p className="font-semibold flex items-center gap-2 dark:text-gray-300 md:text-xl text-lg text-gray-700">
                     <MdOutlineTextsms /> {msg.email}
                   </p>
-                  <p className="gap-2 md:text-lg text-md text-gray-700">
+                  <p className="gap-2 md:text-lg text-md dark:text-gray-400 text-gray-700">
                     <span>
                       {isExpanded
                         ? msg.message

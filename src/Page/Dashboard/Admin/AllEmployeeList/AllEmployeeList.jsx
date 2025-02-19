@@ -105,27 +105,27 @@ const AllEmployeeList = () => {
     });
   };
   return (
-    <div className="">
+    <div className=" dark:bg-gray-900">
       <SectionHeader title={"All Employee & HR List"}></SectionHeader>
       <div className="text-end mr-2">
         <button
           onClick={() => setIsGridView("table")}
-          className=" sBg p-2 rounded-l-lg"
+          className=" sBg p-2 rounded-l-lg dark:bg-gray-700"
         >
           <FaTable
             className={`${
               isGridView === "table" && "pText"
-            } bg-white w-7 h-7 rounded-md p-1`}
+            } bg-white dark:bg-gray-700 w-7 h-7 rounded-md p-1`}
           />
         </button>
         <button
           onClick={() => setIsGridView("grid")}
-          className=" sBg p-2 rounded-r-lg "
+          className=" sBg p-2 rounded-r-lg dark:bg-gray-700"
         >
           <FaTh
             className={`${
               isGridView === "grid" && "pText"
-            } bg-white w-7 h-7 rounded-md p-1`}
+            } bg-white dark:bg-gray-700 w-7 h-7 rounded-md p-1`}
           />
         </button>
       </div>
@@ -146,70 +146,86 @@ const AllEmployeeList = () => {
                 <th className="p-2 rounded-tr-lg">Details</th>
               </tr>
             </thead>
+
             <tbody className="">
               {tableLoading
                 ? Array.from({ length: 5 }).map((_, idx) => (
                     <tr key={idx} className="animate-pulse">
-                      <th className="border p-2">
+                      <th className="dark:border-gray-700 border  p-2">
                         <p className="w-5 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </th>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <p className="w-40 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
                       </td>
                       {/* update salary  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center ">
-                          <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
+                          <FaSortAmountUpAlt className="w-10 h-10 rounded-full transform duration-300 dark:hover:bg-green-800  p-2 bg-green-100 dark:bg-green-200/20 text-green-400" />
                         </div>
                       </td>
 
                       {/* fire  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center ">
                           <ImFire className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                         </div>
                       </td>
 
                       {/* make hr  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center  flex-col">
                           <CgArrowsExchangeAltV
                             className={`w-10 h-10 rounded-full transform duration-300 hover:bg-green-300 p-2 bg-green-200 text-green-500`}
                           />
                           <p className="w-20 h-3 mt-1 rounded-full bg-gray-300"></p>
-                          <span className="font-bold px-1 border rounded-full bg-gray-100"></span>
+                          <span className="font-bold px-1 dark:border-gray-700 border  rounded-full bg-gray-100"></span>
                         </div>
                       </td>
 
                       {/* details  */}
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <CiSquareInfo className="w-10 h-10 rounded-full transform duration-300 hover:bg-orange-200 p-2 bg-orange-100 text-orange-400" />
                       </td>
                     </tr>
                   ))
                 : verifiedEmployee?.map((employee, idx) => (
-                    <tr key={idx} className="hover:bg-blue-50 ">
-                      <th className="border p-2">{idx + 1}</th>
-                      <td className="border p-2">{employee?.userInfo.name}</td>
-                      <td className="border p-2">{employee?.userInfo.email}</td>
+                    <tr
+                      key={idx}
+                      className="hover:bg-blue-50 dark:hover:bg-gray-800 "
+                    >
+                      <th className="dark:border-gray-700 border  p-2">
+                        {idx + 1}
+                      </th>
+                      <td className="dark:border-gray-700 border  p-2">
+                        {employee?.userInfo.name}
+                      </td>
+                      <td className="dark:border-gray-700 border  p-2">
+                        {employee?.userInfo.email}
+                      </td>
 
-                      <td className="border p-2">{employee.designation}</td>
-                      <td className="border p-2">{employee.bankAccountNo}</td>
-                      <td className="border p-2">{employee.salary}</td>
+                      <td className="dark:border-gray-700 border  p-2">
+                        {employee.designation}
+                      </td>
+                      <td className="dark:border-gray-700 border  p-2">
+                        {employee.bankAccountNo}
+                      </td>
+                      <td className="dark:border-gray-700 border  p-2">
+                        {employee.salary}
+                      </td>
                       {/* update salary  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center ">
                           <button
                             onClick={() =>
@@ -225,7 +241,7 @@ const AllEmployeeList = () => {
                       </td>
 
                       {/* fire  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center ">
                           {employee?.isFired ? (
                             <p className="badge p-3 pb-4 bg-red-100 text-red-400 font-bold">
@@ -244,7 +260,7 @@ const AllEmployeeList = () => {
                       </td>
 
                       {/* make hr  */}
-                      <td className="border p-2 ">
+                      <td className="dark:border-gray-700 border  p-2 ">
                         <div className="flex items-center justify-center  flex-col">
                           {employee?.isFired ? (
                             <button>
@@ -283,7 +299,7 @@ const AllEmployeeList = () => {
                           )}
                           <p className="text-[10px]">
                             Role is :{" "}
-                            <span className="font-bold px-1 border rounded-full bg-gray-100">
+                            <span className="font-bold px-1 dark:border-gray-700 border  rounded-full dark:bg-gray-800 bg-gray-100">
                               {employee?.role === "hr" ? "HR" : "Employee"}
                             </span>
                           </p>
@@ -291,7 +307,7 @@ const AllEmployeeList = () => {
                       </td>
 
                       {/* details  */}
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border  p-2">
                         <Link
                           to={`/dashboard/hrAndEmployeeDetails/${employee?._id}`}
                         >
@@ -307,16 +323,16 @@ const AllEmployeeList = () => {
 
       {isGridView === "grid" && (
         <div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:grid-cols-3 xl:grid-cols-4 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:grid-cols-3 xl:grid-cols-4 mt-5">
             {verifiedEmployee?.map((employee) => (
               <div
                 key={employee?._id}
-                className="border flex flex-col bg-white md:p-2 p-2 rounded-xl"
+                className="dark:border-gray-700 border  flex flex-col bg-white dark:bg-gray-800 md:p-2 p-2 rounded-xl"
               >
                 <img
                   src={employee?.userInfo?.photoUrl}
                   alt={employee?.userInfo?.name}
-                  className="w-20 h-20 object-cover rounded-full mx-auto border-2 border-blue-400"
+                  className="w-20 h-20 object-cover rounded-full mx-auto dark:border-gray-700 border-2 border-blue-400"
                 />
                 <h1 className="flex items-center md:text-xl text-[16px] gap-2 font-bold ">
                   <FaUser></FaUser> {employee?.userInfo?.name}
@@ -336,21 +352,21 @@ const AllEmployeeList = () => {
                   {/* designation  */}
                   <h1 className="flex items-center gap-1 rounded font-semibold">
                     <MdWork />
-                    <span className="sBg rounded-xl uppercase text-xs px-1">
+                    <span className="sBg dark:bg-gray-700 rounded-xl uppercase text-xs px-1">
                       {employee?.designation}
                     </span>
                   </h1>
                   {/* bank number  */}
                   <h1 className="flex items-center gap-1 rounded font-semibold">
                     <CiBank />
-                    <span className="sBg rounded-xl uppercase text-xs px-1">
+                    <span className="sBg dark:bg-gray-700 rounded-xl uppercase text-xs px-1">
                       {employee?.role}
                     </span>
                   </h1>
                   {/* salary  */}
                   <h1 className="flex items-center gap-1 rounded font-semibold">
                     <FaDollarSign />
-                    <span className="sBg rounded-xl uppercase text-xs px-1">
+                    <span className="sBg dark:bg-gray-700 rounded-xl uppercase text-xs px-1">
                       {employee?.salary}
                     </span>
                   </h1>
@@ -447,23 +463,23 @@ const AllEmployeeList = () => {
                 className="mt-2 p-5 grid grid-cols-1 w-full gap-5 "
                 onSubmit={(e) => handleUpdateSalary(e, showModal.employeeInfo)}
               >
-                <div className="border border-gray-200 p-5 rounded-3xl shadow-lg">
+                <div className="dark:border-gray-700 border  dark:border-gray-700 border -gray-200 p-5 rounded-3xl shadow-lg">
                   <p className="font-bold">Old Salary</p>
                   <input
                     required
                     defaultValue={showModal?.employeeInfo?.salary}
-                    className="p-2 cursor-default mt-2 w-full border px-4 mr-2 outline-none rounded-full "
+                    className="p-2 cursor-default mt-2 w-full dark:border-gray-700 border  px-4 mr-2 outline-none rounded-full "
                     readOnly
                     type="number"
                     name=""
                     id=""
                   />
                 </div>
-                <div className="border border-gray-200 p-5 rounded-3xl shadow-lg">
+                <div className="dark:border-gray-700 border  dark:border-gray-700 border -gray-200 p-5 rounded-3xl shadow-lg">
                   <p className="font-bold">Update Salary</p>
                   <input
                     required
-                    className="p-2 focus:shadow-lg w-full mt-2 border px-4 mr-2 outline-none rounded-full cursor-pointer"
+                    className="p-2 focus:shadow-lg w-full mt-2 dark:border-gray-700 border  px-4 mr-2 outline-none rounded-full cursor-pointer"
                     placeholder="Update Salary"
                     type="number"
                     name="salary"

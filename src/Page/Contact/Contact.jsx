@@ -30,8 +30,8 @@ const ContactUs = () => {
         <SectionHeader title={"Contact Us"}></SectionHeader>
       </div>
       <div className="flex flex-col md:flex-row max-w-6xl mx-auto px-4">
-        <div className="flex flex-col items-center justify-center md:w-1/2 w-full p-4 bg-white mb-5 rounded-xl">
-          <p className="mb-4 text-gray-600">
+        <div className="flex flex-col items-center justify-center md:w-1/2 w-full p-4 bg-white dark:bg-gray-800 mb-5 rounded-xl">
+          <p className="mb-4 dark:text-gray-200 text-gray-600">
             We would love to hear from you! Please fill out the form below, and
             we will get back to you as soon as possible.
           </p>
@@ -42,7 +42,7 @@ const ContactUs = () => {
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none"
+              className="w-full p-3 border dark:border-gray-700 border-gray-300 rounded focus:outline-none"
               required
             />
             <input
@@ -51,7 +51,7 @@ const ContactUs = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none"
+              className="w-full p-3 border dark:border-gray-700 border-gray-300 rounded focus:outline-none"
               required
             />
             <textarea
@@ -59,7 +59,7 @@ const ContactUs = () => {
               placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded focus:outline-none"
+              className="w-full p-3 border dark:border-gray-700 border-gray-300 rounded focus:outline-none"
               rows="4"
               required
             />

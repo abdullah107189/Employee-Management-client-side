@@ -29,7 +29,7 @@ const Dashboard = () => {
     });
   };
   return (
-    <div className="mx-auto z-50 min-h-screen dark:bg-gray-900 dark:text-gray-200">
+    <div className="mx-auto z-50 min-h-screen text-black dark:bg-gray-900 dark:text-gray-200">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
