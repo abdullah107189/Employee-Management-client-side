@@ -105,7 +105,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-2 minH mxw">
+    <div className="flex items-center justify-center mt-2 minH mxw dark:text-gray-200">
       {/* Left Side Image */}
       <div
         className="md:w-1/2 hidden md:flex m-auto bg-cover bg-center"

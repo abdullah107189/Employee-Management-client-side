@@ -33,7 +33,7 @@ const PaymentHistory = () => {
       {isLoading ? (
         <>
           <div className="overflow-x-auto mt-5">
-            <table className="table border">
+            <table className="table dark:border-gray-700 border">
               <thead className="">
                 <tr className="p-2 pBg text-white">
                   <th className="p-2 rounded-tl-lg"></th>
@@ -45,17 +45,17 @@ const PaymentHistory = () => {
               <tbody className="">
                 {Array.from({ length: 5 }).map((_, idx) => {
                   return (
-                    <tr key={idx} className="hover:bg-green-100 ">
-                      <th className="border p-2">
+                    <tr key={idx} className="hover:bg-green-100 dark:hover:bg-gray-800">
+                      <th className="dark:border-gray-700 border p-2">
                         <p className="w-10 h-5 skeleton"></p>
                       </th>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <p className="w-20 h-5 skeleton"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <p className="w-20 h-5 skeleton"></p>
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         <p className="w-20 h-5 skeleton"></p>
                       </td>
                     </tr>
@@ -69,7 +69,7 @@ const PaymentHistory = () => {
         <>
           {payHistory?.count > 0 ? (
             <div className="overflow-x-auto mt-5">
-              <table className="table border">
+              <table className="table dark:border-gray-700 border">
                 <thead className="">
                   <tr className="p-2 pBg text-white">
                     <th className="p-2 rounded-tl-lg"></th>
@@ -80,18 +80,18 @@ const PaymentHistory = () => {
                 </thead>
                 <tbody className="">
                   {payHistory?.result[0]?.firstPayment && (
-                    <tr className="hover:bg-green-100 ">
-                      <th className="border p-2">1</th>
-                      <td className="border p-2">
+                    <tr className="hover:bg-green-100 dark:hover:bg-gray-800">
+                      <th className="dark:border-gray-700 border p-2">1</th>
+                      <td className="dark:border-gray-700 border p-2">
                         {format(
                           payHistory?.result[0]?.firstPayment?.monthAndYear,
                           "MMM yyyy"
                         )}
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         $ {payHistory?.result[0]?.firstPayment?.salary}
                       </td>
-                      <td className="border p-2">
+                      <td className="dark:border-gray-700 border p-2">
                         {payHistory?.result[0]?.firstPayment?.transactionId ? (
                           <span>
                             ${" "}
@@ -106,13 +106,13 @@ const PaymentHistory = () => {
                   {payHistory?.result[0]?.allPayment
                     ?.slice()
                     .map((history, idx) => (
-                      <tr key={idx} className="hover:bg-blue-100 ">
-                        <th className="border p-2">{idx + 1 + 1}</th>
-                        <td className="border p-2">
+                      <tr key={idx} className="hover:bg-blue-100 dark:hover:bg-gray-800">
+                        <th className="dark:border-gray-700 border p-2">{idx + 1 + 1}</th>
+                        <td className="dark:border-gray-700 border p-2">
                           {format(history?.monthAndYear, "MMM yyyy")}
                         </td>
-                        <td className="border p-2">$ {history?.salary}</td>
-                        <td className="border p-2">
+                        <td className="dark:border-gray-700 border p-2">$ {history?.salary}</td>
+                        <td className="dark:border-gray-700 border p-2">
                           {history?.transactionId ? (
                             <span>$ {history?.transactionId}</span>
                           ) : (

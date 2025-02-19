@@ -84,7 +84,7 @@ const Login = () => {
                   id="username"
                   name="username"
                   {...register("email", { required: true })}
-                  className="flex-1 bg-transparent p-2 focus:outline-none"
+                  className="flex-1 bg-transparent dark:text-gray-200 p-2 focus:outline-none"
                   placeholder="Enter your username"
                 />
               </div>
@@ -107,7 +107,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   {...register("password", { required: true, minLength: 6 })}
-                  className="flex-1 p-2 bg-transparent focus:outline-none"
+                  className="flex-1 p-2 bg-transparent dark:text-gray-200 focus:outline-none"
                   placeholder="Enter your password"
                 />
                 <button
@@ -134,7 +134,7 @@ const Login = () => {
                 <span>Login</span>
               )}
             </button>
-            <p className="text-center mt-4">
+            <p className="text-center mt-4 dark:text-gray-200">
               Don&apos;t have an account?{" "}
               <Link to={"/register"} className="pText font-semibold">
                 Register

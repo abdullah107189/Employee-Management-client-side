@@ -106,7 +106,9 @@ const WorkSheet = () => {
 
   return (
     <div>
-      <SectionHeader title={" Employee Work Sheet"}></SectionHeader>
+      <div className="md:mb-10 mb-5">
+        <SectionHeader title={" Employee Work Sheet"}></SectionHeader>
+      </div>
       <form
         className="mt-2 lg:flex grid grid-cols-2 gap-2 md:text-base text-xs"
         onSubmit={handleSubmitSheet}
@@ -114,7 +116,7 @@ const WorkSheet = () => {
         {/* dropdown */}
         <select
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer dark:border-gray-700 border"
           name="workPosition"
           id=""
         >
@@ -128,7 +130,7 @@ const WorkSheet = () => {
         {/* hours */}
         <input
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer border"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full cursor-pointer dark:border-gray-700 border"
           placeholder="enter hours number"
           type="number"
           name="hours"
@@ -138,7 +140,7 @@ const WorkSheet = () => {
         {/* date */}
         <DatePicker
           required
-          className="p-2 md:px-4 md:mr-2 outline-none rounded-full w-full cursor-pointer border"
+          className="p-2 md:px-4 md:mr-2 outline-none rounded-full w-full cursor-pointer dark:border-gray-700 border"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
@@ -149,7 +151,7 @@ const WorkSheet = () => {
       </form>
       {/* table data  */}
       <div className="overflow-x-auto mt-5">
-        <table className="table border">
+        <table className="table dark:border-gray-700 border">
           <thead className="">
             <tr className="p-2 pBg text-white">
               <th className="p-2 rounded-tl-lg"></th>
@@ -164,26 +166,26 @@ const WorkSheet = () => {
             <tbody>
               {Array.from({ length: 5 }).map((_, idx) => {
                 return (
-                  <tr key={idx} className="hover:bg-blue-100">
-                    <th className="border p-2">
+                  <tr key={idx} className="hover:bg-blue-100 dark:hover:bg-gray-800">
+                    <th className="dark:border-gray-700 border p-2">
                       <p className="h-3 w-10 skeleton"></p>
                     </th>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="h-3 w-20 skeleton"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="h-3 w-20 skeleton"></p>
                     </td>
-                    <td className="border p-2">
+                    <td className="dark:border-gray-700 border p-2">
                       <p className="h-3 w-20 skeleton"></p>
                     </td>
 
-                    <td className="border p-2 animate-pulse">
+                    <td className="dark:border-gray-700 border p-2 animate-pulse">
                       <div className="flex items-center justify-center ">
                         <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                       </div>
                     </td>
-                    <td className="border p-2 animate-pulse">
+                    <td className="dark:border-gray-700 border p-2 animate-pulse">
                       <FaFilePen className="w-10 h-10 rounded-full transform duration-300 hover:bg-green-200 p-2 bg-green-100 text-green-400" />
                     </td>
                   </tr>
@@ -193,22 +195,26 @@ const WorkSheet = () => {
           ) : (
             <tbody>
               {matchWorkSheetData?.map((sheet, idx) => (
-                <tr key={sheet._id} className="hover:bg-blue-100 ">
-                  <th className="border p-2">{idx + 1}</th>
-                  <td className="border p-2">{sheet?.work}</td>
-                  <td className="border p-2">{sheet?.hours}</td>
-                  <td className="border p-2">
+                <tr key={sheet._id} className="hover:bg-blue-100 dark:bg-gray-800">
+                  <th className="dark:border-gray-700 border p-2">{idx + 1}</th>
+                  <td className="dark:border-gray-700 border p-2">
+                    {sheet?.work}
+                  </td>
+                  <td className="dark:border-gray-700 border p-2">
+                    {sheet?.hours}
+                  </td>
+                  <td className="dark:border-gray-700 border p-2">
                     {format(sheet?.date, "dd MMMM yyyy")}
                   </td>
 
-                  <td className="border p-2 ">
+                  <td className="dark:border-gray-700 border p-2 ">
                     <div className="flex items-center justify-center ">
                       <button onClick={() => handleDeletSheet(sheet?._id)}>
                         <MdDelete className="w-10 h-10 rounded-full transform duration-300 hover:bg-red-200 p-2 bg-red-100 text-red-400" />
                       </button>
                     </div>
                   </td>
-                  <td className="border p-2 ">
+                  <td className="dark:border-gray-700 border p-2 ">
                     <div className="flex items-center justify-center">
                       <button
                         className=""
@@ -245,7 +251,7 @@ const WorkSheet = () => {
                 {/* dropdown */}
                 <select
                   required
-                  className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer border border"
+                  className="p-2 px-4 mr-2 outline-none rounded-full cursor-pointer dark:border-gray-700 border dark:border-gray-700 border"
                   name="workPosition"
                   defaultValue={showModal.sheet.work}
                   id=""
@@ -263,7 +269,7 @@ const WorkSheet = () => {
                 <input
                   required
                   defaultValue={showModal.sheet.hours}
-                  className="p-2 border px-4 mr-2 outline-none rounded-full cursor-pointer"
+                  className="p-2 dark:border-gray-700 border px-4 mr-2 outline-none rounded-full cursor-pointer"
                   placeholder="enter hours number"
                   type="number"
                   name="hours"
@@ -273,7 +279,7 @@ const WorkSheet = () => {
                 {/* date */}
                 <DatePicker
                   required
-                  className="p-2 w-full border px-4 outline-none rounded-full cursor-pointer"
+                  className="p-2 w-full dark:border-gray-700 border px-4 outline-none rounded-full cursor-pointer"
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                 />
