@@ -99,7 +99,7 @@ const Slider = () => {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <div className="md:p-6 p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
+                <div className="px-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
                   <FaQuoteLeft className="text-3xl text-blue-500 mb-4" />
                   <p className="text-gray-600 italic h-24 overflow-hidden">
                     {testimonial.feedback}

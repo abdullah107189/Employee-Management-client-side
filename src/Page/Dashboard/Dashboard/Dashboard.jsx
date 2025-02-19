@@ -28,7 +28,7 @@ const Dashboard = () => {
     });
   };
   return (
-    <div className="max-w-[1600px] mx-auto z-50 min-h-screen">
+    <div className="mx-auto z-50 min-h-screen">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -49,7 +49,7 @@ const Dashboard = () => {
             className="drawer-overlay"
           ></label>
 
-          <ul className="menu min-h-full md:w-80  p-2 bg-[#142446] text-white relative">
+          <ul className="menu min-h-full md:w-80 lg:w-96  p-2 bg-[#142446] text-white relative">
             <Link to={"/dashboard/profile"}>
               <p className="absolute top-2 left-10 z-10 text-green-500 bg-green-500/20 px-1 rounded-full font-semibold uppercase text-[10px]">
                 {checkRole}

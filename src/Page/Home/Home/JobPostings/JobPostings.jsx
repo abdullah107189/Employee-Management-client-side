@@ -89,14 +89,6 @@ const JobPostings = () => {
             <p className="text-gray-600">{job.department}</p>
             <p className="text-gray-500">{job.location}</p>
             <p className="text-gray-700 mt-2">{job.description}</p>
-            <div className="mt-4 flex justify-between">
-              <button className="activeActionBtn">
-                Apply Now
-              </button>
-              <button className="actionBtn">
-                Learn More
-              </button>
-            </div>
           </div>
         ))}
       </div>

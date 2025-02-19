@@ -46,7 +46,7 @@ const News = () => {
 
   return (
     <section className="bg-gray-100 px-4">
-      <div className="mxw mx-auto px-4 text-center">
+      <div className="mxw mx-auto text-center">
         <div className="md:mb-10 mb-5">
           <SectionHeader title={"News and Updates"}></SectionHeader>
         </div>

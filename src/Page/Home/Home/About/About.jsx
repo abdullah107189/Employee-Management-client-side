@@ -8,7 +8,7 @@ const About = () => {
       </div>
       <div className="mxw mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-5 md:mb-0">
+          <div className="md:w-1/2 md:mb-0">
             <p className="text-gray-600 mb-4">
               We are a leading company in employee management solutions,
               dedicated to helping organizations streamline their HR processes

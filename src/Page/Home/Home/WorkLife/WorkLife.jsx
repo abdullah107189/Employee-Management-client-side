@@ -1,3 +1,5 @@
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+
 const WorkLife = () => {
   const initiatives = [
     {
@@ -46,10 +48,12 @@ const WorkLife = () => {
 
   return (
     <section className="bg-gray-100 px-4">
-      <div className="mxw mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">
-          Work-Life Balance Initiatives
-        </h2>
+      <div className="mxw mx-auto text-center">
+        <div className="md:mb-10 mb-5">
+          <SectionHeader
+            title={"Work-Life Balance Initiatives"}
+          ></SectionHeader>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {initiatives.map((initiative) => (
             <div

@@ -46,7 +46,7 @@ const Promotion = () => {
         <div className="md:mb-10 mb-5">
           <SectionHeader title={"Our Promotions"}></SectionHeader>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {promotions.map((promotion) => (
             <div
               key={promotion.id}
