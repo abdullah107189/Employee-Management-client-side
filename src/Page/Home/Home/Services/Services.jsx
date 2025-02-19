@@ -39,7 +39,7 @@ const Services = () => {
 
   return (
     <section className="bg-gray-100">
-      <div className="container mx-auto px-6 text-center">
+      <div className="mxw px-4 mx-auto  text-center">
         <div>
           <SectionHeader title="Services"></SectionHeader>
         </div>

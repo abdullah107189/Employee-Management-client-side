@@ -29,7 +29,7 @@ const TeamSection = () => {
   ];
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="mxw mx-auto p-6">
       <div className="md:my-10 my-5">
         <SectionHeader title={"Our Team"}></SectionHeader>
       </div>

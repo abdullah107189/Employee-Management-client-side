@@ -2,11 +2,18 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
 import { FaQuoteLeft } from "react-icons/fa";
 import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
+import { useRef, useState } from "react";
+
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 const Slider = () => {
+  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleSlideChange = (swiper) => {
+    setActiveIndex(swiper.realIndex); 
+  };
   const testimonials = [
     {
       id: 1,
@@ -66,7 +73,7 @@ const Slider = () => {
 
   return (
     <section className="bg-gray-100 py-10">
-      <div className="container mx-auto px-6 text-center">
+      <div className="mxw mx-auto px-4 text-center">
         <div className="my-10">
           <SectionHeader title="What Our Clients Say"></SectionHeader>
         </div>
@@ -77,22 +84,22 @@ const Slider = () => {
 
         <div className="mt-10">
           <Swiper
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
+            ref={swiperRef}
+            onSlideChange={handleSlideChange}
+            pagination={false}
             loop={true}
             spaceBetween={10}
             slidesPerView={1}
             breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
+              640: { slidesPerView: 2 },
+              1000: { slidesPerView: 3 },
+              1303: { slidesPerView: 4 },
             }}
             className="py-10"
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <div className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
+                <div className="md:p-6 p-2 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
                   <FaQuoteLeft className="text-3xl text-blue-500 mb-4" />
                   <p className="text-gray-600 italic h-24 overflow-hidden">
                     {testimonial.feedback}
@@ -116,6 +123,28 @@ const Slider = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="flex justify-center mt-4">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  swiperRef.current.swiper.slideTo(index);
+                  setActiveIndex(index);
+                }}
+                className={`mx-1 w-3 h-3 rounded-full ${
+                  activeIndex === index ? "bg-blue-500" : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex justify-end items-center mt-3 mr-3 gap-5">
+            <button onClick={() => swiperRef.current.swiper.slidePrev()}>
+              <IoIosArrowDropleft className="w-10 h-10 rounded-full text-blue-400" />
+            </button>
+            <button onClick={() => swiperRef.current.swiper.slideNext()}>
+              <IoIosArrowDropright className="w-10 h-10 rounded-full text-blue-400" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
