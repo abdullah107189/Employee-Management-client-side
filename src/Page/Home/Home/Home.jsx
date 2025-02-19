@@ -7,6 +7,7 @@ import TeamSection from "./TeamSection/TeamSection";
 import About from "./About/About";
 import Promotion from "./Promotion/Promotion";
 import News from "./News/News";
+import WorkLife from "./WorkLife/WorkLife";
 
 const Home = () => {
   return (
@@ -36,6 +37,9 @@ const Home = () => {
       </div>
       <div className="md:pt-20 pt-10" id="faq">
         <FAQSection></FAQSection>
+      </div>
+      <div className="md:pt-20 pt-10" id="faq">
+        <WorkLife></WorkLife>
       </div>
       <div className="md:pt-20 pt-10" id="our_team">
         <TeamSection></TeamSection>
