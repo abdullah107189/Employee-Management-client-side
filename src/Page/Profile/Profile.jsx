@@ -20,7 +20,6 @@ const Profile = () => {
     },
     enabled: !!user?.email,
   });
-  console.log(data);
   return (
     <div className="bg-white dark:bg-gray-900 shadow-lg rounded-lg overflow-hidden mt-10">
       <div className="md:flex flex-col md:flex-row justify-center md:gap-10 items-center p-4">
