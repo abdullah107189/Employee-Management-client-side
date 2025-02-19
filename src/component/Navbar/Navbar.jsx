@@ -20,15 +20,16 @@ const Navbar = () => {
       >
         Home
       </NavLink>
+
       {user && (
         <NavLink
           to={
             checkRole === "employee"
-              ? "/dashboard/work-sheet"
+              ? "/dashboard/employee"
               : checkRole === "hr"
-              ? "/dashboard/employee-list"
+              ? "/dashboard/hr"
               : checkRole === "admin"
-              ? "/dashboard/all-employee-list"
+              ? "/dashboard/admin"
               : ""
           }
           className={({ isActive }) =>

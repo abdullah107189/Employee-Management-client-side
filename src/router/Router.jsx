@@ -20,6 +20,9 @@ import HRAndEmployeeDetailsPage from "../Page/HRAndEmployeeDetailsPage/HRAndEmpl
 import ReceiveMassage from "../Page/Dashboard/Admin/ReceiveMassage/ReceiveMassage";
 import ErrorPage from "../component/ErrorPage/ErrorPage";
 import Profile from "../Page/Profile/Profile";
+import Employee from "../Page/Dashboard/employee/Employee";
+import HR from "../Page/Dashboard/HR/EmployeeList/HR";
+import Admin from "../Page/Dashboard/Admin/Admin";
 
 const Router = createBrowserRouter([
   {
@@ -65,6 +68,14 @@ const Router = createBrowserRouter([
         ),
       },
       {
+        path: "employee",
+        element: (
+          <EmployeeRoute>
+            <Employee></Employee>
+          </EmployeeRoute>
+        ),
+      },
+      {
         path: "payment-history",
         element: (
           <EmployeeRoute>
@@ -82,6 +93,15 @@ const Router = createBrowserRouter([
       },
 
       // HR dahsboard
+
+      {
+        path: "hr",
+        element: (
+          <HRRoute>
+            <HR></HR>
+          </HRRoute>
+        ),
+      },
       {
         path: "employee-list",
         element: (
@@ -100,6 +120,14 @@ const Router = createBrowserRouter([
       },
 
       // admin
+      {
+        path: "admin",
+        element: (
+          <AdminRoute>
+            <Admin></Admin>
+          </AdminRoute>
+        ),
+      },
       {
         path: "all-employee-list",
         element: (
