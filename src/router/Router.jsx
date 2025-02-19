@@ -19,6 +19,7 @@ import AdminRoute from "../route/AdminRoute";
 import HRAndEmployeeDetailsPage from "../Page/HRAndEmployeeDetailsPage/HRAndEmployeeDetailsPage";
 import ReceiveMassage from "../Page/Dashboard/Admin/ReceiveMassage/ReceiveMassage";
 import ErrorPage from "../component/ErrorPage/ErrorPage";
+import Profile from "../Page/Profile/Profile";
 
 const Router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const Router = createBrowserRouter([
       </PrivetRoute>
     ),
     children: [
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
       {
         path: "work-sheet",
         element: (
@@ -130,8 +135,8 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path:"*",
-    element:<ErrorPage></ErrorPage>
-  }
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
 export default Router;

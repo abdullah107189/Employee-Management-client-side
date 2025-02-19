@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { LuSheet } from "react-icons/lu";
 import { RiMenuUnfold3Fill } from "react-icons/ri";
 import useCheckRole from "../../../hooks/useCheckRole";
@@ -50,15 +50,16 @@ const Dashboard = () => {
           ></label>
 
           <ul className="menu min-h-full md:w-80  p-2 bg-[#142446] text-white relative">
-            <p className="absolute top-2 left-10 z-10 text-green-500 bg-green-500/20 px-1 rounded-full font-semibold uppercase text-[10px]">
-              {checkRole}
-            </p>
-            {console.log(user)}
-            <img
-              src={user?.photoURL}
-              referrerPolicy="no-referrer"
-              className="absolute w-10 h-10 top-3 left-2 rounded-full "
-            />
+            <Link to={"/dashboard/profile"}>
+              <p className="absolute top-2 left-10 z-10 text-green-500 bg-green-500/20 px-1 rounded-full font-semibold uppercase text-[10px]">
+                {checkRole}
+              </p>
+              <img
+                src={user?.photoURL}
+                referrerPolicy="no-referrer"
+                className="absolute w-10 h-10 top-3 left-2 rounded-full "
+              />
+            </Link>
 
             {/* Sidebar content here */}
             <a
