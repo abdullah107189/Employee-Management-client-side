@@ -12,7 +12,7 @@ const MainLayout = () => {
       ) : (
         <div>
           <Navbar></Navbar>
-          <div className="">
+          <div className="dark:bg-gray-900">
             <Outlet></Outlet>
           </div>
           <Footer></Footer>

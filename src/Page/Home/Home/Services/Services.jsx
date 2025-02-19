@@ -38,12 +38,12 @@ const Services = () => {
   ];
 
   return (
-    <section className="bg-gray-100">
+    <section className="bg-gray-100 dark:bg-gray-900 dark:text-gray-200">
       <div className="mxw px-4 mx-auto  text-center">
         <div>
           <SectionHeader title="Services"></SectionHeader>
         </div>
-        <p className="text-gray-600 mt-4">
+        <p className="text-gray-600 md:text-2xl dark:text-gray-200 mt-4">
           Simplify your HR processes with our comprehensive employee management
           solutions.
         </p>
@@ -51,13 +51,13 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              className="p-6 bg-white dark:bg-gray-800  rounded-lg shadow-md hover:shadow-lg transition duration-300"
             >
               <div className="mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-700">
+              <h3 className="text-xl font-semibold dark:text-gray-200 text-gray-700">
                 {service.title}
               </h3>
-              <p className="text-gray-500 mt-2">{service.description}</p>
+              <p className="dark:text-gray-200 text-gray-500 mt-2">{service.description}</p>
             </div>
           ))}
         </div>

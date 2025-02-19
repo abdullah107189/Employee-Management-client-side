@@ -41,7 +41,7 @@ const Promotion = () => {
   ];
 
   return (
-    <section className="bg-gray-100">
+    <section className="bg-gray-100 dark:bg-gray-900">
       <div className="mxw mx-auto px-4 text-center">
         <div className="md:mb-10 mb-5">
           <SectionHeader title={"Our Promotions"}></SectionHeader>
@@ -50,7 +50,7 @@ const Promotion = () => {
           {promotions.map((promotion) => (
             <div
               key={promotion.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
             >
               <a
                 href={promotion.link}
@@ -63,7 +63,7 @@ const Promotion = () => {
                   className="w-full h-32 object-contain p-4"
                 />
                 <div className="p-4">
-                  <h3 className="text-xl font-semibold text-gray-800">
+                  <h3 className="text-xl font-semibold dark:text-gray-200 text-gray-800">
                     {promotion.name}
                   </h3>
                 </div>

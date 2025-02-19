@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import SectionHeader from '../../../../component/SectionHeader/SectionHeader';
+import { useState } from "react";
+import SectionHeader from "../../../../component/SectionHeader/SectionHeader";
 
 const JobPostings = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
   const jobPostings = [
     {
@@ -43,14 +43,18 @@ const JobPostings = () => {
     },
   ];
 
-  const filteredJobs = jobPostings.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All Categories' || job.department === selectedCategory;
+  const filteredJobs = jobPostings.filter((job) => {
+    const matchesSearch = job.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "All Categories" ||
+      job.department === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div className="mxw mx-auto px-4">
+    <div className="mxw mx-auto px-4 dark:bg-gray-900">
       <div className="my-10">
         <SectionHeader title={"Job Postings"}></SectionHeader>
       </div>
@@ -60,12 +64,12 @@ const JobPostings = () => {
         <input
           type="text"
           placeholder="Search jobs..."
-          className="border focus:outline-none border-gray-300 rounded p-2 mb-4 md:mb-0 w-full md:w-1/2"
+          className="border focus:outline-none border-gray-300 bg-transparent dark:border-gray-700 rounded p-2 mb-4 md:mb-0 w-full md:w-1/2"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select
-          className="border border-gray-300 rounded focus:outline-none p-2 w-full md:w-1/3 md:ml-4"
+          className="border border-gray-300 rounded focus:outline-none bg-transparent dark:border-gray-700 p-2 w-full md:w-1/3 md:ml-4"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
@@ -83,12 +87,14 @@ const JobPostings = () => {
         {filteredJobs.map((job) => (
           <div
             key={job.id}
-            className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
           >
-            <h3 className="text-xl font-semibold text-blue-600">{job.title}</h3>
-            <p className="text-gray-600">{job.department}</p>
-            <p className="text-gray-500">{job.location}</p>
-            <p className="text-gray-700 mt-2">{job.description}</p>
+            <h3 className="text-xl font-semibold text-blue-400">{job.title}</h3>
+            <p className="text-gray-600 dark:text-gray-400">{job.department}</p>
+            <p className="text-gray-500 dark:text-gray-200">{job.location}</p>
+            <p className="text-gray-700 dark:text-gray-200 mt-2">
+              {job.description}
+            </p>
           </div>
         ))}
       </div>

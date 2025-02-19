@@ -12,7 +12,7 @@ const Slider = () => {
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const handleSlideChange = (swiper) => {
-    setActiveIndex(swiper.realIndex); 
+    setActiveIndex(swiper.realIndex);
   };
   const testimonials = [
     {
@@ -72,12 +72,12 @@ const Slider = () => {
   ];
 
   return (
-    <section className="bg-gray-100 py-10">
+    <section className="bg-gray-100 py-10 dark:bg-gray-900">
       <div className="mxw mx-auto px-4 text-center">
         <div className="my-10">
           <SectionHeader title="What Our Clients Say"></SectionHeader>
         </div>
-        <p className="text-gray-600 mt-4">
+        <p className="text-gray-600 dark:text-gray-200 md:text-2xl mt-4">
           Hear from some of our satisfied clients about their experience with
           us.
         </p>
@@ -99,22 +99,22 @@ const Slider = () => {
           >
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
-                <div className="px-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
+                <div className="p-4 bg-white dark:bg-gray-800  rounded-lg shadow-md hover:shadow-lg transition duration-300 text-left max-w-xs mx-auto">
                   <FaQuoteLeft className="text-3xl text-blue-500 mb-4" />
-                  <p className="text-gray-600 italic h-24 overflow-hidden">
+                  <p className="text-gray-600 dark:text-gray-200 italic h-24 overflow-hidden">
                     {testimonial.feedback}
                   </p>
                   <div className="flex items-center mt-4">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-12 h-12 object-cover rounded-full mr-4 border border-gray-300"
+                      className="w-12 h-12 object-cover rounded-full dark:bg-white p-1 mr-4 border border-gray-300"
                     />
                     <div>
-                      <h3 className="text-gray-800 font-bold">
+                      <h3 className="text-gray-800 dark:text-gray-200 font-bold">
                         {testimonial.name}
                       </h3>
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-gray-500 dark:text-gray-200 text-sm">
                         {testimonial.position}
                       </p>
                     </div>
@@ -132,7 +132,7 @@ const Slider = () => {
                   setActiveIndex(index);
                 }}
                 className={`mx-1 w-3 h-3 rounded-full ${
-                  activeIndex === index ? "bg-blue-500" : "bg-gray-300"
+                  activeIndex === index ? "bg-blue-500 " : "bg-gray-300"
                 }`}
               />
             ))}

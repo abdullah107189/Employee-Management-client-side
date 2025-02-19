@@ -45,19 +45,19 @@ const News = () => {
   ];
 
   return (
-    <section className="bg-gray-100 px-4">
+    <section className="bg-gray-100 dark:bg-gray-900 px-4">
       <div className="mxw mx-auto text-center">
         <div className="md:mb-10 mb-5">
           <SectionHeader title={"News and Updates"}></SectionHeader>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsUpdates.map((update) => (
-            <div key={update.id} className="bg-white shadow-md rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <div key={update.id} className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 {update.title}
               </h3>
-              <p className="text-gray-500 text-sm mb-4">{update.date}</p>
-              <p className="text-gray-600 mb-4">{update.description}</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">{update.date}</p>
+              <p className="text-gray-600 dark:text-gray-200 mb-4">{update.description}</p>
             </div>
           ))}
         </div>

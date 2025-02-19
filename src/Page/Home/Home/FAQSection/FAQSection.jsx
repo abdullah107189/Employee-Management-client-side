@@ -43,7 +43,7 @@ const FAQSection = () => {
       </div>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md border">
+          <div key={index} className="bg-white dark:bg-gray-800 dark:border-gray-600 rounded-lg shadow-md border">
             <button
               className="flex justify-between w-full p-4 text-left focus:outline-none"
               onClick={() => toggleFAQ(index)}

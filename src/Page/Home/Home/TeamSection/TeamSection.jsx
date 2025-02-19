@@ -37,15 +37,15 @@ const TeamSection = () => {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-md p-4 text-center"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 text-center"
           >
             <img
               src={member.imageUrl}
               alt={member.name}
               className="w-24 h-24 rounded-full mx-auto mb-2"
             />
-            <h3 className="font-semibold">{member.name}</h3>
-            <p className="text-gray-500">{member.role}</p>
+            <h3 className="font-semibold text-xl">{member.name}</h3>
+            <p className="text-gray-500 dark:text-gray-200">{member.role}</p>
           </div>
         ))}
       </div>

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./navbar.css";
 import useCheckRole from "../../hooks/useCheckRole";
 import useAuth from "../../hooks/useAuth";
+import Toggle from "./Toggle";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const { checkRole } = useCheckRole();
@@ -100,6 +101,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
+          <Toggle></Toggle>
           {user ? (
             <div className="dropdown dropdown-end text-black">
               <div

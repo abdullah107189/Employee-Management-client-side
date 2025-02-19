@@ -47,7 +47,7 @@ const WorkLife = () => {
   ];
 
   return (
-    <section className="bg-gray-100 px-4">
+    <section className="bg-gray-100 dark:bg-gray-900 px-4">
       <div className="mxw mx-auto text-center">
         <div className="md:mb-10 mb-5">
           <SectionHeader
@@ -58,13 +58,13 @@ const WorkLife = () => {
           {initiatives.map((initiative) => (
             <div
               key={initiative.id}
-              className="bg-white shadow-md rounded-lg p-6"
+              className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6"
             >
               <div className="text-4xl mb-4">{initiative.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              <h3 className="text-xl dark:text-gray-200 font-semibold text-gray-800 mb-2">
                 {initiative.title}
               </h3>
-              <p className="text-gray-600">{initiative.description}</p>
+              <p className="text-gray-600 dark:text-gray-400">{initiative.description}</p>
             </div>
           ))}
         </div>
