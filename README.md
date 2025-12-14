@@ -4,7 +4,13 @@ Welcome to the **Employee Management System** project! This repository contains 
 
 ## Admin Credentials
 
-- **Email**: abdullah1234@gmail.com
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `abdullah1234@gmail.com` | `asdfAa` |
+| **HR** | `abdullah@gmail.com` | `asdfAa` |
+| **Employee** | `arif@gmail.com` | `asdfAa` |
+
+- **Email**: 
 - **Password**: asdfAa
 
 ## Live Site URL
